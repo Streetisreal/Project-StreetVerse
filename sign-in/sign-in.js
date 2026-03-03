@@ -16353,27 +16353,28 @@
             INITIAL_WIDTH_PROPERTY: "--ws-media-container-initial-width",
             MARGIN_LEFT_PROPERTY: "--ws-media-container-margin-left",
             MARGIN_RIGHT_PROPERTY: "--ws-media-container-margin-right",
-            SAFE_MODE_CLASS: "ws-safe-mode",
             VISIBLE_IMAGE_OFFSET: 15,
             RESIZE_EVENT: "ws:resize",
-            ADJUST_POSITION_EVENT: "ws:adjust-image-position"
+            ADJUST_POSITION_EVENT: "ws:adjust-image-position",
+            MEDIA_TYPE_ATTRIBUTE: "media-type"
         }
-          , {INITIAL_WIDTH_PROPERTY: yr, MAX_WIDTH_PROPERTY: Sr, MIN_WIDTH_PROPERTY: Er, MARGIN_LEFT_PROPERTY: _r, MARGIN_RIGHT_PROPERTY: Tr, SAFE_MODE_CLASS: Mr} = br
-          , Cr = document.createElement("template");
-        var Ar;
-        Cr.innerHTML = `\n  <style>\n    :host {\n      display: block;\n      width: var(${yr}, auto);\n      max-width: var(${Sr}, none);\n      min-width: var(${Er}, auto);\n      margin-right: var(${Tr}, auto);\n      margin-left: var(${_r}, auto);\n      border-top-left-radius: var(--ws-media-container-border-top-left-radius, var(--ws-media-container-border-radius));\n      border-top-right-radius: var(--ws-media-container-border-top-right-radius, var(--ws-media-container-border-radius));\n      border-bottom-left-radius: var(--ws-media-container-border-bottom-left-radius, var(--ws-media-container-border-radius));\n      border-bottom-right-radius: var(--ws-media-container-border-bottom-right-radius, var(--ws-media-container-border-radius));\n    }\n\n    .media-wrapper {\n      position: relative;\n      height: 100%;\n      overflow: hidden;\n      border-top-left-radius: var(--ws-media-container-border-top-left-radius, var(--ws-media-container-border-radius));\n      border-top-right-radius: var(--ws-media-container-border-top-right-radius, var(--ws-media-container-border-radius));\n      border-bottom-left-radius: var(--ws-media-container-border-bottom-left-radius, var(--ws-media-container-border-radius));\n      border-bottom-right-radius: var(--ws-media-container-border-bottom-right-radius, var(--ws-media-container-border-radius));\n      user-select: none;\n    }\n\n    .ws-media-content-container.has-image:not(.${Mr}) {\n      display: grid;\n      position: absolute;\n      transform: translate(-50%, -50%);\n      opacity: 0;\n      transition: opacity 1s;\n    }\n\n    ::slotted(a.ws-visible),\n    ::slotted(picture.ws-visible),\n    ::slotted(img.ws-visible),\n    .ws-media-content-container.has-image:not(.${Mr}).loaded {\n      opacity: 1;\n    }\n\n    [part="decoration"] {\n      display: none;\n    }\n  </style>\n\n  <div class="media-wrapper">\n    <div class="ws-media-content-container">\n      <slot></slot>\n    </div>\n  </div>\n  <div part="decoration"></div>\n`,
-        Ar = Cr,
-        window.ShadyCSS && window.ShadyCSS.prepareTemplate(Ar, br.CONTAINER_TAG);
-        const xr = Cr
-          , kr = (e={}) => {
+          , yr = "image"
+          , {INITIAL_WIDTH_PROPERTY: Sr, MAX_WIDTH_PROPERTY: Er, MIN_WIDTH_PROPERTY: _r, MARGIN_LEFT_PROPERTY: Tr, MARGIN_RIGHT_PROPERTY: Mr, MEDIA_TYPE_ATTRIBUTE: Cr} = br
+          , Ar = document.createElement("template");
+        var xr;
+        Ar.innerHTML = `\n  <style>\n    :host {\n      display: block;\n      width: var(${Sr}, auto);\n      max-width: var(${Er}, none);\n      min-width: var(${_r}, auto);\n      margin-right: var(${Mr}, auto);\n      margin-left: var(${Tr}, auto);\n      border-top-left-radius: var(--ws-media-container-border-top-left-radius, var(--ws-media-container-border-radius));\n      border-top-right-radius: var(--ws-media-container-border-top-right-radius, var(--ws-media-container-border-radius));\n      border-bottom-left-radius: var(--ws-media-container-border-bottom-left-radius, var(--ws-media-container-border-radius));\n      border-bottom-right-radius: var(--ws-media-container-border-bottom-right-radius, var(--ws-media-container-border-radius));\n    }\n\n    .media-wrapper {\n      position: relative;\n      height: 100%;\n      overflow: hidden;\n      border-top-left-radius: var(--ws-media-container-border-top-left-radius, var(--ws-media-container-border-radius));\n      border-top-right-radius: var(--ws-media-container-border-top-right-radius, var(--ws-media-container-border-radius));\n      border-bottom-left-radius: var(--ws-media-container-border-bottom-left-radius, var(--ws-media-container-border-radius));\n      border-bottom-right-radius: var(--ws-media-container-border-bottom-right-radius, var(--ws-media-container-border-radius));\n      user-select: none;\n    }\n\n    .ws-media-content-container[${Cr}="${yr}"] {\n      display: grid;\n      position: absolute;\n      transform: translate(-50%, -50%);\n      opacity: 0;\n      transition: opacity 1s;\n    }\n\n    ::slotted(a.ws-visible),\n    ::slotted(picture.ws-visible),\n    ::slotted(img.ws-visible),\n    .ws-media-content-container[${Cr}="${yr}"].loaded {\n      opacity: 1;\n    }\n\n    [part="decoration"] {\n      display: none;\n    }\n  </style>\n\n  <div class="media-wrapper">\n    <div class="ws-media-content-container">\n      <slot></slot>\n    </div>\n  </div>\n  <div part="decoration"></div>\n`,
+        xr = Ar,
+        window.ShadyCSS && window.ShadyCSS.prepareTemplate(xr, br.CONTAINER_TAG);
+        const kr = Ar
+          , Or = (e={}) => {
             const t = e.src || ""
               , n = e.alt || "";
             return `<img src="${t}" ${e.title ? `data-title="${e.title}"` : ""} ${e.description ? `data-description="${e.description}"` : ""} alt="${n}" loading="lazy" />`
         }
-          , Or = (e={}) => `<picture>${kr(e)}</picture>`
-          , Ir = Object.freeze({
+          , Ir = (e={}) => `<picture>${Or(e)}</picture>`
+          , Lr = Object.freeze({
             imageMediaContainer: (e, t, n) => {
-                const i = Or(t);
+                const i = Ir(t);
                 return ( (e={}, t) => `<ws-media-container\n    aspect-ratio="${e.aspectRatio || 1}"\n    content-position="${e.contentPosition || "50% 50%"}"\n    content-scale="${e.contentScale || 1}"\n  >${t}</ws-media-container>`)(e, Boolean(n && n.href) ? ( (e={}, t) => {
                     const {href: n} = e
                       , i = e.rel || "nofollow"
@@ -16384,52 +16385,45 @@
                 )(n, i) : i)
             }
             ,
-            imageContainer: e => kr(e),
-            pictureContainer: e => Or(e)
+            imageContainer: e => Or(e),
+            pictureContainer: e => Ir(e)
         })
-          , Lr = function(e, t) {
+          , Pr = function(e, t) {
             e.call(this, t)
         }
-          , Pr = new MutationObserver((e => {
+          , Rr = new MutationObserver((e => {
             const t = new Set;
             e.forEach(( ({type: e, target: n}) => {
                 "childList" !== e && n.matches(br.CONTAINER_TAG) || t.add(n.closest(br.CONTAINER_TAG))
             }
             )),
             t.forEach((e => {
-                e && e.getMediaAndRender && e.getMediaAndRender()
+                e && (e.getMediaAndRender && e.getMediaAndRender(),
+                e.setMediaType && e.setMediaType())
             }
             ))
         }
         ))
-          , Rr = new He((e => {
+          , Nr = new He((e => {
             e.forEach(( ({target: e}) => e.getMediaAndRender()))
         }
         ))
-          , Nr = function(e) {
-            return Rr.observe(e),
+          , Dr = function(e) {
+            return Nr.observe(e),
             {
                 unobserve() {
-                    Rr.unobserve(e)
+                    Nr.unobserve(e)
                 }
             }
         };
         n(829);
-        const Dr = new IntersectionObserver((e => {
+        const Br = new IntersectionObserver((e => {
             e.forEach((e => {
                 e.target.onIntersectionEntry && e.target.onIntersectionEntry(e)
             }
             ))
         }
         ))
-          , Br = function(e) {
-            return Dr.observe(e),
-            {
-                unobserve() {
-                    Dr.unobserve(e)
-                }
-            }
-        }
           , Fr = function() {
             try {
                 return Boolean(window.parent.ws)
@@ -16467,18 +16461,22 @@
             e + n < 2 && (i = 2 - n),
             Math.round(100 * i) / 100
         }
-          , {RESIZE_EVENT: Vr} = br;
-        class Ur extends HTMLElement {
+          , {RESIZE_EVENT: Vr, MEDIA_TYPE_ATTRIBUTE: Ur} = br;
+        class Yr extends HTMLElement {
             static get observedAttributes() {
-                return ["aspect-ratio", "content-position", "content-scale", "rounded-images", "transform-scale-factor", "safe-mode", "width"]
+                return ["aspect-ratio", "content-position", "content-scale", "rounded-images", "transform-scale-factor", "width"]
             }
             static getTemplates() {
-                return Ir
+                return Lr
             }
             get mediaElement() {
                 return this.querySelector(br.MEDIA_ELEMENT_SELECTOR)
             }
             get roundedImages() {
+                if (this.hasAttribute("data-ws-block-rounded-images-target")) {
+                    const e = this.closest("ws-block");
+                    return e?.hasAttribute("rounded-images") || !1
+                }
                 return this.hasAttribute("rounded-images")
             }
             get aspectRatio() {
@@ -16539,9 +16537,6 @@
                 const e = parseFloat(this.getAttribute("transform-scale-factor"));
                 return isNaN(e) ? 1 : e
             }
-            get safeMode() {
-                return this.hasAttribute("safe-mode")
-            }
             get coverConstraintsEnabled() {
                 return this.hasAttribute("cover-constraints")
             }
@@ -16551,12 +16546,15 @@
             set width(e) {
                 e ? this.setAttribute("width", e) : e || this.removeAttribute("width")
             }
+            get placeholder() {
+                return this.hasAttribute("placeholder")
+            }
             constructor() {
                 super();
                 const e = this.attachShadow({
                     mode: "open"
                 });
-                e.appendChild(document.importNode(xr.content, !0)),
+                e.appendChild(document.importNode(kr.content, !0)),
                 this.mediaContainer = e.querySelector(".media-wrapper"),
                 this.mediaContent = e.querySelector(".ws-media-content-container")
             }
@@ -16564,7 +16562,7 @@
                 this.connected = !0,
                 this.setAspectRatioStyleProperty();
                 const e = this.mediaElement;
-                var t, n, i;
+                var t;
                 this.parentWidth = function(e) {
                     const {parentElement: t} = e;
                     if (!t)
@@ -16579,21 +16577,18 @@
                     const t = e.getAttribute("loading");
                     return t && "lazy" === t
                 }(e),
-                this.resizeObserver = Nr(this),
-                this.safeMode && this.mediaContent.classList.add(br.SAFE_MODE_CLASS),
-                n = e,
-                i = this.mediaContent,
-                "img" === n.tagName.toLowerCase() && i.classList.add("has-image"),
+                this.resizeObserver = Dr(this),
+                this.setMediaType(),
                 !Fr() || Hr() || zr() || (this.getMediaAndRender(),
                 t = this,
-                Pr.observe(t, {
+                Rr.observe(t, {
                     subtree: !0,
                     childList: !0,
                     attributes: !0
                 })),
                 zr() && this.getMediaAndRender(),
                 Fr() && !Hr() || this.runLazyRender(),
-                this.resizeObserver = Nr(this)
+                this.resizeObserver = Dr(this)
             }
             disconnectedCallback() {
                 this.resizeObserver && this.resizeObserver.unobserve(),
@@ -16604,12 +16599,7 @@
                 if (this.connected && t !== n) {
                     if ("content-scale" === e)
                         return void this.handleContentScaleChange(t, n);
-                    if (this.renderMedia(),
-                    "safe-mode" !== e)
-                        return;
-                    this.safeMode ? (this.mediaContent.classList.add(br.SAFE_MODE_CLASS),
-                    this.intersectionObserver && this.intersectionObserver.unobserve()) : (this.mediaContent.classList.remove(br.SAFE_MODE_CLASS),
-                    this.intersectionObserver = Br(this))
+                    this.renderMedia()
                 }
             }
             handleContentScaleChange() {
@@ -16668,12 +16658,19 @@
                 return Math.round(i.width / c - r)
             }
             setMaxAspectRatioForImage() {
-                Gr(this.mediaElement) && this.hasWsTextParent && (this.mediaWidth < this.parentWidth ? (this.maxWidthStyleProperty = `${this.mediaWidth}px`,
+                Gr(this.mediaElement) && this.hasWsTextParent && !this.placeholder && (this.mediaWidth < this.parentWidth ? (this.maxWidthStyleProperty = `${this.mediaWidth}px`,
                 this.maxAspectRatioStyleProperty = (this.mediaWidth / this.mediaHeight).toFixed(3)) : (this.maxWidthStyleProperty = null,
                 this.maxAspectRatioStyleProperty = null))
             }
             runLazyRender() {
-                this.withLazyLoading ? this.intersectionObserver = Br(this) : this.getMediaAndRender()
+                var e;
+                this.withLazyLoading ? this.intersectionObserver = (e = this,
+                Br.observe(e),
+                {
+                    unobserve() {
+                        Br.unobserve(e)
+                    }
+                }) : this.getMediaAndRender()
             }
             async getMediaAndRender() {
                 const e = this.mediaElement;
@@ -16697,7 +16694,7 @@
                     switch (e.tagName.toLowerCase()) {
                     case "video":
                         return e.readyState >= HTMLMediaElement.HAVE_METADATA ? [e.videoWidth, e.videoHeight] : new Promise((t => {
-                            e.addEventListener("loadedmetadata", Lr.bind(e, ( () => {
+                            e.addEventListener("loadedmetadata", Pr.bind(e, ( () => {
                                 t([e.videoWidth, e.videoHeight])
                             }
                             ), {
@@ -16791,9 +16788,20 @@
             removePredefinedStyles() {
                 this.style.removeProperty("aspect-ratio")
             }
+            setMediaType() {
+                const e = this.mediaElement;
+                if (e)
+                    switch (e.tagName.toLowerCase()) {
+                    case "img":
+                        this.mediaContent.setAttribute(Ur, yr);
+                        break;
+                    case "ws-iframe":
+                        this.mediaContent.setAttribute(Ur, "iframe")
+                    }
+            }
         }
-        customElements.define(br.CONTAINER_TAG, Ur);
-        const Yr = {
+        customElements.define(br.CONTAINER_TAG, Yr);
+        const Xr = {
             CONTAINER_TAG: "ws-background-container",
             BACKGROUND_CONTAINER_CLASS: "ws-background-container-content",
             BACKGROUND_IMAGE_CONTAINER_CLASS: "ws-background-image-container",
@@ -16809,14 +16817,14 @@
                 grayscale: "grayscale(1)"
             }
         }
-          , {BACKGROUND_IMAGE_CLASS: Xr, BACKGROUND_IMAGE_CONTAINER_CLASS: Zr, BACKGROUND_CONTAINER_CLASS: Kr, OVERLAY_CLASS: Qr, LOADING_CLASS: Jr, LOADED_CLASS: eo, SAFE_MODE_CLASS: to} = Yr
-          , no = document.createElement("template");
-        no.innerHTML = `\n<style>\n  .${Kr} {\n    position: relative;\n    height: 100%;\n    overflow: hidden;\n  }\n\n  .${Zr} {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    transform: translate(-50%, -50%);\n  }\n\n  .${Xr}{\n    width: 100%;\n    height: 100%;\n    background-position: center center;\n    background-repeat: no-repeat;\n    background-size: cover;\n  }\n\n  .${Qr} {\n    display: none;\n    position: absolute;\n    left: 0;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    opacity: 0;\n    background: var(--ws-background-container-overlay-background-color);\n    pointer-events: none;\n  }\n\n  .${Jr} {\n    opacity: 0;\n  }\n\n  .${eo} {\n    transition: opacity 1s;\n    opacity: 1;\n  }\n\n  .${to} .${Jr} {\n    opacity: 1;\n  }\n\n  [part="decoration"] {\n    display: none;\n  }\n</style>\n\n<div class="${Kr}">\n  <div class="${Zr}">\n    <div class="${Xr}"></div>\n  </div>\n  <div class="${Qr}"></div>\n</div>\n<div part="decoration"></div>\n`;
-        const io = no
-          , ro = new Map
-          , oo = function(e) {
-            if (ro.has(e))
-                return ro.get(e);
+          , {BACKGROUND_IMAGE_CLASS: Zr, BACKGROUND_IMAGE_CONTAINER_CLASS: Kr, BACKGROUND_CONTAINER_CLASS: Qr, OVERLAY_CLASS: Jr, LOADING_CLASS: eo, LOADED_CLASS: to, SAFE_MODE_CLASS: no} = Xr
+          , io = document.createElement("template");
+        io.innerHTML = `\n<style>\n  .${Qr} {\n    position: relative;\n    height: 100%;\n    overflow: hidden;\n  }\n\n  .${Kr} {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    transform: translate(-50%, -50%);\n  }\n\n  .${Zr}{\n    width: 100%;\n    height: 100%;\n    background-position: center center;\n    background-repeat: no-repeat;\n    background-size: cover;\n  }\n\n  .${Jr} {\n    display: none;\n    position: absolute;\n    left: 0;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    opacity: 0;\n    background: var(--ws-background-container-overlay-background-color);\n    pointer-events: none;\n  }\n\n  .${eo} {\n    opacity: 0;\n  }\n\n  .${to} {\n    transition: opacity 1s;\n    opacity: 1;\n  }\n\n  .${no} .${eo} {\n    opacity: 1;\n  }\n\n  [part="decoration"] {\n    display: none;\n  }\n</style>\n\n<div class="${Qr}">\n  <div class="${Kr}">\n    <div class="${Zr}"></div>\n  </div>\n  <div class="${Jr}"></div>\n</div>\n<div part="decoration"></div>\n`;
+        const ro = io
+          , oo = new Map
+          , so = function(e) {
+            if (oo.has(e))
+                return oo.get(e);
             const t = new Promise(( (t, n) => {
                 const i = new Image;
                 i.onload = () => t(i),
@@ -16824,22 +16832,22 @@
                 i.src = e
             }
             ));
-            return ro.set(e, t),
+            return oo.set(e, t),
             t
         }
-          , so = async function(e) {
-            const t = await oo(e)
+          , ao = async function(e) {
+            const t = await so(e)
               , {height: n, width: i} = t;
             return !navigator.userAgent.toLowerCase().includes("firefox") || 0 !== n && 0 !== i ? [i, n] : [150, 150]
         }
-          , ao = new He((e => {
+          , lo = new He((e => {
             e.forEach(( ({target: e}) => e.handleResize()))
         }
         ))
-          , lo = function(e) {
-            return oo(e).then(( () => !0), ( () => !1))
-        }
           , co = function(e) {
+            return so(e).then(( () => !0), ( () => !1))
+        }
+          , uo = function(e) {
             return e.includes("/getty-images/") && function() {
                 try {
                     return Boolean(window.parent.ws)
@@ -16849,10 +16857,10 @@
             }()
         };
         n(928);
-        const uo = new IntersectionObserver(( (e, t) => {
+        const ho = new IntersectionObserver(( (e, t) => {
             e.forEach(( ({target: e, isIntersecting: n}) => {
                 n && (e.setIntersectedStatus(!0),
-                e.src && (e.backgroundElement.classList.add(Yr.LOADING_CLASS),
+                e.src && (e.backgroundElement.classList.add(Xr.LOADING_CLASS),
                 e.setupSrc().then(( () => {
                     e.handleAnimation()
                 }
@@ -16864,7 +16872,7 @@
         ),{
             rootMargin: "0px 0px 600px 0px"
         })
-          , ho = new IntersectionObserver(( (e, t) => {
+          , po = new IntersectionObserver(( (e, t) => {
             e.forEach(( ({target: e, isIntersecting: n}) => {
                 n && (e.handleAnimation(),
                 t.unobserve(e))
@@ -16872,26 +16880,26 @@
             ))
         }
         ))
-          , po = e => (ho.observe(e),
+          , mo = e => (po.observe(e),
         {
             disconnect() {
-                ho.unobserve(e)
+                po.unobserve(e)
             }
         })
-          , mo = (e, t) => {
+          , fo = (e, t) => {
             const n = t / 2;
             let i = e;
             return e - n > 98 && (i = 98 + n),
             e + n < 2 && (i = 2 - n),
             Math.round(100 * i) / 100
         }
-          , fo = Object.freeze({
+          , go = Object.freeze({
             mediaQuery: null,
             position: [50, 50]
         })
-          , {SUPPORTED_FILTERS: go, BACKGROUND_CONTAINER_CLASS: vo, BACKGROUND_IMAGE_CLASS: wo, BACKGROUND_IMAGE_CONTAINER_CLASS: bo, OVERLAY_CLASS: yo, LOADING_CLASS: So, LOADED_CLASS: Eo, IMAGE_EXTENSION_REGEXP: _o, SAFE_MODE_CLASS: To, HEADER_SELECTOR: Mo} = Yr
-          , Co = ".webp";
-        class Ao extends HTMLElement {
+          , {SUPPORTED_FILTERS: vo, BACKGROUND_CONTAINER_CLASS: wo, BACKGROUND_IMAGE_CLASS: bo, BACKGROUND_IMAGE_CONTAINER_CLASS: yo, OVERLAY_CLASS: So, LOADING_CLASS: Eo, LOADED_CLASS: _o, IMAGE_EXTENSION_REGEXP: To, SAFE_MODE_CLASS: Mo, HEADER_SELECTOR: Co} = Xr
+          , Ao = ".webp";
+        class xo extends HTMLElement {
             static get observedAttributes() {
                 return ["overlay", "overlay-opacity", "filter", "blending-mode", "position", "scale", "src", "transform-scale-factor", "safe-mode", "hidden", "placeholder", "cover-constraints"]
             }
@@ -16919,7 +16927,7 @@
                 const e = this.getAttribute("src");
                 if (!e)
                     return void (this.srcset = []);
-                const t = co(e)
+                const t = uo(e)
                   , n = e.split(",");
                 this.srcset = n.map((e => {
                     const t = e.trim()
@@ -16932,13 +16940,13 @@
                         src: t
                     }
                 }
-                )).filter(( ({src: e}) => !t || !e.endsWith(Co)))
+                )).filter(( ({src: e}) => !t || !e.endsWith(Ao)))
             }
             get hasProgressiveSrc() {
                 return !!this.hasAttribute("data-progressive-src") && "true" === this.getAttribute("data-progressive-src").toLowerCase()
             }
             get position() {
-                const e = this.positions.find((e => e.mediaQuery ? window.matchMedia(e.mediaQuery).matches : e)) || fo;
+                const e = this.positions.find((e => e.mediaQuery ? window.matchMedia(e.mediaQuery).matches : e)) || go;
                 return [...e.position, e]
             }
             savePositionOptions() {
@@ -16946,7 +16954,7 @@
                 const e = this.getAttribute("position");
                 e && e.split(",").map((e => e.trim())).reduce(( (e, t) => {
                     let n = "";
-                    const i = t.replace(Yr.POSITION_REGEXP, (e => (n = e,
+                    const i = t.replace(Xr.POSITION_REGEXP, (e => (n = e,
                     "")));
                     return n && e.push({
                         mediaQuery: i ? i.trim() : null,
@@ -16999,17 +17007,17 @@
                 const e = this.attachShadow({
                     mode: "open"
                 });
-                e.appendChild(document.importNode(io.content, !0)),
-                this.container = e.querySelector(`.${vo}`),
-                this.imageContainer = e.querySelector(`.${bo}`),
-                this.backgroundElement = e.querySelector(`.${wo}`),
-                this.overlayElement = e.querySelector(`.${yo}`),
+                e.appendChild(document.importNode(ro.content, !0)),
+                this.container = e.querySelector(`.${wo}`),
+                this.imageContainer = e.querySelector(`.${yo}`),
+                this.backgroundElement = e.querySelector(`.${bo}`),
+                this.overlayElement = e.querySelector(`.${So}`),
                 this.mediaHeight = 0,
                 this.mediaWidth = 0,
                 this.wasIntersected = !1,
                 this.srcset = [],
                 this.preventAnimation = this.shouldPreventAnimation(),
-                this.preventAnimation && this.backgroundElement.classList.add(Eo),
+                this.preventAnimation && this.backgroundElement.classList.add(_o),
                 this.isReadyForAnimation = !1,
                 this.setupSrc = this.setupSrc.bind(this)
             }
@@ -17024,8 +17032,8 @@
                     switch (e) {
                     case "safe-mode":
                         this.safeMode ? (this.intersectionObserver && this.intersectionObserver.disconnect(),
-                        this.container.classList.add(To)) : (this.intersectionObserver = po(this),
-                        this.container.classList.remove(To));
+                        this.container.classList.add(Mo)) : (this.intersectionObserver = mo(this),
+                        this.container.classList.remove(Mo));
                         break;
                     case "scale":
                         this.mediaSetupComplete && this.handleScaleChange(t, n);
@@ -17064,13 +17072,13 @@
             init() {
                 var e;
                 this.preIntersectionObserver = (e = this,
-                uo.observe(e),
+                ho.observe(e),
                 {
                     disconnect() {
-                        uo.unobserve(e)
+                        ho.unobserve(e)
                     }
                 }),
-                this.safeMode || (this.intersectionObserver = po(this)),
+                this.safeMode || (this.intersectionObserver = mo(this)),
                 this.setupOverlay(),
                 this.setupOverlayOpacity(),
                 this.setupFilter(),
@@ -17093,7 +17101,7 @@
             async setupSrc() {
                 const e = await this.getImageUrl();
                 if (e) {
-                    const [t,n] = await so(e);
+                    const [t,n] = await ao(e);
                     this.mediaWidth = t,
                     this.mediaHeight = n,
                     this.backgroundElement.style["background-image"] = `url("${e}")`
@@ -17106,10 +17114,10 @@
                 this.mediaSetupComplete = !0,
                 this.renderMedia(),
                 this.resizeObserver = (t = this,
-                ao.observe(t),
+                lo.observe(t),
                 {
                     unobserve() {
-                        ao.unobserve(t)
+                        lo.unobserve(t)
                     }
                 })
             }
@@ -17120,25 +17128,25 @@
                 this.setupSrc()
             }
             async getImageUrl() {
-                const e = await oo("data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=").then(( () => !0), ( () => !1));
+                const e = await so("data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=").then(( () => !0), ( () => !1));
                 let t = !1;
                 for (const {mediaQuery: n, src: i} of this.srcset)
                     if (!n || window.matchMedia(n).matches) {
                         if (!e) {
-                            if (i.endsWith(Co))
+                            if (i.endsWith(Ao))
                                 continue;
                             return i
                         }
-                        if (!i.endsWith(Co)) {
+                        if (!i.endsWith(Ao)) {
                             if (!t && this.hasProgressiveSrc) {
-                                const e = i.replace(_o, Co);
-                                if (await lo(e))
+                                const e = i.replace(To, Ao);
+                                if (await co(e))
                                     return e
                             }
                             return i
                         }
                         if (t = !0,
-                        await lo(i))
+                        await co(i))
                             return i
                     }
                 return null
@@ -17150,7 +17158,7 @@
                     ...t
                 }
                   , {position: i} = n
-                  , [r,o] = await so(e)
+                  , [r,o] = await ao(e)
                   , s = this.getContentBounds({
                     mediaWidth: r,
                     mediaHeight: o
@@ -17180,7 +17188,7 @@
             }
             getContentPositionInPercents({x: e, y: t}) {
                 const {width: n, height: i} = this.getContentBounds();
-                return [mo(e, n), mo(t, i)]
+                return [fo(e, n), fo(t, i)]
             }
             calculateBoundsByScale(e) {
                 this.scale = e;
@@ -17200,7 +17208,7 @@
                 this.overlayElement.style.display = this.overlay ? "block" : ""
             }
             setupFilter() {
-                this.hasFilter ? this.imageContainer.style.filter = go[this.filter] || go.grayscale : this.imageContainer.style.filter = ""
+                this.hasFilter ? this.imageContainer.style.filter = vo[this.filter] || vo.grayscale : this.imageContainer.style.filter = ""
             }
             setupOverlayBlendingMode() {
                 const e = this.overlayElement.style["mix-blend-mode"];
@@ -17293,8 +17301,8 @@
                     const {width: n, height: r} = this.getContentBounds();
                     i.width = `${n}%`,
                     i.height = `${r}%`,
-                    i.left = `${mo(e, n)}%`,
-                    i.top = `${mo(t, r)}%`
+                    i.left = `${fo(e, n)}%`,
+                    i.top = `${fo(t, r)}%`
                 }
                 n.width = i.width,
                 n.height = i.height,
@@ -17302,9 +17310,9 @@
                 n.top = i.top
             }
             handleAnimation() {
-                this.preventAnimation || (this.isReadyForAnimation ? (this.backgroundElement.classList.add(Eo),
+                this.preventAnimation || (this.isReadyForAnimation ? (this.backgroundElement.classList.add(_o),
                 setTimeout(( () => {
-                    this.backgroundElement.classList.remove(Eo, So)
+                    this.backgroundElement.classList.remove(_o, Eo)
                 }
                 ), 1e3)) : this.isReadyForAnimation = !0)
             }
@@ -17313,12 +17321,12 @@
                 if (!e || !e.parentNode)
                     return !1;
                 const t = Array.from(e.parentNode.children).indexOf(e);
-                return !(t > 1) && (0 === t || e.previousElementSibling.matches(Mo))
+                return !(t > 1) && (0 === t || e.previousElementSibling.matches(Co))
             }
         }
-        customElements.define(Yr.CONTAINER_TAG, Ao),
+        customElements.define(Xr.CONTAINER_TAG, xo),
         n(125);
-        const xo = new IntersectionObserver(( (e, t) => {
+        const ko = new IntersectionObserver(( (e, t) => {
             e.forEach(( ({target: e, isIntersecting: n}) => {
                 n && (e.renderIframe(),
                 t.unobserve(e))
@@ -17326,8 +17334,17 @@
             ))
         }
         ))
-          , ko = ["data-ws-id"];
-        class Oo extends HTMLElement {
+          , Oo = function(e) {
+            const t = e;
+            try {
+                const e = t.getAttribute("src");
+                e && (t.removeAttribute("src"),
+                t.setAttribute("src", e))
+            } catch (e) {}
+        }
+          , Io = e => e.includes("youtube.com/embed") || e.includes("youtu.be")
+          , Lo = ["data-ws-id"];
+        class Po extends HTMLElement {
             static get observedAttributes() {
                 return ["src"]
             }
@@ -17340,10 +17357,10 @@
             connectedCallback() {
                 var e;
                 this.intersectionObserver || (this.intersectionObserver = (e = this,
-                xo.observe(e),
+                ko.observe(e),
                 {
                     unobserve() {
-                        xo.unobserve(e)
+                        ko.unobserve(e)
                     }
                 }))
             }
@@ -17355,7 +17372,7 @@
                 this.intersectionObserver = null)
             }
             proxyAttributes(e) {
-                [...this.attributes].filter(( ({name: e}) => !ko.includes(e))).forEach(( ({name: t, value: n}) => e.setAttribute(t, n)))
+                [...this.attributes].filter(( ({name: e}) => !Lo.includes(e))).forEach(( ({name: t, value: n}) => e.setAttribute(t, n)))
             }
             updateAttribute(e, t) {
                 const n = this.querySelector("iframe")
@@ -17364,21 +17381,59 @@
                 i && n.removeAttribute(e))
             }
             renderIframe() {
-                const e = document.createElement("iframe");
-                this.querySelector("iframe") || (this.proxyAttributes(e),
-                this.appendChild(e))
+                const e = this.querySelector("iframe");
+                if (this.src && !function() {
+                    try {
+                        return Boolean(window.parent.ws)
+                    } catch (e) {
+                        return !1
+                    }
+                }() && this.closest("ws-slider") && (this.src = function(e) {
+                    if (!e)
+                        return e;
+                    if (Io(e))
+                        try {
+                            const t = new URL(e);
+                            return t.searchParams.set("enablejsapi", "1"),
+                            t.toString()
+                        } catch (t) {
+                            return e
+                        }
+                    return e
+                }(this.src)),
+                !e) {
+                    const e = document.createElement("iframe");
+                    this.proxyAttributes(e),
+                    this.appendChild(e)
+                }
+            }
+            pause() {
+                const e = this.querySelector("iframe");
+                e && function(e) {
+                    try {
+                        const t = e.getAttribute("src") || "";
+                        Io(t) ? function(e) {
+                            e.contentWindow.postMessage(JSON.stringify({
+                                event: "command",
+                                func: "pauseVideo"
+                            }), "https://www.youtube.com")
+                        }(e) : Oo(e)
+                    } catch (t) {
+                        Oo(e)
+                    }
+                }(e)
             }
         }
-        customElements.define("ws-iframe", Oo);
-        var Io = n(330)
-          , Lo = n.n(Io);
-        const Po = /data:(image|image\/png|image\/gif|text).+;base64/
-          , {IMAGE_TYPE_GIF: Ro, IMAGE_TYPE_PNG: No} = {
+        customElements.define("ws-iframe", Po);
+        var Ro = n(330)
+          , No = n.n(Ro);
+        const Do = /data:(image|image\/png|image\/gif|text).+;base64/
+          , {IMAGE_TYPE_GIF: Bo, IMAGE_TYPE_PNG: Fo} = {
             IMAGE_TYPE_GIF: "image/gif",
             IMAGE_TYPE_SVG: "image/svg+xml",
             IMAGE_TYPE_PNG: "image/png"
         };
-        class Do extends HTMLElement {
+        class Ho extends HTMLElement {
             static get observedAttributes() {
                 return ["src"]
             }
@@ -17392,14 +17447,14 @@
                 const e = document.head.querySelector("base")
                   , t = this.getAttribute("src");
                 if (n = t,
-                Po.test(n))
+                Do.test(n))
                     return void (this.innerHTML = `<img src="${t}"/>`);
                 var n;
                 let i;
-                i = !(e => e.startsWith("http://") || e.startsWith("https://") || e.startsWith("//"))(t) && e && e.href ? Lo()(e.href, t) : t,
+                i = !(e => e.startsWith("http://") || e.startsWith("https://") || e.startsWith("//"))(t) && e && e.href ? No()(e.href, t) : t,
                 fetch(i).then((e => {
                     const t = e.headers.get("Content-Type");
-                    return t === Ro || t === No ? e.blob().then((e => `<img src="${URL.createObjectURL(e)}"/>`)) : e.text()
+                    return t === Bo || t === Fo ? e.blob().then((e => `<img src="${URL.createObjectURL(e)}"/>`)) : e.text()
                 }
                 )).then((e => {
                     this.innerHTML = e;
@@ -17413,27 +17468,27 @@
                 ))
             }
         }
-        customElements.define("ws-icon", Do);
-        const Bo = function(e, t) {
+        customElements.define("ws-icon", Ho);
+        const zo = function(e, t) {
             e.call(this, t)
         }
-          , Fo = function() {
+          , $o = function() {
             try {
                 return Boolean(window.parent.ws)
             } catch (e) {
                 return !1
             }
         }
-          , Ho = {
+          , Wo = {
             utm_medium: "referral",
             utm_campaign: "branded_footer",
             utm_source: window.location.href
         }
-          , zo = "dark"
-          , $o = "ws-branding-content"
-          , Wo = document.createElement("template");
-        Wo.innerHTML = `\n  <style>\n    /* WS branding component */\n\n    .ws-branding-content {\n      /* variables */\n      --component-ws-branding-padding: 16px;\n      --component-ws-branding-text-size: 14px;\n      --component-ws-branding-text-margin-right: 5px;\n      --component-ws-branding-font-family: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI',\n      'Roboto', 'Helvetica Neue', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;\n\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      padding: var(--component-ws-branding-padding);\n      font-family: var(--component-ws-branding-font-family);\n      color: var(--component-ws-branding-color);\n      background-color: var(--component-ws-branding-background-color);\n      text-decoration: none;\n    }\n\n    .ws-branding-content.dark {\n     --component-ws-branding-color: #fff;\n     --component-ws-branding-background-color: #141b21;\n    }\n\n    .ws-branding-content.light {\n     --component-ws-branding-color: #141b21;\n     --component-ws-branding-background-color: #fff;\n    }\n\n    .ws-branding-content span {\n      margin-right: var(--component-ws-branding-text-margin-right);\n      font-size: var(--component-ws-branding-text-size);\n    }\n  </style>\n  <a href="#" class="${$o} ${zo}"></a>\n`;
-        class Go extends HTMLElement {
+          , Go = "dark"
+          , qo = "ws-branding-content"
+          , jo = document.createElement("template");
+        jo.innerHTML = `\n  <style>\n    /* WS branding component */\n\n    .ws-branding-content {\n      /* variables */\n      --component-ws-branding-padding: 16px;\n      --component-ws-branding-text-size: 14px;\n      --component-ws-branding-text-margin-right: 5px;\n      --component-ws-branding-font-family: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI',\n      'Roboto', 'Helvetica Neue', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;\n\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      padding: var(--component-ws-branding-padding);\n      font-family: var(--component-ws-branding-font-family);\n      color: var(--component-ws-branding-color);\n      background-color: var(--component-ws-branding-background-color);\n      text-decoration: none;\n    }\n\n    .ws-branding-content.dark {\n     --component-ws-branding-color: #fff;\n     --component-ws-branding-background-color: #141b21;\n    }\n\n    .ws-branding-content.light {\n     --component-ws-branding-color: #141b21;\n     --component-ws-branding-background-color: #fff;\n    }\n\n    .ws-branding-content span {\n      margin-right: var(--component-ws-branding-text-margin-right);\n      font-size: var(--component-ws-branding-text-size);\n    }\n  </style>\n  <a href="#" class="${qo} ${Go}"></a>\n`;
+        class Vo extends HTMLElement {
             static get observedAttributes() {
                 return ["logo", "message", "url", "logo-width", "theme"]
             }
@@ -17441,18 +17496,18 @@
                 super(),
                 this.attachShadow({
                     mode: "open"
-                }).appendChild(Wo.content.cloneNode(!0)),
+                }).appendChild(jo.content.cloneNode(!0)),
                 this.handlers = {
-                    onClick: Bo.bind(this, this.onClick),
-                    onMessage: Bo.bind(this, this.onMessage)
+                    onClick: zo.bind(this, this.onClick),
+                    onMessage: zo.bind(this, this.onMessage)
                 }
             }
             connectedCallback() {
-                Fo() ? this.addEventListener("click", this.handlers.onClick) : window.addEventListener("message", this.handlers.onMessage, !1),
+                $o() ? this.addEventListener("click", this.handlers.onClick) : window.addEventListener("message", this.handlers.onMessage, !1),
                 this.applyHeightValue()
             }
             disconnectedCallback() {
-                Fo() ? this.removeEventListener("click", this.handlers.onClick) : window.removeEventListener("message", this.handlers.onMessage)
+                $o() ? this.removeEventListener("click", this.handlers.onClick) : window.removeEventListener("message", this.handlers.onMessage)
             }
             attributeChangedCallback() {
                 this.refreshData()
@@ -17463,15 +17518,15 @@
                     url: this.getAttribute("url") || "#",
                     message: this.getAttribute("message") || null,
                     logoWidth: this.getAttribute("logo-width") || 46,
-                    theme: this.getAttribute("theme") || zo
+                    theme: this.getAttribute("theme") || Go
                 }
             }
             refreshData() {
                 const {logo: e, url: t, message: n, logoWidth: i, theme: r} = this.getPropsValues()
                   , o = document.createElement("a");
-                if (o.classList.add($o, r),
+                if (o.classList.add(qo, r),
                 o.href = function(e) {
-                    return Fo() ? e : `${e}?${new URLSearchParams(Ho).toString()}`
+                    return $o() ? e : `${e}?${new URLSearchParams(Wo).toString()}`
                 }(t),
                 this.isRunInPreviewMode && (o.target = "_blank"),
                 n) {
@@ -17506,30 +17561,30 @@
                 this.appendChild(t)
             }
         }
-        customElements.define("ws-branding", Go);
-        const qo = function(e, t) {
+        customElements.define("ws-branding", Vo);
+        const Uo = function(e, t) {
             e.call(this, t)
         }
-          , jo = function() {
+          , Yo = function() {
             try {
                 return Boolean(window.parent.ws)
             } catch (e) {
                 return !1
             }
         }
-          , Vo = {
+          , Xo = {
             utm_medium: "referral",
             utm_campaign: "branded_header",
             utm_source: window.location.href
         }
-          , Uo = function(e) {
-            return jo() ? e : `${e}?${new URLSearchParams(Vo).toString()}`
+          , Zo = function(e) {
+            return Yo() ? e : `${e}?${new URLSearchParams(Xo).toString()}`
         }
-          , Yo = "dark"
-          , Xo = "ws-branded-header-content"
-          , Zo = document.createElement("template");
-        Zo.innerHTML = `\n  <style>\n    /* WS branded header component */\n\n    .ws-branded-header-content {\n      /* variables */\n      /* general */\n      --component-ws-branded-header-padding: 16px;\n      --component-ws-branded-header-font-family: 'Roboto', -apple-system, BlinkMacSystemFont, Tahoma, sans‑serif;\n      --component-ws-branded-header-text-size: 14px;\n      --component-ws-branded-header-text-font-weight: 500;\n      --component-ws-branded-header-border-bottom-width: 2px;\n      --component-ws-branded-header-border-bottom-color: #e7004f;\n\n      /* cta */\n      --component-ws-branded-header-cta-bg: #e7004f;\n      --component-ws-branded-header-cta-text-color: #fff;\n      --component-ws-branded-header-cta-paddding-horisontal: 16px;\n      --component-ws-branded-header-cta-paddding-vertical: 6px;\n      --component-ws-branded-header-cta-border-radius: 4px;\n      --component-ws-branded-header-cta-text-size: 12px;\n      --component-ws-branded-header-cta-line-height: 20px;\n      --component-ws-branded-header-cta-margin-left: 15px;\n\n      /* logo */\n      --component-ws-branded-header-logo-margin-left: 8px;\n\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      padding:\n      var(--component-ws-branded-header-padding) var(--component-ws-branded-header-padding) calc(var(--component-ws-branded-header-padding) - var(--component-ws-branded-header-border-bottom-width));\n      font-family: var(--component-ws-branded-header-font-family);\n      font-size: var(--component-ws-branded-header-text-size);\n      font-weight: var(--component-ws-branded-header-text-font-weight);\n      color: var(--component-ws-branded-header-color);\n      background-color: var(--component-ws-branded-header-background-color);\n      border-bottom: var(--component-ws-branded-header-border-bottom-width) solid var(--component-ws-branded-header-border-bottom-color);;\n    }\n\n    .ws-branded-header-content .ws-branded-header-cta {\n      margin-left: var(--component-ws-branded-header-cta-margin-left);\n      padding: var(--component-ws-branded-header-cta-paddding-vertical) var(--component-ws-branded-header-cta-paddding-horisontal);\n      font-family: var(--component-ws-branded-header-font-family);\n      font-size: var(--component-ws-branded-header-cta-text-size);\n      font-weight: var(--component-ws-branded-header-text-font-weight);\n      line-height: var(--component-ws-branded-header-cta-line-height);\n      border-radius: var(--component-ws-branded-header-cta-border-radius);\n      background-color: var(--component-ws-branded-header-cta-bg);\n      color: var(--component-ws-branded-header-cta-text-color);\n      text-decoration: none;\n    }\n\n    .ws-branded-header-content .ws-branded-header-logo {\n      margin-left: var(--component-ws-branded-header-logo-margin-left);\n      font-size: 0;\n    }\n\n    .ws-branded-header-content.dark {\n     --component-ws-branded-header-color: #fff;\n     --component-ws-branded-header-background-color: #141b21;\n    }\n\n    .ws-branded-header-content.light {\n     --component-ws-branded-header-color: #30373d;\n     --component-ws-branded-header-background-color: #fff;\n    }\n\n    @media (min-width: 576px) {\n      .ws-branded-header-content {\n        --component-ws-branded-header-cta-margin-left: 24px;\n        --component-ws-branded-header-padding: 12px;\n      }\n    }\n\n  </style>\n  <div class="${Xo} ${Yo}"></div>\n`;
-        class Ko extends HTMLElement {
+          , Ko = "dark"
+          , Qo = "ws-branded-header-content"
+          , Jo = document.createElement("template");
+        Jo.innerHTML = `\n  <style>\n    /* WS branded header component */\n\n    .ws-branded-header-content {\n      /* variables */\n      /* general */\n      --component-ws-branded-header-padding: 16px;\n      --component-ws-branded-header-font-family: 'Roboto', -apple-system, BlinkMacSystemFont, Tahoma, sans‑serif;\n      --component-ws-branded-header-text-size: 14px;\n      --component-ws-branded-header-text-font-weight: 500;\n      --component-ws-branded-header-border-bottom-width: 2px;\n      --component-ws-branded-header-border-bottom-color: #e7004f;\n\n      /* cta */\n      --component-ws-branded-header-cta-bg: #e7004f;\n      --component-ws-branded-header-cta-text-color: #fff;\n      --component-ws-branded-header-cta-paddding-horisontal: 16px;\n      --component-ws-branded-header-cta-paddding-vertical: 6px;\n      --component-ws-branded-header-cta-border-radius: 4px;\n      --component-ws-branded-header-cta-text-size: 12px;\n      --component-ws-branded-header-cta-line-height: 20px;\n      --component-ws-branded-header-cta-margin-left: 15px;\n\n      /* logo */\n      --component-ws-branded-header-logo-margin-left: 8px;\n\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      padding:\n      var(--component-ws-branded-header-padding) var(--component-ws-branded-header-padding) calc(var(--component-ws-branded-header-padding) - var(--component-ws-branded-header-border-bottom-width));\n      font-family: var(--component-ws-branded-header-font-family);\n      font-size: var(--component-ws-branded-header-text-size);\n      font-weight: var(--component-ws-branded-header-text-font-weight);\n      color: var(--component-ws-branded-header-color);\n      background-color: var(--component-ws-branded-header-background-color);\n      border-bottom: var(--component-ws-branded-header-border-bottom-width) solid var(--component-ws-branded-header-border-bottom-color);;\n    }\n\n    .ws-branded-header-content .ws-branded-header-cta {\n      margin-left: var(--component-ws-branded-header-cta-margin-left);\n      padding: var(--component-ws-branded-header-cta-paddding-vertical) var(--component-ws-branded-header-cta-paddding-horisontal);\n      font-family: var(--component-ws-branded-header-font-family);\n      font-size: var(--component-ws-branded-header-cta-text-size);\n      font-weight: var(--component-ws-branded-header-text-font-weight);\n      line-height: var(--component-ws-branded-header-cta-line-height);\n      border-radius: var(--component-ws-branded-header-cta-border-radius);\n      background-color: var(--component-ws-branded-header-cta-bg);\n      color: var(--component-ws-branded-header-cta-text-color);\n      text-decoration: none;\n    }\n\n    .ws-branded-header-content .ws-branded-header-logo {\n      margin-left: var(--component-ws-branded-header-logo-margin-left);\n      font-size: 0;\n    }\n\n    .ws-branded-header-content.dark {\n     --component-ws-branded-header-color: #fff;\n     --component-ws-branded-header-background-color: #141b21;\n    }\n\n    .ws-branded-header-content.light {\n     --component-ws-branded-header-color: #30373d;\n     --component-ws-branded-header-background-color: #fff;\n    }\n\n    @media (min-width: 576px) {\n      .ws-branded-header-content {\n        --component-ws-branded-header-cta-margin-left: 24px;\n        --component-ws-branded-header-padding: 12px;\n      }\n    }\n\n  </style>\n  <div class="${Qo} ${Ko}"></div>\n`;
+        class es extends HTMLElement {
             static get observedAttributes() {
                 return ["logo", "message", "url", "logo-width", "theme", "cta-text"]
             }
@@ -17537,18 +17592,18 @@
                 super(),
                 this.attachShadow({
                     mode: "open"
-                }).appendChild(Zo.content.cloneNode(!0)),
+                }).appendChild(Jo.content.cloneNode(!0)),
                 this.handlers = {
-                    onClick: qo.bind(this, this.onClick),
-                    onMessage: qo.bind(this, this.onMessage)
+                    onClick: Uo.bind(this, this.onClick),
+                    onMessage: Uo.bind(this, this.onMessage)
                 }
             }
             connectedCallback() {
-                jo() ? this.addEventListener("click", this.handlers.onClick) : window.addEventListener("message", this.handlers.onMessage, !1),
+                Yo() ? this.addEventListener("click", this.handlers.onClick) : window.addEventListener("message", this.handlers.onMessage, !1),
                 this.applyHeightValue()
             }
             disconnectedCallback() {
-                jo() ? this.removeEventListener("click", this.handlers.onClick) : window.removeEventListener("message", this.handlers.onMessage)
+                Yo() ? this.removeEventListener("click", this.handlers.onClick) : window.removeEventListener("message", this.handlers.onMessage)
             }
             attributeChangedCallback() {
                 this.refreshData()
@@ -17559,14 +17614,14 @@
                     url: this.getAttribute("url") || "#",
                     message: this.getAttribute("message") || null,
                     logoWidth: this.getAttribute("logo-width") || 32,
-                    theme: this.getAttribute("theme") || Yo,
+                    theme: this.getAttribute("theme") || Ko,
                     ctaText: this.getAttribute("cta-text") || null
                 }
             }
             refreshData() {
                 const {logo: e, message: t, theme: n, ctaText: i} = this.getPropsValues()
                   , r = document.createElement("div");
-                r.classList.add(Xo, n),
+                r.classList.add(Qo, n),
                 t && this.insertMessage(r),
                 e && this.insertLogo(r),
                 i && this.insertCta(r),
@@ -17592,7 +17647,7 @@
             insertLogo(e) {
                 const {logo: t, logoWidth: n, url: i} = this.getPropsValues()
                   , r = document.createElement("a");
-                r.href = Uo(i),
+                r.href = Zo(i),
                 r.classList.add("ws-branded-header-logo"),
                 this.isRunInPreviewMode && (r.target = "_blank");
                 const o = document.createElement("img");
@@ -17606,7 +17661,7 @@
                 const {ctaText: t, url: n} = this.getPropsValues()
                   , i = document.createElement("a");
                 i.classList.add("ws-branded-header-cta"),
-                i.href = Uo(n),
+                i.href = Zo(n),
                 i.innerText = t,
                 this.isRunInPreviewMode && (i.target = "_blank"),
                 e.append(i)
@@ -17618,26 +17673,26 @@
                 this.appendChild(t)
             }
         }
-        customElements.define("ws-branded-header", Ko);
-        const Qo = function(e, t) {
+        customElements.define("ws-branded-header", es);
+        const ts = function(e, t) {
             e.call(this, t)
         }
-          , Jo = function() {
+          , ns = function() {
             try {
                 return Boolean(window.parent.ws)
             } catch (e) {
                 return !1
             }
         }
-          , es = "data-ios-recaptcha-fix";
-        function ts(e) {
+          , is = "data-ios-recaptcha-fix";
+        function rs(e) {
             if (!e || e.includes("AM") || e.includes("PM"))
                 return e;
             const t = new RegExp(/([0-9]{1,2}):([0-9]{2})/)
               , [n,i] = e.match(t).slice(1);
             return `${+n % 12 || 12}:${i} ${+n < 12 ? "AM" : "PM"}`
         }
-        function ns(e) {
+        function os(e) {
             if (!e)
                 return "";
             if (e && !e.includes("AM") && !e.includes("PM"))
@@ -17646,7 +17701,7 @@
               , [n,i,r] = e.match(t).slice(1);
             return `${("0" + (+n % 12 + ("PM" === r ? 12 : 0))).slice(-2)}:${i}`
         }
-        const is = Object.freeze({
+        const ss = Object.freeze({
             itemLabel: "ws-label",
             itemInput: "input",
             itemTextarea: "textarea",
@@ -17661,62 +17716,62 @@
             itemFileName: ".ws-file-picker-file-name",
             hcaptcha: ".h-captcha"
         })
-          , rs = "required"
-          , os = "invalid-email"
-          , ss = "invalid-phone"
-          , as = "invalid-link"
-          , ls = "invalid-file-size"
-          , cs = "invalid-file-type"
-          , ds = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          , us = /^[+]?[0-9\\(\\)\\-\s]{3,25}$/
-          , hs = /^[a-z0-9\\-\\.]{1,256}\.[a-z]{2,6}/
-          , ps = e => {
+          , as = "required"
+          , ls = "invalid-email"
+          , cs = "invalid-phone"
+          , ds = "invalid-link"
+          , us = "invalid-file-size"
+          , hs = "invalid-file-type"
+          , ps = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          , ms = /^[+]?[0-9\\(\\)\\-\s]{3,25}$/
+          , fs = /^[a-z0-9\\-\\.]{1,256}\.[a-z]{2,6}/
+          , gs = e => {
             try {
                 const {host: t} = new URL(e);
-                return !(t.length > 253) && hs.test(t)
+                return !(t.length > 253) && fs.test(t)
             } catch (e) {
                 return !1
             }
         }
-          , ms = function(e) {
+          , vs = function(e) {
             return Object.values(e.files).reduce(( (e, {size: t}) => e + t), 0) < 26214400
         }
-          , fs = Object.freeze({
+          , ws = Object.freeze({
             image: "image",
             document: "document",
             video: "video",
             audio: "audio"
         })
-          , gs = Object.freeze({
-            [fs.image]: ".bmp,.gif,.heic,.heif,.jfi,.jfif,.jpe,.jpeg,.jpg,.png,.tif,.tiff,.webp",
-            [fs.document]: ".ai,.cdr,.csv,.doc,.docb,.docx,.dot,.dotx,.dwg,.eps,.epub,.fla,.gpx,.ical,.icalendar,.ics,.ifb,.indd,.ipynb,.key,.kml,.kmz,.mobi,.mtf,.mtx,.numbers,.odg,.odp,.ods,.odt,.otp,.ots,.ott,.oxps,.pages,.pdf,.pdn,.pkg,.pot,.potx,.pps,.ppsx,.ppt,.pptx,.psd,.pub,.rtf,.sldx,.txt,.vcf,.xcf,.xls,.xlsx,.xlt,.xltx,.xlw,.xps",
-            [fs.video]: ".3gp,.avi,.divx,.flv,.m1v,.m2ts,.m4v,.mkv,.mov,.mp4,.mpe,.mpeg,.mpg,.mxf,.ogv,.vob,.webm,.wmv,.xvid",
-            [fs.audio]: ".aac,.aif,.aiff,.flac,.m4a,.mp3,.wav,.wma"
+          , bs = Object.freeze({
+            [ws.image]: ".bmp,.gif,.heic,.heif,.jfi,.jfif,.jpe,.jpeg,.jpg,.png,.tif,.tiff,.webp",
+            [ws.document]: ".ai,.cdr,.csv,.doc,.docb,.docx,.dot,.dotx,.dwg,.eps,.epub,.fla,.gpx,.ical,.icalendar,.ics,.ifb,.indd,.ipynb,.key,.kml,.kmz,.mobi,.mtf,.mtx,.numbers,.odg,.odp,.ods,.odt,.otp,.ots,.ott,.oxps,.pages,.pdf,.pdn,.pkg,.pot,.potx,.pps,.ppsx,.ppt,.pptx,.psd,.pub,.rtf,.sldx,.txt,.vcf,.xcf,.xls,.xlsx,.xlt,.xltx,.xlw,.xps",
+            [ws.video]: ".3gp,.avi,.divx,.flv,.m1v,.m2ts,.m4v,.mkv,.mov,.mp4,.mpe,.mpeg,.mpg,.mxf,.ogv,.vob,.webm,.wmv,.xvid",
+            [ws.audio]: ".aac,.aif,.aiff,.flac,.m4a,.mp3,.wav,.wma"
         })
-          , vs = {
+          , ys = {
             isNonEmpty: function(e) {
                 return "" !== e.value.trim()
             },
             isValidEmail: function(e) {
                 const t = String(e.value).trim().toLowerCase();
-                return ds.test(t)
+                return ps.test(t)
             },
             isValidPhone: function(e) {
                 const t = String(e.value).trim().toLowerCase();
-                return us.test(t)
+                return ms.test(t)
             },
             isValidUrl: e => {
                 const t = String(e.value).trim();
-                return !t.includes(" ") && !t.includes("..") && (t.toLowerCase().startsWith("http://") || t.toLowerCase().startsWith("https://") ? ps(t) : t.startsWith("//") ? ps(`https:${t}`) : ps(`https://${t}`))
+                return !t.includes(" ") && !t.includes("..") && (t.toLowerCase().startsWith("http://") || t.toLowerCase().startsWith("https://") ? gs(t) : t.startsWith("//") ? gs(`https:${t}`) : gs(`https://${t}`))
             }
             ,
-            isNotExceededFilesSizeLimit: ms,
+            isNotExceededFilesSizeLimit: vs,
             isCorrectFileType: function(e) {
-                const t = e.closest(is.itemFile).getAttribute("file-type")
+                const t = e.closest(ss.itemFile).getAttribute("file-type")
                   , n = Object.values(e.files);
                 let i = !0;
-                if (t && gs[t]) {
-                    const e = gs[t].split(",");
+                if (t && bs[t]) {
+                    const e = bs[t].split(",");
                     i = n.every(( ({name: t}) => {
                         const n = t.split(".").pop();
                         return e.includes(`.${n}`)
@@ -17726,79 +17781,79 @@
                 return i
             }
         }
-          , ws = [{
-            errorType: rs,
-            validationFunc: vs.isNonEmpty,
+          , Ss = [{
+            errorType: as,
+            validationFunc: ys.isNonEmpty,
             selectorMatches: "[required]:not([type=checkbox]):not([type=radio]):not(.flatpickr-input.active)"
         }, {
-            errorType: os,
-            validationFunc: vs.isValidEmail,
+            errorType: ls,
+            validationFunc: ys.isValidEmail,
             fieldSelector: 'input[type="email"]',
             selectorMatches: 'input[type="email"][not-empty]'
         }, {
-            errorType: ss,
-            validationFunc: vs.isValidPhone,
+            errorType: cs,
+            validationFunc: ys.isValidPhone,
             fieldSelector: 'input[type="tel"]',
             selectorMatches: 'input[type="tel"][not-empty]'
         }, {
-            errorType: as,
-            validationFunc: vs.isValidUrl,
+            errorType: ds,
+            validationFunc: ys.isValidUrl,
             fieldSelector: 'input[type="url"]',
             selectorMatches: 'input[type="url"][not-empty]'
         }, {
-            errorType: ls,
-            validationFunc: vs.isNotExceededFilesSizeLimit,
+            errorType: us,
+            validationFunc: ys.isNotExceededFilesSizeLimit,
             fieldSelector: 'input[type="file"]',
             selectorMatches: 'input[type="file"][not-empty]'
         }, {
-            errorType: cs,
-            validationFunc: vs.isCorrectFileType,
+            errorType: hs,
+            validationFunc: ys.isCorrectFileType,
             fieldSelector: 'input[type="file"]',
             selectorMatches: 'input[type="file"][not-empty]'
         }]
-          , bs = JSON.parse('{"cs":{"This field is required":"Toto pole je třeba vyplnit","Invalid email":"Neplatný e-mail","Invalid phone":"Neplatný telefon","Invalid link":"Neplatný odkaz","25 MB limit exceeded":"Překročen limit 25 MB","Invalid file(s) type":"Neplatný typ souboru (souborů)"},"de":{"This field is required":"Dieses Feld ist zwingend erforderlich","Invalid email":"Ungültige E-Mail-Adresse","Invalid phone":"Ungültige Telefonnummer","Invalid link":"Ungültige Link","25 MB limit exceeded":"25-MB-Grenze überschritten","Invalid file(s) type":"Ungültiger Dateityp"},"es":{"This field is required":"Este campo es obligatorio","Invalid email":"Correo electrónico no válido","Invalid phone":"Teléfono no válido","Invalid link":"Enlace no válido","25 MB limit exceeded":"Se superó el límite de 25 MB","Invalid file(s) type":"Tipo de archivo no válido"},"fi":{"This field is required":"Tämä kenttä pitää täyttää","Invalid email":"Virheellinen sähköpostiosoite","Invalid phone":"Virheellinen puhelin","Invalid link":"Virheellinen linkki","25 MB limit exceeded":"25 Mt:n raja ylitetty","Invalid file(s) type":"Virheellinen tiedostotyyppi"},"fr":{"This field is required":"Ce champ est obligatoire.","Invalid email":"E-mail invalide","Invalid phone":"Téléphone invalide","Invalid link":"Lien invalide","25 MB limit exceeded":"Limite de 25 Mo dépassée","Invalid file(s) type":"Type de fichier invalide"},"hu":{"This field is required":"Ennek a mezőnek a megadása kötelező","Invalid email":"Érvénytelen email","Invalid phone":"Érvénytelen telefon","Invalid link":"Érvénytelen link","25 MB limit exceeded":"25 MB korlát túllépve","Invalid file(s) type":"Érvénytelen fájl(ok) típusa"},"id":{"This field is required":"Bidang ini tidak boleh kosong","Invalid email":"Email tidak valid","Invalid phone":"Telepon tidak valid","Invalid link":"Tautan tidak valid","25 MB limit exceeded":"Batas 25 MB terlampaui","Invalid file(s) type":"Jenis file tidak valid"},"it":{"This field is required":"Questo campo è obbligatorio","Invalid email":"Indirizzo email non valido","Invalid phone":"Telefono non valido","Invalid link":"Un URL non valido","25 MB limit exceeded":"Limite di 25 MB superato","Invalid file(s) type":"Tipo di file non valido"},"ja":{"This field is required":"このフィールドは必須です","Invalid email":"無効なメール","Invalid phone":"無効な電話番号","Invalid link":"無効なリンク","25 MB limit exceeded":"25MBの制限を超えました","Invalid file(s) type":"無効なファイルタイプです"},"nb":{"This field is required":"Feltet er påkrevet","Invalid email":"Ugyldig e-postadresse","Invalid phone":"Ugyldig telefon","Invalid link":"Ugyldig link","25 MB limit exceeded":"Grensen på 25 MB er overskredet","Invalid file(s) type":"Ugyldig filtype"},"nl":{"This field is required":"Dit veld is verplicht","Invalid email":"Ongeldig e-mailadres","Invalid phone":"Ongeldige telefoon","Invalid link":"Ongeldige link","Exceed limit 25MB":"Limiet van 25 MB overschreden","Invalid file(s) type":"Ongeldig bestandstype"},"pl":{"This field is required":"To pole jest wymagane","Invalid email":"Nieprawidłowy adres e-mail","Invalid phone":"Nieprawidłowy telefon","Invalid link":"Nieprawidłowy link","25 MB limit exceeded":"Przekroczono limit 25 MB","Invalid file(s) type":"Nieprawidłowy typ pliku(ów)"},"pt-br":{"This field is required":"Este campo é obrigatório","Invalid email":"E-mail inválido","Invalid phone":"Telefone inválido","Invalid link":"Link inválido","25 MB limit exceeded":"Limite de 25 MB excedido","Invalid file(s) type":"Tipo de arquivo inválido"},"ru":{"This field is required":"Обязательное поле","Invalid email":"Неверный электронный адрес","Invalid phone":"Неверный телефон","Invalid link":"Неверная ссылка","25 MB limit exceeded":"Превышен лимит 25 MB","Invalid file(s) type":"Неверный тип файла(ов)"},"sk":{"This field is required":"Toto pole je povinné","Invalid email":"Nesprávny e-mail","Invalid phone":"Nesprávny telefón","Invalid link":"Nesprávny odkaz","25 MB limit exceeded":"Prekročený limit 25 MB","Invalid file(s) type":"Neplatný typ súboru (súborov)"},"sv":{"This field is required":"Detta fält måste fyllas i","Invalid email":"Ogiltig e-post","Invalid phone":"Ogiltig telefon","Invalid link":"Ogiltig länk","25 MB limit exceeded":"Gränsen på 25 MB har överskridits","Invalid file(s) type":"Ogiltig fil(er) typ"},"zh-cn":{"This field is required":"这个字段是必填项","Invalid email":"不合規電郵","Invalid phone":"电话号码无效","Invalid link":"无效的链接","25 MB limit exceeded":"超出 25 MB 限制","Invalid file(s) type":"文件类型无效"},"en":{"This field is required":"This field is required","Invalid email":"Invalid email","Invalid phone":"Invalid phone","Invalid link":"Invalid link","25 MB limit exceeded":"25 MB limit exceeded","Invalid file(s) type":"Invalid file(s) type"}}')
-          , ys = function(e) {
+          , Es = JSON.parse('{"cs":{"This field is required":"Toto pole je třeba vyplnit","Invalid email":"Neplatný e-mail","Invalid phone":"Neplatný telefon","Invalid link":"Neplatný odkaz","25 MB limit exceeded":"Překročen limit 25 MB","Invalid file(s) type":"Neplatný typ souboru (souborů)"},"de":{"This field is required":"Dieses Feld ist zwingend erforderlich","Invalid email":"Ungültige E-Mail-Adresse","Invalid phone":"Ungültige Telefonnummer","Invalid link":"Ungültige Link","25 MB limit exceeded":"25-MB-Grenze überschritten","Invalid file(s) type":"Ungültiger Dateityp"},"es":{"This field is required":"Este campo es obligatorio","Invalid email":"Correo electrónico no válido","Invalid phone":"Teléfono no válido","Invalid link":"Enlace no válido","25 MB limit exceeded":"Se superó el límite de 25 MB","Invalid file(s) type":"Tipo de archivo no válido"},"fi":{"This field is required":"Tämä kenttä pitää täyttää","Invalid email":"Virheellinen sähköpostiosoite","Invalid phone":"Virheellinen puhelin","Invalid link":"Virheellinen linkki","25 MB limit exceeded":"25 Mt:n raja ylitetty","Invalid file(s) type":"Virheellinen tiedostotyyppi"},"fr":{"This field is required":"Ce champ est obligatoire.","Invalid email":"E-mail invalide","Invalid phone":"Téléphone invalide","Invalid link":"Lien invalide","25 MB limit exceeded":"Limite de 25 Mo dépassée","Invalid file(s) type":"Type de fichier invalide"},"hu":{"This field is required":"Ennek a mezőnek a megadása kötelező","Invalid email":"Érvénytelen email","Invalid phone":"Érvénytelen telefon","Invalid link":"Érvénytelen link","25 MB limit exceeded":"25 MB korlát túllépve","Invalid file(s) type":"Érvénytelen fájl(ok) típusa"},"id":{"This field is required":"Bidang ini tidak boleh kosong","Invalid email":"Email tidak valid","Invalid phone":"Telepon tidak valid","Invalid link":"Tautan tidak valid","25 MB limit exceeded":"Batas 25 MB terlampaui","Invalid file(s) type":"Jenis file tidak valid"},"it":{"This field is required":"Questo campo è obbligatorio","Invalid email":"Indirizzo email non valido","Invalid phone":"Telefono non valido","Invalid link":"Un URL non valido","25 MB limit exceeded":"Limite di 25 MB superato","Invalid file(s) type":"Tipo di file non valido"},"ja":{"This field is required":"このフィールドは必須です","Invalid email":"無効なメール","Invalid phone":"無効な電話番号","Invalid link":"無効なリンク","25 MB limit exceeded":"25MBの制限を超えました","Invalid file(s) type":"無効なファイルタイプです"},"nb":{"This field is required":"Feltet er påkrevet","Invalid email":"Ugyldig e-postadresse","Invalid phone":"Ugyldig telefon","Invalid link":"Ugyldig link","25 MB limit exceeded":"Grensen på 25 MB er overskredet","Invalid file(s) type":"Ugyldig filtype"},"nl":{"This field is required":"Dit veld is verplicht","Invalid email":"Ongeldig e-mailadres","Invalid phone":"Ongeldige telefoon","Invalid link":"Ongeldige link","Exceed limit 25MB":"Limiet van 25 MB overschreden","Invalid file(s) type":"Ongeldig bestandstype"},"pl":{"This field is required":"To pole jest wymagane","Invalid email":"Nieprawidłowy adres e-mail","Invalid phone":"Nieprawidłowy telefon","Invalid link":"Nieprawidłowy link","25 MB limit exceeded":"Przekroczono limit 25 MB","Invalid file(s) type":"Nieprawidłowy typ pliku(ów)"},"pt-br":{"This field is required":"Este campo é obrigatório","Invalid email":"E-mail inválido","Invalid phone":"Telefone inválido","Invalid link":"Link inválido","25 MB limit exceeded":"Limite de 25 MB excedido","Invalid file(s) type":"Tipo de arquivo inválido"},"ru":{"This field is required":"Обязательное поле","Invalid email":"Неверный электронный адрес","Invalid phone":"Неверный телефон","Invalid link":"Неверная ссылка","25 MB limit exceeded":"Превышен лимит 25 MB","Invalid file(s) type":"Неверный тип файла(ов)"},"sk":{"This field is required":"Toto pole je povinné","Invalid email":"Nesprávny e-mail","Invalid phone":"Nesprávny telefón","Invalid link":"Nesprávny odkaz","25 MB limit exceeded":"Prekročený limit 25 MB","Invalid file(s) type":"Neplatný typ súboru (súborov)"},"sv":{"This field is required":"Detta fält måste fyllas i","Invalid email":"Ogiltig e-post","Invalid phone":"Ogiltig telefon","Invalid link":"Ogiltig länk","25 MB limit exceeded":"Gränsen på 25 MB har överskridits","Invalid file(s) type":"Ogiltig fil(er) typ"},"zh-cn":{"This field is required":"这个字段是必填项","Invalid email":"不合規電郵","Invalid phone":"电话号码无效","Invalid link":"无效的链接","25 MB limit exceeded":"超出 25 MB 限制","Invalid file(s) type":"文件类型无效"},"en":{"This field is required":"This field is required","Invalid email":"Invalid email","Invalid phone":"Invalid phone","Invalid link":"Invalid link","25 MB limit exceeded":"25 MB limit exceeded","Invalid file(s) type":"Invalid file(s) type"}}')
+          , _s = function(e) {
             const t = document.documentElement.lang;
-            return bs[t] && bs[t][e] ? bs[t][e] : e
+            return Es[t] && Es[t][e] ? Es[t][e] : e
         }
-          , Ss = Object.freeze({
-            [rs]: "This field is required",
-            [os]: "Invalid email",
-            [ss]: "Invalid phone",
-            [as]: "Invalid link",
-            [ls]: "25 MB limit exceeded",
-            [cs]: "Invalid file(s) type"
+          , Ts = Object.freeze({
+            [as]: "This field is required",
+            [ls]: "Invalid email",
+            [cs]: "Invalid phone",
+            [ds]: "Invalid link",
+            [us]: "25 MB limit exceeded",
+            [hs]: "Invalid file(s) type"
         })
-          , Es = "ws-contact-form-group"
-          , _s = "ws-contact-form-validation-error";
-        function Ts(e) {
-            const t = e.closest(Es);
+          , Ms = "ws-contact-form-group"
+          , Cs = "ws-contact-form-validation-error";
+        function As(e) {
+            const t = e.closest(Ms);
             if (t) {
-                const e = t.querySelector(_s);
+                const e = t.querySelector(Cs);
                 return e && e.remove(),
                 void t.removeAttribute("invalid")
             }
             e.removeAttribute("invalid")
         }
-        const Ms = function e(t, n) {
+        const xs = function e(t, n) {
             const i = ( (e, t) => t.every((t => {
                 const {validationFunc: n} = t;
                 if (n(e))
-                    return Ts(e),
+                    return As(e),
                     !0;
                 const {errorType: i} = t;
                 return function(e, t) {
-                    const n = e.closest(Es);
+                    const n = e.closest(Ms);
                     if (n) {
-                        const e = n.querySelector(_s);
+                        const e = n.querySelector(Cs);
                         e ? e.dataset.errorType !== t && function(e, t) {
                             const n = e;
                             n.dataset.errorType = t,
-                            n.innerHTML = ys(Ss[t])
+                            n.innerHTML = _s(Ts[t])
                         }(e, t) : n.append(function(e) {
                             const t = document.createElement("ws-contact-form-validation-error");
                             return t.dataset.errorType = e,
-                            t.innerHTML = ys(Ss[e]),
+                            t.innerHTML = _s(Ts[e]),
                             t
                         }(t)),
                         n.setAttribute("invalid", "")
@@ -17823,13 +17878,13 @@
             }
             return i
         }
-          , Cs = "smooth";
-        function As(e) {
-            const t = ws.map((e => `${is.itemGroup} ${e.selectorMatches}`)).join(",");
+          , ks = "smooth";
+        function Os(e) {
+            const t = Ss.map((e => `${ss.itemGroup} ${e.selectorMatches}`)).join(",");
             return e.querySelectorAll(t)
         }
-        const xs = ["locale", "page-id", "site-id", "site-name", "destination"]
-          , ks = Object.freeze({
+        const Is = ["locale", "page-id", "site-id", "site-name", "destination"]
+          , Ls = Object.freeze({
             email: '<ws-contact-form-group>\n            <ws-label></ws-label>\n            <input type="email">\n          </ws-contact-form-group>',
             phone: '<ws-contact-form-group>\n            <ws-label></ws-label>\n            <input type="tel">\n          </ws-contact-form-group>',
             link: '<ws-contact-form-group>\n          <ws-label></ws-label>\n          <input type="url">\n        </ws-contact-form-group>',
@@ -17842,7 +17897,7 @@
             radio: '<ws-contact-form-group>\n            <div class="ws-group-title"></div>\n            <div class="ws-group-item">\n              <input type="radio">\n              <ws-label></ws-label>\n            </div>\n          </ws-contact-form-group>',
             "attach-file": '<ws-contact-form-group>\n                    <ws-label></ws-label>\n                    <ws-file-picker>\n                      <div class="ws-file-picker-input-wrapper">\n                        <input type="file">\n                        <span class="ws-file-picker-label-text"></span>\n                      </div>\n                      <span class="ws-file-picker-file-name"></span>\n                    </ws-file-picker>\n                  </ws-contact-form-group>'
         })
-          , Os = Object.freeze({
+          , Ps = Object.freeze({
             singleline: "singleline-text",
             multiline: "multiline-text",
             email: "email",
@@ -17855,7 +17910,7 @@
             radio: "radio",
             attachfile: "attach-file"
         })
-          , Is = Object.freeze({
+          , Rs = Object.freeze({
             fieldIdPrefix: "input-",
             dateIdPrefix: "date-",
             timeIdPrefix: "time-",
@@ -17866,7 +17921,7 @@
             linkIdPrefix: "url-",
             fileIdPrefix: "file-"
         })
-          , Ls = new IntersectionObserver((e => {
+          , Ns = new IntersectionObserver((e => {
             e.forEach((e => {
                 if (e.isIntersecting) {
                     const {target: t} = e;
@@ -17878,54 +17933,54 @@
             ))
         }
         ))
-          , Ps = function() {
+          , Ds = function() {
             const e = document.documentElement.lang;
             return {
                 nb: "no",
                 "pt-br": "pt-BR"
             }[e] || e
         }
-          , Rs = () => Boolean(window.previewMode);
-        function Ns(e) {
-            const t = ws.filter((e => e.errorType !== rs)).map((e => `${is.itemGroup} ${e.fieldSelector}`)).join(",");
+          , Bs = () => Boolean(window.previewMode);
+        function Fs(e) {
+            const t = Ss.filter((e => e.errorType !== as)).map((e => `${ss.itemGroup} ${e.fieldSelector}`)).join(",");
             return e.querySelectorAll(t)
         }
-        const Ds = {
+        const Hs = {
             isLoading: !1,
             onLoadHandlers: []
         };
-        let Bs = !1;
-        window.addEventListener("load", Qo.bind(null, ( () => {
-            Bs = !0
+        let zs = !1;
+        window.addEventListener("load", ts.bind(null, ( () => {
+            zs = !0
         }
         )), {
             once: !0
         });
-        class Fs extends HTMLElement {
+        class $s extends HTMLElement {
             static addHcaptchaScript() {
-                const e = Ps()
+                const e = Ds()
                   , t = e ? `hl=${e}` : ""
                   , n = document.createElement("script");
                 n.src = `https://js.hcaptcha.com/1/api.js?render=explicit&${t}`,
                 n.defer = !0,
                 document.querySelector("head").appendChild(n),
-                Ds.isLoading = !0,
+                Hs.isLoading = !0,
                 n.onload = () => {
-                    Ds.isLoading = !1,
-                    Ds.onLoadHandlers.forEach((e => e())),
-                    Ds.onLoadHandlers = []
+                    Hs.isLoading = !1,
+                    Hs.onLoadHandlers.forEach((e => e())),
+                    Hs.onLoadHandlers = []
                 }
             }
             static renderHcaptcha(e) {
                 function t() {
-                    const t = Ps();
+                    const t = Ds();
                     e.hcaptchaWidget = window.hcaptcha.render(e.hcaptchaNode, {
                         sitekey: e.hcaptchaKey,
                         hl: t
                     })
                 }
-                window.hcaptcha ? t() : (Ds.onLoadHandlers.push(t),
-                Ds.isLoading || this.addHcaptchaScript())
+                window.hcaptcha ? t() : (Hs.onLoadHandlers.push(t),
+                Hs.isLoading || this.addHcaptchaScript())
             }
             static get observedAttributes() {
                 return ["ws-active", "ws-error", "ws-success", "ws-hcaptcha-key"]
@@ -17945,32 +18000,32 @@
                 e
             }
             static getTemplates() {
-                return ks
+                return Ls
             }
             static getSelectors() {
-                return is
+                return ss
             }
             static getFieldTypes() {
-                return Os
+                return Ps
             }
             static getCommonConstants() {
-                return Is
+                return Rs
             }
             static getFileTypes() {
-                return fs
+                return ws
             }
             static addLanguage(e, t) {
-                bs[e] = {
-                    ...bs[e],
+                Es[e] = {
+                    ...Es[e],
                     ...t
                 }
             }
             constructor() {
                 super(),
                 this.handlers = {
-                    onSubmit: Qo.bind(this, this.onSubmit),
-                    onUpdateSubmitButtonState: Qo.bind(this, this.updateSubmitButtonState),
-                    onLoad: Qo.bind(this, this.onLoad)
+                    onSubmit: ts.bind(this, this.onSubmit),
+                    onUpdateSubmitButtonState: ts.bind(this, this.updateSubmitButtonState),
+                    onLoad: ts.bind(this, this.onLoad)
                 },
                 this.strategies = {
                     "ws-active": this.setHideTimeout.bind(this),
@@ -17983,7 +18038,7 @@
                 this.hasElementShown = !1,
                 this.requiredSingleCheckboxes = [],
                 this.requiredGroupedCheckboxes = [],
-                this.querySelectorAll(is.itemGroup).forEach((e => {
+                this.querySelectorAll(ss.itemGroup).forEach((e => {
                     const t = e.querySelectorAll("[type=checkbox][required]");
                     1 === t.length && this.requiredSingleCheckboxes.push(t[0]),
                     t.length > 1 && this.requiredGroupedCheckboxes.push(Array.from(t))
@@ -17991,20 +18046,20 @@
                 )),
                 this.allRequiredCheckboxes = [...this.requiredSingleCheckboxes, ...this.requiredGroupedCheckboxes.flat()],
                 this.requiredGroupedRadioButtons = [],
-                this.querySelectorAll(is.itemGroup).forEach((e => {
+                this.querySelectorAll(ss.itemGroup).forEach((e => {
                     const t = e.querySelectorAll("[type=radio][required]");
                     t.length > 0 && this.requiredGroupedRadioButtons.push(Array.from(t))
                 }
                 )),
                 this.allRequiredRadioButtons = this.requiredGroupedRadioButtons.flat(),
                 this.submitButton = this.querySelector("[type=submit]"),
-                this.isRunInEditor = Jo(),
-                this.isRunInPreviewMode = Rs(),
+                this.isRunInEditor = ns(),
+                this.isRunInPreviewMode = Bs(),
                 this.isRunInEditor && function() {
-                    if (document.querySelector(`[${es}]`))
+                    if (document.querySelector(`[${is}]`))
                         return;
                     const e = document.createElement("style");
-                    e.setAttribute(es, !0),
+                    e.setAttribute(is, !0),
                     e.innerHTML = '\n    body > div[style*="top: -10000px;"] {\n      left: -100% !important;\n    }\n  ',
                     document.head.appendChild(e)
                 }(),
@@ -18017,7 +18072,7 @@
                 e ? this.setAttribute("ws-active", "") : this.removeAttribute("ws-active")
             }
             connectedCallback() {
-                this.hasElementShown || (Bs ? Ls.observe(this) : window.addEventListener("load", this.handlers.onLoad)),
+                this.hasElementShown || (zs ? Ns.observe(this) : window.addEventListener("load", this.handlers.onLoad)),
                 this.addEventListener("submit", this.handlers.onSubmit),
                 this.handleWSButtonAttributes(),
                 this.handleWSButtonEvents(!0),
@@ -18034,13 +18089,13 @@
                 }
                 )),
                 this.markFieldsNotEmpty = function(e) {
-                    const t = [...Ns(e)]
+                    const t = [...Fs(e)]
                       , n = e => {
                         e.target.setAttribute("not-empty", "")
                     }
                       , i = e => {
                         e.target.value || e.target.required || (e.target.removeAttribute("not-empty"),
-                        Ts(e.target))
+                        As(e.target))
                     }
                     ;
                     return {
@@ -18062,10 +18117,10 @@
                 }(this),
                 this.markFieldsNotEmpty.init(),
                 this.validation = function(e) {
-                    const t = [...As(e)]
+                    const t = [...Os(e)]
                       , n = e => {
-                        const t = ws.filter((t => e.matches(t.selectorMatches)));
-                        return Ms(e, t)
+                        const t = Ss.filter((t => e.matches(t.selectorMatches)));
+                        return xs(e, t)
                     }
                       , i = e => n(e.target);
                     return {
@@ -18085,14 +18140,14 @@
                                             const n = (window.pageYOffset || document.documentElement.scrollTop) + e.getBoundingClientRect().top - t.stickyHeaderHeight;
                                             window.scroll({
                                                 top: n,
-                                                behavior: Cs
+                                                behavior: ks
                                             })
                                         } else
                                             e.scrollIntoView({
-                                                behavior: Cs
+                                                behavior: ks
                                             })
                                     }
-                                    )(t.closest(is.itemGroup) || t),
+                                    )(t.closest(ss.itemGroup) || t),
                                     t.focus({
                                         preventScroll: !0
                                     })
@@ -18133,26 +18188,26 @@
                 n && n(t)
             }
             disconnectObserver() {
-                Ls.unobserve(this)
+                Ns.unobserve(this)
             }
             markFieldsRequired() {
-                const e = this.querySelectorAll(is.itemInput)
-                  , t = this.querySelectorAll(is.itemTextarea)
-                  , n = this.querySelectorAll(is.itemDropdown);
+                const e = this.querySelectorAll(ss.itemInput)
+                  , t = this.querySelectorAll(ss.itemTextarea)
+                  , n = this.querySelectorAll(ss.itemDropdown);
                 e.forEach((e => {
                     if (e.hasAttribute("required")) {
-                        const t = e.closest(is.itemGroup);
+                        const t = e.closest(ss.itemGroup);
                         t.setAttribute("data-required", ""),
-                        e.getAttribute("type") !== Os.checkbox || t.querySelector(is.itemTitle) && t.querySelector(is.itemTitle).textContent || t.removeAttribute("data-required")
+                        e.getAttribute("type") !== Ps.checkbox || t.querySelector(ss.itemTitle) && t.querySelector(ss.itemTitle).textContent || t.removeAttribute("data-required")
                     }
                 }
                 )),
                 t.forEach((e => {
-                    e.hasAttribute("required") && e.closest(is.itemGroup).setAttribute("data-required", "")
+                    e.hasAttribute("required") && e.closest(ss.itemGroup).setAttribute("data-required", "")
                 }
                 )),
                 n.forEach((e => {
-                    e.hasAttribute("required") && e.closest(is.itemGroup).setAttribute("data-required", "")
+                    e.hasAttribute("required") && e.closest(ss.itemGroup).setAttribute("data-required", "")
                 }
                 ))
             }
@@ -18196,11 +18251,11 @@
                       , {id: a} = s;
                     if (a) {
                         const e = this.querySelector(`label[for="${a}"], ws-label[for="${a}"]`)
-                          , l = s.closest(is.itemGroup)
-                          , c = l.querySelector(is.itemTitle)
-                          , d = s.getAttribute("type") === Os.radio;
+                          , l = s.closest(ss.itemGroup)
+                          , c = l.querySelector(ss.itemTitle)
+                          , d = s.getAttribute("type") === Ps.radio;
                         let u;
-                        if (s.getAttribute("type") === Os.checkbox && c && c.textContent) {
+                        if (s.getAttribute("type") === Ps.checkbox && c && c.textContent) {
                             u = c;
                             const t = i.find((e => e.element === l));
                             if (t) {
@@ -18217,11 +18272,11 @@
                             continue
                         }
                         u = d ? c : e;
-                        const h = s.closest(is.itemTime);
+                        const h = s.closest(ss.itemTime);
                         if (u) {
                             if (n.append(`${r}<label>`, u.textContent),
                             h) {
-                                const e = h.hasAttribute("time-24hr") ? ns(o) : ts(o);
+                                const e = h.hasAttribute("time-24hr") ? os(o) : rs(o);
                                 n.append(`${r}<text>`, e)
                             } else
                                 n.append(`${r}<text>`, o);
@@ -18236,7 +18291,7 @@
             }
             getHiddenInputAttributesValue() {
                 const e = {};
-                return xs.forEach((t => {
+                return Is.forEach((t => {
                     e[t] = this.getAttributeValue(t)
                 }
                 )),
@@ -18263,7 +18318,7 @@
                 this.messageContainer.classList.add("ws-active")
             }
             setHcaptchaKey() {
-                if (this.hcaptchaNode = this.querySelector(is.hcaptcha),
+                if (this.hcaptchaNode = this.querySelector(ss.hcaptcha),
                 this.hcaptchaNode && !this.hcaptchaNode.hasChildNodes()) {
                     if (this.hcaptchaKey = this.getAttribute("ws-hcaptcha-key"),
                     !this.hcaptchaKey)
@@ -18312,17 +18367,17 @@
                 const e = this.getHiddenInputAttributesValue()
                   , t = this.querySelector("form");
                 Object.keys(e).forEach((n => {
-                    const i = Fs.createHiddenInputElement(n, e[n]);
+                    const i = $s.createHiddenInputElement(n, e[n]);
                     t.prepend(i)
                 }
                 )),
-                this.querySelector('[type="submit"]:not(ws-button)') || t.prepend(Fs.createHiddenInputSubmit())
+                this.querySelector('[type="submit"]:not(ws-button)') || t.prepend($s.createHiddenInputSubmit())
             }
             addHcaptcha() {
-                this.querySelector(is.hcaptcha) || this.submitButton.insertAdjacentHTML("beforebegin", '\n  <ws-contact-form-group>\n    <div class="h-captcha"></div>\n  </ws-contact-form-group>\n')
+                this.querySelector(ss.hcaptcha) || this.submitButton.insertAdjacentHTML("beforebegin", '\n  <ws-contact-form-group>\n    <div class="h-captcha"></div>\n  </ws-contact-form-group>\n')
             }
             onLoad() {
-                Ls.observe(this)
+                Ns.observe(this)
             }
             onSubmit(e) {
                 e.preventDefault(),
@@ -18334,7 +18389,7 @@
                     if (window.hcaptcha.reset(this.hcaptchaWidget),
                     e.target.closest("form").reset(),
                     this.updateSubmitButtonState(),
-                    e.target.closest("form").querySelector(is.itemFileName) && (e.target.closest("form").querySelector(is.itemFileName).textContent = ""),
+                    e.target.closest("form").querySelector(ss.itemFileName) && (e.target.closest("form").querySelector(ss.itemFileName).textContent = ""),
                     this.messageTextContainer && this.messageContainer)
                         return t.ok ? void this.setResponse("ws-success") : t.json()
                 }
@@ -18348,27 +18403,27 @@
                 this.setAttribute("autocomplete", "off")
             }
         }
-        customElements.define("ws-contact-form-container", Fs),
+        customElements.define("ws-contact-form-container", $s),
         n(554);
-        class Hs extends HTMLElement {
+        class Ws extends HTMLElement {
             constructor() {
                 super(),
                 this.handlers = {
-                    onChange: Qo.bind(this, this.showFileName)
+                    onChange: ts.bind(this, this.showFileName)
                 },
-                this.input = this.querySelector(is.itemInput)
+                this.input = this.querySelector(ss.itemInput)
             }
             connectedCallback() {
-                Jo() && !Rs() || (this.setAcceptAttr(),
+                ns() && !Bs() || (this.setAcceptAttr(),
                 this.input.addEventListener("change", this.handlers.onChange))
             }
             disconnectedCallback() {
-                Jo() && !Rs() || this.input.removeEventListener("change", this.handlers.onChange)
+                ns() && !Bs() || this.input.removeEventListener("change", this.handlers.onChange)
             }
             showFileName() {
-                const e = this.querySelector(is.itemFileName)
+                const e = this.querySelector(ss.itemFileName)
                   , {files: t} = this.input;
-                if (t.length && ms(this.input)) {
+                if (t.length && vs(this.input)) {
                     const n = Object.values(t)
                       , i = [];
                     n.forEach((e => i.push(e.name))),
@@ -18379,29 +18434,29 @@
             }
             setAcceptAttr() {
                 const e = this.getAttribute("file-type");
-                e && gs[e] && this.input.setAttribute("accept", gs[e])
+                e && bs[e] && this.input.setAttribute("accept", bs[e])
             }
         }
-        customElements.define("ws-file-picker", Hs);
-        var zs = n(757)
-          , $s = n.n(zs);
-        const Ws = function() {
+        customElements.define("ws-file-picker", Ws);
+        var Gs = n(757)
+          , qs = n.n(Gs);
+        const js = function() {
             try {
                 return Boolean(window.parent.ws)
             } catch (e) {
                 return !1
             }
         }
-          , Gs = () => Boolean(window.livePreviewMode);
-        var qs = n(671)
-          , js = n.n(qs);
-        const Vs = () => !1
-          , Us = function(e, t) {
+          , Vs = () => Boolean(window.livePreviewMode);
+        var Us = n(671)
+          , Ys = n.n(Us);
+        const Xs = () => !1
+          , Zs = function(e, t) {
             e.call(this, t)
         }
-          , Ys = e => e.getRootNode()instanceof ShadowRoot
-          , Xs = "display-top"
-          , Zs = Object.freeze({
+          , Ks = e => e.getRootNode()instanceof ShadowRoot
+          , Qs = "display-top"
+          , Js = Object.freeze({
             menu: ".ws-nav__menu-list",
             menuItem: "li",
             submenu: ".ws-nav__submenu > ul",
@@ -18409,12 +18464,12 @@
             itemLink: "a",
             itemText: "span"
         })
-          , Ks = "click"
-          , Qs = "hover"
-          , Js = Boolean($s().mobile || $s().tablet)
-          , ea = document.createElement("template");
-        ea.innerHTML = "\n<style>\n  :host([disconnected]) {\n    display: none;\n  }\n</style>\n<slot></slot>\n";
-        class ta extends HTMLElement {
+          , ea = "click"
+          , ta = "hover"
+          , na = Boolean(qs().mobile || qs().tablet)
+          , ia = document.createElement("template");
+        ia.innerHTML = "\n<style>\n  :host([disconnected]) {\n    display: none;\n  }\n</style>\n<slot></slot>\n";
+        class ra extends HTMLElement {
             static get observedAttributes() {
                 return ["active", "on", "toggle", "disconnected"]
             }
@@ -18423,7 +18478,7 @@
                 return [...e.getRootNode().querySelectorAll(t)].filter((e => e.matches("ws-nav-collapse")))
             }
             static hideNestedCollapse(e) {
-                ta.findRelatedElements(e).forEach((e => {
+                ra.findRelatedElements(e).forEach((e => {
                     e.querySelectorAll("ws-nav-toggle[active]").forEach((e => {
                         e.active = !1
                     }
@@ -18432,11 +18487,11 @@
                 ))
             }
             static performEditorIntegrationHandlers() {
-                if (Ws()) {
+                if (js()) {
                     const n = window.parent.ws;
                     (e = n,
                     t = "view.operations.setHoveredElement",
-                    js()(e, t, Vs))(null)
+                    Ys()(e, t, Xs))(null)
                 }
                 var e, t
             }
@@ -18444,7 +18499,7 @@
                 super(),
                 this.attachShadow({
                     mode: "open"
-                }).appendChild(document.importNode(ea.content, !0)),
+                }).appendChild(document.importNode(ia.content, !0)),
                 this.strategies = {
                     active: this.toggleRelatedItems.bind(this),
                     on: this.switchEvent.bind(this),
@@ -18452,12 +18507,12 @@
                     disconnected: this.toggleCollapseConnection.bind(this)
                 },
                 this.handlers = {
-                    onMouseOver: Us.bind(this, this.onMouseOver),
-                    onMouseOut: Us.bind(this, this.onMouseOut),
-                    onDocumentClick: Us.bind(this, this.onDocumentClick),
-                    toggleActiveState: Us.bind(this, this.toggleActiveState),
-                    clearHideTimeout: Us.bind(this, this.clearHideTimeout),
-                    positionSubmenu: Us.bind(this, this.positionSubmenu)
+                    onMouseOver: Zs.bind(this, this.onMouseOver),
+                    onMouseOut: Zs.bind(this, this.onMouseOut),
+                    onDocumentClick: Zs.bind(this, this.onDocumentClick),
+                    toggleActiveState: Zs.bind(this, this.toggleActiveState),
+                    clearHideTimeout: Zs.bind(this, this.clearHideTimeout),
+                    positionSubmenu: Zs.bind(this, this.positionSubmenu)
                 },
                 this.cache = new Map
             }
@@ -18474,7 +18529,7 @@
                 e ? this.setAttribute("disconnected", "") : this.removeAttribute("disconnected")
             }
             attributeChangedCallback(e, t, n) {
-                if (Gs())
+                if (Vs())
                     return;
                 const i = this.getStrategy(e);
                 i && i(n, t)
@@ -18482,10 +18537,10 @@
             connectedCallback() {
                 this.isMounted = !0;
                 let e = this.getAttribute("on");
-                e || (e = Qs,
-                this.setAttribute("on", Qs)),
+                e || (e = ta,
+                this.setAttribute("on", ta)),
                 this.disconnected && (this.disconnected = !0),
-                Gs() || this.setupEventHandlers(e)
+                Vs() || this.setupEventHandlers(e)
             }
             disconnectedCallback() {
                 this.isMounted = !1,
@@ -18499,7 +18554,7 @@
                     const e = this.getAttribute("on");
                     this.setupEventHandlers(e)
                 }
-                ta.findRelatedElements(this).forEach((e => {
+                ra.findRelatedElements(this).forEach((e => {
                     const t = e;
                     t.disconnected = this.disconnected,
                     t.visible = this.disconnected
@@ -18507,7 +18562,7 @@
                 ))
             }
             toggleRelatedItems() {
-                ta.findRelatedElements(this).forEach((e => {
+                ra.findRelatedElements(this).forEach((e => {
                     e.visible = this.active
                 }
                 ))
@@ -18516,7 +18571,7 @@
                 e.stopPropagation(),
                 this.deactivateGroupMembers(),
                 this.active = !this.active,
-                ta.performEditorIntegrationHandlers()
+                ra.performEditorIntegrationHandlers()
             }
             switchEvent(e) {
                 this.clearMemory(),
@@ -18529,7 +18584,7 @@
             }
             setupEventHandlers(e) {
                 this.cache.set("on", e),
-                e === Ks || Js ? this.interactOnClick() : this.interactOnHover()
+                e === ea || na ? this.interactOnClick() : this.interactOnHover()
             }
             interactOnClick() {
                 this.addEventListener("click", this.handlers.toggleActiveState, !1),
@@ -18543,7 +18598,7 @@
                 const {target: t} = e
                   , n = this.getAttribute("toggle");
                 let i;
-                i = Ys(this) ? this.closest("ws-nav").querySelector(n) : t.closest(n);
+                i = Ks(this) ? this.closest("ws-nav").querySelector(n) : t.closest(n);
                 const r = i && ( (e, t) => {
                     const {width: n, height: i, x: r, y: o} = e.getBoundingClientRect()
                       , {clientX: s, clientY: a} = t;
@@ -18552,13 +18607,13 @@
                 )(i, e);
                 !this.active || r && t !== this || (this.active = !1,
                 e.stopPropagation(),
-                ta.performEditorIntegrationHandlers())
+                ra.performEditorIntegrationHandlers())
             }
             onMouseOver() {
                 this.clearHideTimeout(),
                 this.active || (this.deactivateGroupMembers(),
                 this.active = !0,
-                this.relatedElements = ta.findRelatedElements(this),
+                this.relatedElements = ra.findRelatedElements(this),
                 this.relatedElements.forEach((e => {
                     e.addEventListener("mouseover", this.handlers.clearHideTimeout, !1),
                     e.addEventListener("mouseout", this.handlers.onMouseOut, !1),
@@ -18567,19 +18622,19 @@
                 )))
             }
             positionSubmenu(e) {
-                const t = this.closest(Zs.submenu);
+                const t = this.closest(Js.submenu);
                 if (e && t) {
-                    if (e.hasAttribute(Xs))
+                    if (e.hasAttribute(Qs))
                         e.style.bottom = `calc(100% - ${this.offsetTop}px)`;
                     else {
-                        const n = e.querySelector(Zs.submenu)
+                        const n = e.querySelector(Js.submenu)
                           , i = t.scrollTop
                           , r = window.innerHeight || document.documentElement.clientHeight
                           , o = this.parentElement.getBoundingClientRect()
                           , s = this.parentElement.offsetTop
                           , a = this.parentElement.offsetHeight;
                         if (o.top + e.offsetHeight > r) {
-                            const t = e.querySelector(`${Zs.submenuItem}:nth-child(3)`)
+                            const t = e.querySelector(`${Js.submenuItem}:nth-child(3)`)
                               , l = t && o.top + t.offsetTop + t.offsetHeight;
                             if (l && l <= r) {
                                 const t = r - o.top;
@@ -18606,7 +18661,7 @@
                 document.querySelectorAll(`ws-nav-toggle[active][group-id='${e}']`).forEach((e => {
                     const t = e;
                     t !== this && (t.active = !1,
-                    ta.hideNestedCollapse(t))
+                    ra.hideNestedCollapse(t))
                 }
                 ))
             }
@@ -18632,29 +18687,29 @@
                 this.clearRelatedListeners()
             }
             clearMemory() {
-                this.cache.get("on") === Ks || Js ? this.removeClickEvents() : this.removeHoverEvents()
+                this.cache.get("on") === ea || na ? this.removeClickEvents() : this.removeHoverEvents()
             }
             getStrategy(e) {
                 return this.strategies[e]
             }
         }
-        customElements.define("ws-nav-toggle", ta);
-        const na = () => Boolean(window.previewMode);
-        let ia = 0;
-        const ra = e => {
+        customElements.define("ws-nav-toggle", ra);
+        const oa = () => Boolean(window.previewMode);
+        let sa = 0;
+        const aa = e => {
             const t = window.frameElement
               , n = t.ownerDocument.querySelector(".ws-view");
-            e.visible ? (ia = n.scrollTop,
+            e.visible ? (sa = n.scrollTop,
             t.style.maxHeight = "100%",
             document.documentElement.scrollTo({
-                top: ia
+                top: sa
             })) : (t.style.removeProperty("max-height"),
             n.scrollTo({
-                top: ia
+                top: sa
             }))
         }
-          , oa = "nav-open";
-        class sa extends HTMLElement {
+          , la = "nav-open";
+        class ca extends HTMLElement {
             get visible() {
                 return this.hasAttribute("visible")
             }
@@ -18680,7 +18735,7 @@
                 }(this) ? this.setAttribute("out-of-screen", "") : this.removeAttribute("out-of-screen")
             }
             set displayOnTop(e) {
-                const t = this.querySelector(Zs.submenu);
+                const t = this.querySelector(Js.submenu);
                 this.removeAttribute("style"),
                 t && t.removeAttribute("style"),
                 e && (e => {
@@ -18691,43 +18746,43 @@
                       , r = document.querySelector("html");
                     return t.offsetHeight < r.scrollTop + n + i
                 }
-                )(this) ? this.setAttribute(Xs, "") : this.removeAttribute(Xs)
+                )(this) ? this.setAttribute(Qs, "") : this.removeAttribute(Qs)
             }
             disableBodyScroll() {
-                this.hasAttribute("disconnected") || (document.body.classList.add(oa),
-                $s().ios && Ws() && !na() && ra(this))
+                this.hasAttribute("disconnected") || (document.body.classList.add(la),
+                qs().ios && js() && !oa() && aa(this))
             }
             enableBodyScroll() {
-                this.hasAttribute("disconnected") || (document.body.classList.remove(oa),
-                $s().ios && Ws() && !na() && ra(this))
+                this.hasAttribute("disconnected") || (document.body.classList.remove(la),
+                qs().ios && js() && !oa() && aa(this))
             }
         }
-        customElements.define("ws-nav-collapse", sa),
+        customElements.define("ws-nav-collapse", ca),
         n(216);
-        const aa = new Map([["layout-xs", 0], ["layout-sm", 576], ["layout-md", 768], ["layout-lg", 992], ["layout-xl", 1200]])
-          , la = Object.freeze({
+        const da = new Map([["layout-xs", 0], ["layout-sm", 576], ["layout-md", 768], ["layout-lg", 992], ["layout-xl", 1200]])
+          , ua = Object.freeze({
             menuItem: '<li class="ws-nav__menu-list-item">\n    <a class="ws-nav__menu-link">\n      <span></span>\n    </a>\n  </li>',
             nestableMenuItem: '<li class="ws-nav__menu-list-item">\n    <ws-nav-toggle on="hover" class="ws-nav__toggle">\n      <a class="ws-nav__menu-link">\n        <span></span>\n      </a>\n    </ws-nav-toggle>\n    <ws-nav-collapse class="ws-nav__submenu">\n      <ul class="ws-nav__submenu-list"></ul>\n    </ws-nav-collapse>\n  </li>',
             submenuItem: '<li class="ws-nav__submenu-list-item">\n    <a class="ws-nav__menu-link">\n      <span></span>\n    </a>\n  </li>',
             nestableSubmenuItem: '<li class="ws-nav__submenu-list-item">\n    <ws-nav-toggle on="hover" class="ws-nav__toggle">\n      <a class="ws-nav__menu-link">\n        <span></span>\n      </a>\n    </ws-nav-toggle>\n    <ws-nav-collapse class="ws-nav__submenu">\n      <ul class="ws-nav__submenu-list"></ul>\n    </ws-nav-collapse>\n  </li>'
         });
-        class ca extends HTMLElement {
+        class ha extends HTMLElement {
             static getTemplates() {
-                return la
+                return ua
             }
             static getSelectors() {
-                return Zs
+                return Js
             }
             constructor() {
                 super(),
                 this.cache = new Map,
                 this.scrollingElement = document.scrollingElement,
-                this.isInShadowDom = Ys(this),
+                this.isInShadowDom = Ks(this),
                 this.handlers = {
-                    applyLayoutClass: Us.bind(this, this.applyLayoutClass)
+                    applyLayoutClass: Zs.bind(this, this.applyLayoutClass)
                 },
-                this.templateSettings = la,
-                this.selectorSettings = Zs
+                this.templateSettings = ua,
+                this.selectorSettings = Js
             }
             get templates() {
                 return this.templateSettings
@@ -18748,7 +18803,7 @@
             getCurrentLayout() {
                 const {innerWidth: e} = window;
                 let t, n = "";
-                return aa.forEach(( (i, r) => {
+                return da.forEach(( (i, r) => {
                     e >= i && (t = r,
                     n = this.getAttribute(t) || n)
                 }
@@ -18802,11 +18857,11 @@
                 ))
             }
             switchToggleConnection(e) {
-                const t = aa.get(e);
+                const t = da.get(e);
                 this.querySelectorAll("ws-nav-toggle[disconnect-when]").forEach((e => {
                     const n = e
                       , i = n.getAttribute("disconnect-when")
-                      , r = aa.get(i)
+                      , r = da.get(i)
                       , o = t >= r;
                     n.disconnected !== o && (n.isMounted ? n.disconnected = o : setTimeout(( () => {
                         n.disconnected = o
@@ -18824,88 +18879,88 @@
                 return i ? n && t ? n.querySelectorAll(e) : n ? n.querySelector(e) : t ? i.querySelectorAll(e) : i.querySelector(e) : null
             }
         }
-        customElements.define("ws-nav", ca);
-        const da = Object.freeze({
+        customElements.define("ws-nav", ha);
+        const pa = Object.freeze({
             menu: ".ws-nav__menu-list",
             menuItem: "li",
             submenu: ".ws-nav__submenu > ul",
             submenuItem: "li",
             itemText: "span"
         })
-          , ua = "auto-collapse"
-          , ha = "enabled"
-          , pa = "disabled"
-          , ma = Object.freeze({
+          , ma = "auto-collapse"
+          , fa = "enabled"
+          , ga = "disabled"
+          , va = Object.freeze({
             nestableMenuItem: '<li class="ws-nav__menu-list-item">\n    <ws-nav-toggle on="hover" class="ws-nav__toggle">\n      <a class="ws-nav__menu-link" href="#">\n        <span></span>\n      </a>\n    </ws-nav-toggle>\n    <ws-nav-collapse class="ws-nav__submenu">\n      <ul class="ws-nav__submenu-list"></ul>\n    </ws-nav-collapse>\n  </li>'
         })
-          , fa = "--ws-nav-min-width"
-          , ga = function(e, t) {
+          , wa = "--ws-nav-min-width"
+          , ba = function(e, t) {
             e.call(this, t)
         }
-          , va = new Map([["layout-xl", 1200]])
-          , wa = window.matchMedia(`(min-width: ${va.get("layout-xl")}px)`)
-          , ba = function(e, t) {
+          , ya = new Map([["layout-xl", 1200]])
+          , Sa = window.matchMedia(`(min-width: ${ya.get("layout-xl")}px)`)
+          , Ea = function(e, t) {
             const n = t ? e.length : e.length - 1;
-            if (!(n > 2 && wa.matches))
+            if (!(n > 2 && Sa.matches))
                 return !1;
             const i = n - 1
               , {top: r} = e[0].getBoundingClientRect()
               , {top: o} = e[i].getBoundingClientRect();
             return r !== o
         }
-          , ya = function(e) {
+          , _a = function(e) {
             let {width: t} = e.getBoundingClientRect();
             const n = getComputedStyle(e);
             return t += parseInt(n.marginLeft, 10) + parseInt(n.marginRight, 10),
             Math.ceil(t)
         }
-          , Sa = JSON.parse('{"cs":{"More":"Více"},"de":{"More":"Mehr"},"es":{"More":"Más"},"fi":{"More":"Lisää"},"fr":{"More":"Plus"},"fr-ca":{"More":"Plus"},"hu":{"More":"Több"},"id":{"More":"Lebih"},"it":{"More":"Di Più"},"ja":{"More":"もっと"},"nb":{"More":"Mer"},"nl":{"More":"Meer"},"pl":{"More":"Więcej"},"pt-br":{"More":"Mais"},"ru":{"More":"Больше"},"sk":{"More":"viac"},"sv":{"More":"Mer"},"zh-cn":{"More":"更多"},"en":{"More":"More"}}');
-        class Ea extends HTMLElement {
+          , Ta = JSON.parse('{"cs":{"More":"Více"},"de":{"More":"Mehr"},"es":{"More":"Más"},"fi":{"More":"Lisää"},"fr":{"More":"Plus"},"fr-ca":{"More":"Plus"},"hu":{"More":"Több"},"id":{"More":"Lebih"},"it":{"More":"Di Più"},"ja":{"More":"もっと"},"nb":{"More":"Mer"},"nl":{"More":"Meer"},"pl":{"More":"Więcej"},"pt-br":{"More":"Mais"},"ru":{"More":"Больше"},"sk":{"More":"viac"},"sv":{"More":"Mer"},"zh-cn":{"More":"更多"},"en":{"More":"More"}}');
+        class Ma extends HTMLElement {
             constructor() {
                 super(),
                 this.handlers = {
-                    autoCollapseNav: ga.bind(this, this.autoCollapseNav),
-                    onToggleMobileAttribute: ga.bind(this, this.toggleMobileAttribute)
+                    autoCollapseNav: ba.bind(this, this.autoCollapseNav),
+                    onToggleMobileAttribute: ba.bind(this, this.toggleMobileAttribute)
                 }
             }
             get minWidthStyleProperty() {
-                return this.style.getPropertyValue(fa)
+                return this.style.getPropertyValue(wa)
             }
             set minWidthStyleProperty(e) {
-                e && e !== this.minWidthStyleProperty && this.style.setProperty(fa, e)
+                e && e !== this.minWidthStyleProperty && this.style.setProperty(wa, e)
             }
             connectedCallback() {
-                if (this.menuElement = this.querySelector(da.menu),
+                if (this.menuElement = this.querySelector(pa.menu),
                 this.menuElement) {
                     this.buildAutoCollapsingInitialMarkup(),
                     this.autoCollapseNav(),
                     this.toggleMobileAttribute(),
-                    wa.addListener(this.handlers.onToggleMobileAttribute);
+                    Sa.addListener(this.handlers.onToggleMobileAttribute);
                     const e = new He(this.handlers.autoCollapseNav);
                     e.observe(this.menuElement);
-                    const t = this.querySelectorAll(`${da.menu} > ${da.menuItem}`);
+                    const t = this.querySelectorAll(`${pa.menu} > ${pa.menuItem}`);
                     e.observe(t[0])
                 }
             }
             disconnectedCallback() {
-                wa.removeListener(this.handlers.onToggleMobileAttribute)
+                Sa.removeListener(this.handlers.onToggleMobileAttribute)
             }
             autoCollapseNav() {
-                const e = this.querySelectorAll(`${da.menu} > ${da.menuItem}`)
+                const e = this.querySelectorAll(`${pa.menu} > ${pa.menuItem}`)
                   , t = Array.from(e)
-                  , n = this.menuElement.querySelector(`[${ua}]`)
+                  , n = this.menuElement.querySelector(`[${ma}]`)
                   , {width: i} = this.menuElement.getBoundingClientRect()
-                  , r = n.getAttribute(ua) === ha;
-                if (ba(e, r)) {
-                    const o = n.querySelector(da.submenu);
+                  , r = n.getAttribute(ma) === fa;
+                if (Ea(e, r)) {
+                    const o = n.querySelector(pa.submenu);
                     this.setNonBreakingWidth(e[0], n),
                     ( (e, t, n, i, r) => {
                         let o = 0
-                          , s = t.findIndex((e => (o += ya(e),
+                          , s = t.findIndex((e => (o += _a(e),
                         o > i)));
-                        for (r || (o += ya(n) - ya(t[s])); o > i && s > 0; )
+                        for (r || (o += _a(n) - _a(t[s])); o > i && s > 0; )
                             s -= 1,
-                            o -= ya(t[s]);
+                            o -= _a(t[s]);
                         const a = t.slice(s, t.length - 1);
                         if (r) {
                             const t = e.children[0];
@@ -18918,15 +18973,15 @@
                                 e.insertAdjacentElement("beforeend", t)
                             }
                             )),
-                            n.setAttribute(ua, ha)
+                            n.setAttribute(ma, fa)
                     }
                     )(o, t, n, i, r)
                 } else {
-                    const e = this.querySelectorAll(`[${ua}] > ${da.submenu} > ${da.submenuItem}`);
+                    const e = this.querySelectorAll(`[${ma}] > ${pa.submenu} > ${pa.submenuItem}`);
                     e.length && function(e, t, n, i, r) {
                         const o = (e, t, i) => {
                             n.insertAdjacentElement("beforebegin", e),
-                            t === i.length - 1 && n.setAttribute(ua, pa)
+                            t === i.length - 1 && n.setAttribute(ma, ga)
                         }
                         ;
                         if (e.length > 1) {
@@ -18935,16 +18990,16 @@
                             if (n !== i)
                                 return void Array.prototype.forEach.call(t, o)
                         }
-                        let s = e.reduce(( (e, t) => e + ya(t)), 0);
+                        let s = e.reduce(( (e, t) => e + _a(t)), 0);
                         Array.prototype.every.call(t, ( (e, t, r) => {
                             const o = t === r.length - 1
                               , a = e.cloneNode(!0);
                             return a.setAttribute("dummy-element", t),
                             n.insertAdjacentElement("beforebegin", a),
-                            s += ya(a),
-                            o && (s -= ya(n)),
+                            s += _a(a),
+                            o && (s -= _a(n)),
                             s < i ? (e.remove(),
-                            o && n.setAttribute(ua, pa),
+                            o && n.setAttribute(ma, ga),
                             !0) : (a.remove(),
                             !1)
                         }
@@ -18958,55 +19013,55 @@
                 }
             }
             buildAutoCollapsingInitialMarkup() {
-                if (!this.menuElement.querySelector(`[${ua}]`)) {
+                if (!this.menuElement.querySelector(`[${ma}]`)) {
                     const e = document.createElement("div");
-                    e.innerHTML = ma.nestableMenuItem;
+                    e.innerHTML = va.nestableMenuItem;
                     const t = e.firstChild;
-                    t.setAttribute(ua, pa);
+                    t.setAttribute(ma, ga);
                     const n = t.querySelector("ws-nav-toggle")
                       , i = t.querySelector("ws-nav-collapse");
                     n.setAttribute("toggle", "#ws-nav-auto-collapse"),
-                    n.setAttribute("group-id", ua),
+                    n.setAttribute("group-id", ma),
                     i.setAttribute("id", "ws-nav-auto-collapse"),
-                    t.querySelector(da.itemText).textContent = function(e) {
+                    t.querySelector(pa.itemText).textContent = function(e) {
                         const t = document.documentElement.lang;
-                        return Sa[t] && Sa[t][e] ? Sa[t][e] : e
+                        return Ta[t] && Ta[t][e] ? Ta[t][e] : e
                     }("More"),
                     t.insertAdjacentHTML("beforeend", '\n  <style>\n    [auto-collapse="disabled"],\n    [dummy-element]{\n      position: absolute!important;\n      right: 0!important;\n      pointer-events: none!important;\n      opacity: 0!important;\n      visibility: hidden!important;\n    }\n  </style>\n'),
                     this.menuElement.insertAdjacentElement("beforeend", t)
                 }
             }
             setNonBreakingWidth(e, t) {
-                const n = ya(e)
-                  , i = ya(t);
+                const n = _a(e)
+                  , i = _a(t);
                 this.minWidthStyleProperty = `${n + i + 10}px`
             }
-            toggleMobileAttribute(e=wa) {
+            toggleMobileAttribute(e=Sa) {
                 e.matches ? this.removeAttribute("data-view") : this.setAttribute("data-view", "mobile")
             }
         }
-        customElements.define("ws-navigation", Ea),
+        customElements.define("ws-navigation", Ma),
         n(435);
-        const _a = document.createElement("template");
-        _a.innerHTML = "\n  <style>\n    :host {\n      --ws-counter-height: var(--ws-counter-line-height, 1.4em);\n      display: inline-flex;\n      max-width: 100%;\n      line-height: 1;\n    }\n\n    .ws-counter__box,\n    .ws-counter__clone {\n      font-family: var(--ws-counter-font-family, inherit);\n      font-style: var(--ws-counter-font-style, normal);\n      text-shadow: var(--ws-counter-font-weight-emulation, none);\n      text-transform: var(--ws-counter-text-transform, none);\n      text-decoration: var(--ws-counter-text-decoration, none);\n      font-weight: var(--ws-counter-font-weight, normal);\n      font-size: var(--ws-counter-font-size, 50px);\n      letter-spacing: var(--ws-counter-letter-spacing);\n      white-space: nowrap;\n      padding: 0.05em 0.36em;\n    }\n\n    .ws-counter__box {\n      display: flex;\n      align-items: flex-start;\n      height: var(--ws-counter-height);\n      line-height: var(--ws-counter-height);\n      overflow: hidden;\n      color: var(--ws-counter-color, hsla(var(--ws-surface-counter-text-color), var(--ws-surface-counter-text-opacity)));\n    }\n\n    .ws-counter__group {\n      display: block;\n      text-align: center;\n      vertical-align: top;\n      opacity: 0;\n\n      transform: translateY(0);\n      transition:\n        var(--ws-counter-transition-duration, 1.2s) var(--ws-counter-transition-delay, 0s) opacity,\n        var(--ws-counter-transition-duration, 1.2s) var(--ws-counter-transition-delay, 0s) transform var(--ws-counter-transition-timing-function, cubic-bezier(0.25, 0.46, 0.45, 0.94));\n      will-change: opacity, transform;\n    }\n\n    .ws-counter__item {\n      display: block;\n    }\n\n    .ws-counter__clone {\n      position: absolute;\n      visibility: hidden;\n      opacity: 0;\n      pointer-events: none;\n    }\n\n    :host([active]) .ws-counter__group {\n      opacity: 1;\n      transform: translateY(calc(-100% + var(--ws-counter-height)));\n    }\n\n    /* only for Edge */\n    @supports (-ms-ime-align: auto) {\n      /* 'flex' with 'white-space' don't work correctly */\n      :host([data-ws-id]) .ws-counter__box {\n        display: block;\n      }\n      /* calc(var + value) doesn't work in Edge */\n      :host([active]) .ws-counter__group {\n        position: relative;\n        transform: translateY(-100%);\n        top: var(--ws-counter-height);\n      }\n    }\n  </style>\n  <div class=\"ws-counter__box\">\n    <span><slot></slot></span>\n  </div>\n";
-        const Ta = function() {
+        const Ca = document.createElement("template");
+        Ca.innerHTML = "\n  <style>\n    :host {\n      --ws-counter-height: var(--ws-counter-line-height, 1.4em);\n      display: inline-flex;\n      max-width: 100%;\n      line-height: 1;\n    }\n\n    .ws-counter__box,\n    .ws-counter__clone {\n      font-family: var(--ws-counter-font-family, inherit);\n      font-style: var(--ws-counter-font-style, normal);\n      text-shadow: var(--ws-counter-font-weight-emulation, none);\n      text-transform: var(--ws-counter-text-transform, none);\n      text-decoration: var(--ws-counter-text-decoration, none);\n      font-weight: var(--ws-counter-font-weight, normal);\n      font-size: var(--ws-counter-font-size, 50px);\n      letter-spacing: var(--ws-counter-letter-spacing);\n      white-space: nowrap;\n      padding: 0.05em 0.36em;\n    }\n\n    .ws-counter__box {\n      display: flex;\n      align-items: flex-start;\n      height: var(--ws-counter-height);\n      line-height: var(--ws-counter-height);\n      overflow: hidden;\n      color: var(--ws-counter-color, hsla(var(--ws-surface-counter-text-color), var(--ws-surface-counter-text-opacity)));\n    }\n\n    .ws-counter__group {\n      display: block;\n      text-align: center;\n      vertical-align: top;\n      opacity: 0;\n\n      transform: translateY(0);\n      transition:\n        var(--ws-counter-transition-duration, 1.2s) var(--ws-counter-transition-delay, 0s) opacity,\n        var(--ws-counter-transition-duration, 1.2s) var(--ws-counter-transition-delay, 0s) transform var(--ws-counter-transition-timing-function, cubic-bezier(0.25, 0.46, 0.45, 0.94));\n      will-change: opacity, transform;\n    }\n\n    .ws-counter__item {\n      display: block;\n    }\n\n    .ws-counter__clone {\n      position: absolute;\n      visibility: hidden;\n      opacity: 0;\n      pointer-events: none;\n    }\n\n    :host([active]) .ws-counter__group {\n      opacity: 1;\n      transform: translateY(calc(-100% + var(--ws-counter-height)));\n    }\n\n    /* only for Edge */\n    @supports (-ms-ime-align: auto) {\n      /* 'flex' with 'white-space' don't work correctly */\n      :host([data-ws-id]) .ws-counter__box {\n        display: block;\n      }\n      /* calc(var + value) doesn't work in Edge */\n      :host([active]) .ws-counter__group {\n        position: relative;\n        transform: translateY(-100%);\n        top: var(--ws-counter-height);\n      }\n    }\n  </style>\n  <div class=\"ws-counter__box\">\n    <span><slot></slot></span>\n  </div>\n";
+        const Aa = function() {
             try {
                 return Boolean(window.parent.ws)
             } catch (e) {
                 return !1
             }
         }
-          , Ma = () => Boolean(window.previewMode)
-          , Ca = function(e, t) {
+          , xa = () => Boolean(window.previewMode)
+          , ka = function(e, t) {
             e.call(this, t)
         };
-        function Aa(e) {
+        function Oa(e) {
             return `<span class="ws-counter__item">${e}</span>`
         }
-        function xa(e) {
+        function Ia(e) {
             return `<div class="ws-counter__group">${e}</div>`
         }
-        const ka = new IntersectionObserver((e => {
+        const La = new IntersectionObserver((e => {
             e.forEach((e => {
                 const {target: t, isIntersecting: n} = e;
                 n && !t.hasAttribute("active") && t.setAttribute("active", "")
@@ -19014,23 +19069,23 @@
             ))
         }
         ))
-          , Oa = new MutationObserver((e => {
+          , Pa = new MutationObserver((e => {
             const t = e[0].target.ownerDocument.activeElement;
             "ws-counter" === t.localName && t.handlers.onChange()
         }
         ));
-        window.ShadyCSS && window.ShadyCSS.prepareTemplate(_a, "ws-counter");
-        class Ia extends HTMLElement {
+        window.ShadyCSS && window.ShadyCSS.prepareTemplate(Ca, "ws-counter");
+        class Ra extends HTMLElement {
             static getDigitMarkup(e) {
                 if (160 === e.charCodeAt(0))
                     return '<div class="ws-counter__group ws-counter__group--space">&nbsp;</div>';
                 let t = "";
                 const n = Number(e);
                 if (Number.isNaN(n))
-                    return xa(e);
+                    return Ia(e);
                 for (let e = 0; e <= n; e += 1)
-                    t += Aa(e);
-                return xa(t)
+                    t += Oa(e);
+                return Ia(t)
             }
             static getInitialFontSize() {
                 const e = getComputedStyle(document.body).getPropertyValue("--ws-counter-font-size");
@@ -19048,14 +19103,14 @@
                 this.attachShadow({
                     mode: "open"
                 }),
-                this.shadowRoot.appendChild(_a.content.cloneNode(!0)),
-                this.initialText = Ia.normalizeSpaces(this.textContent),
+                this.shadowRoot.appendChild(Ca.content.cloneNode(!0)),
+                this.initialText = Ra.normalizeSpaces(this.textContent),
                 this.handlers = {
-                    onFocus: Ca.bind(this, this.onFocus),
-                    onChange: Ca.bind(this, this.onChange),
-                    onResize: Ca.bind(this, this.onResize)
+                    onFocus: ka.bind(this, this.onFocus),
+                    onChange: ka.bind(this, this.onChange),
+                    onResize: ka.bind(this, this.onResize)
                 },
-                Ta() && !Ma() || (window.addEventListener("resize", this.handlers.onResize, !1),
+                Aa() && !xa() || (window.addEventListener("resize", this.handlers.onResize, !1),
                 window.addEventListener("orientationchange", this.handlers.onResize, !1))
             }
             get fontSize() {
@@ -19071,19 +19126,19 @@
                 this.renderCounter(),
                 this.createInvisibleClone(),
                 this.updateFontSize(),
-                Ta() && (this.addEventListener("focus", this.handlers.onFocus),
-                this.addEventListener("keydown", Ia.preventEnterKeyDown))
+                Aa() && (this.addEventListener("focus", this.handlers.onFocus),
+                this.addEventListener("keydown", Ra.preventEnterKeyDown))
             }
             disconnectedCallback() {
-                Ta() && !Ma() || (ka.unobserve(this),
+                Aa() && !xa() || (La.unobserve(this),
                 window.removeEventListener("resize", this.handlers.onResize, !1),
                 window.removeEventListener("orientationchange", this.handlers.onResize, !1)),
-                Ta() && (this.removeEventListener("focus", this.handlers.onFocus),
-                this.removeEventListener("keydown", Ia.preventEnterKeyDown),
-                Oa.disconnect())
+                Aa() && (this.removeEventListener("focus", this.handlers.onFocus),
+                this.removeEventListener("keydown", Ra.preventEnterKeyDown),
+                Pa.disconnect())
             }
             onFocus() {
-                Ta() && Oa.observe(this.commonAncestorContainer, {
+                Aa() && Pa.observe(this.commonAncestorContainer, {
                     characterData: !0,
                     subtree: !0
                 })
@@ -19122,14 +19177,14 @@
                     }
                     )),
                     Math.min(...t)
-                }(this.getCommonAncestorContainer()) : Ia.getInitialFontSize()
+                }(this.getCommonAncestorContainer()) : Ra.getInitialFontSize()
             }
             renderCounter() {
-                Ta() && !Ma() || (this.shadowRoot.querySelector(".ws-counter__box").innerHTML = this.getNumberMarkup(),
-                ka.observe(this))
+                Aa() && !xa() || (this.shadowRoot.querySelector(".ws-counter__box").innerHTML = this.getNumberMarkup(),
+                La.observe(this))
             }
             getNumberMarkup() {
-                return this.initialText.split("").reduce(( (e, t) => e + Ia.getDigitMarkup(t)), "")
+                return this.initialText.split("").reduce(( (e, t) => e + Ra.getDigitMarkup(t)), "")
             }
             createInvisibleClone() {
                 let e = this.shadowRoot.querySelector(".ws-counter__clone");
@@ -19142,7 +19197,7 @@
                 const e = this.shadowRoot.querySelector(".ws-counter__clone");
                 let t = e.clientWidth;
                 const n = this.wrapperMaxWidth;
-                let i = Ia.getInitialFontSize();
+                let i = Ra.getInitialFontSize();
                 const r = () => {
                     if (e.style.setProperty("--ws-counter-font-size", `${i}px`),
                     t = e.clientWidth,
@@ -19156,10 +19211,10 @@
                 r()
             }
         }
-        customElements.define("ws-counter", Ia),
+        customElements.define("ws-counter", Ra),
         n(971);
-        var La = ["onChange", "onClose", "onDayCreate", "onDestroy", "onKeyDown", "onMonthChange", "onOpen", "onParseConfig", "onReady", "onValueUpdate", "onYearChange", "onPreCalendarPosition"]
-          , Pa = {
+        var Na = ["onChange", "onClose", "onDayCreate", "onDestroy", "onKeyDown", "onMonthChange", "onOpen", "onParseConfig", "onReady", "onValueUpdate", "onYearChange", "onPreCalendarPosition"]
+          , Da = {
             _disable: [],
             allowInput: !1,
             allowInvalidPreload: !1,
@@ -19223,7 +19278,7 @@
             weekNumbers: !1,
             wrap: !1
         }
-          , Ra = {
+          , Ba = {
             weekdays: {
                 shorthand: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
                 longhand: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -19260,15 +19315,15 @@
             minuteAriaLabel: "Minute",
             time_24hr: !1
         };
-        const Na = Ra;
-        var Da = function(e, t) {
+        const Fa = Ba;
+        var Ha = function(e, t) {
             return void 0 === t && (t = 2),
             ("000" + e).slice(-1 * t)
         }
-          , Ba = function(e) {
+          , za = function(e) {
             return !0 === e ? 1 : 0
         };
-        function Fa(e, t) {
+        function $a(e, t) {
             var n;
             return function() {
                 var i = this
@@ -19280,15 +19335,15 @@
                 ), t)
             }
         }
-        var Ha = function(e) {
+        var Wa = function(e) {
             return e instanceof Array ? e : [e]
         };
-        function za(e, t, n) {
+        function Ga(e, t, n) {
             if (!0 === n)
                 return e.classList.add(t);
             e.classList.remove(t)
         }
-        function $a(e, t, n) {
+        function qa(e, t, n) {
             var i = window.document.createElement(e);
             return t = t || "",
             n = n || "",
@@ -19296,18 +19351,18 @@
             void 0 !== n && (i.textContent = n),
             i
         }
-        function Wa(e) {
+        function ja(e) {
             for (; e.firstChild; )
                 e.removeChild(e.firstChild)
         }
-        function Ga(e, t) {
-            return t(e) ? e : e.parentNode ? Ga(e.parentNode, t) : void 0
+        function Va(e, t) {
+            return t(e) ? e : e.parentNode ? Va(e.parentNode, t) : void 0
         }
-        function qa(e, t) {
-            var n = $a("div", "numInputWrapper")
-              , i = $a("input", "numInput " + e)
-              , r = $a("span", "arrowUp")
-              , o = $a("span", "arrowDown");
+        function Ua(e, t) {
+            var n = qa("div", "numInputWrapper")
+              , i = qa("input", "numInput " + e)
+              , r = qa("span", "arrowUp")
+              , o = qa("span", "arrowDown");
             if (-1 === navigator.userAgent.indexOf("MSIE 9.0") ? i.type = "number" : (i.type = "text",
             i.pattern = "\\d*"),
             void 0 !== t)
@@ -19318,19 +19373,19 @@
             n.appendChild(o),
             n
         }
-        function ja(e) {
+        function Ya(e) {
             try {
                 return "function" == typeof e.composedPath ? e.composedPath()[0] : e.target
             } catch (t) {
                 return e.target
             }
         }
-        var Va = function() {}
-          , Ua = function(e, t, n) {
+        var Xa = function() {}
+          , Za = function(e, t, n) {
             return n.months[t ? "shorthand" : "longhand"][e]
         }
-          , Ya = {
-            D: Va,
+          , Ka = {
+            D: Xa,
             F: function(e, t, n) {
                 e.setMonth(n.months.longhand.indexOf(t))
             },
@@ -19344,7 +19399,7 @@
                 e.setDate(parseFloat(t))
             },
             K: function(e, t, n) {
-                e.setHours(e.getHours() % 12 + 12 * Ba(new RegExp(n.amPM[1],"i").test(t)))
+                e.setHours(e.getHours() % 12 + 12 * za(new RegExp(n.amPM[1],"i").test(t)))
             },
             M: function(e, t, n) {
                 e.setMonth(n.months.shorthand.indexOf(t))
@@ -19379,7 +19434,7 @@
             j: function(e, t) {
                 e.setDate(parseFloat(t))
             },
-            l: Va,
+            l: Xa,
             m: function(e, t) {
                 e.setMonth(parseFloat(t) - 1)
             },
@@ -19392,12 +19447,12 @@
             u: function(e, t) {
                 return new Date(parseFloat(t))
             },
-            w: Va,
+            w: Xa,
             y: function(e, t) {
                 e.setFullYear(2e3 + parseFloat(t))
             }
         }
-          , Xa = {
+          , Qa = {
             D: "",
             F: "",
             G: "(\\d\\d|\\d)",
@@ -19422,33 +19477,33 @@
             w: "(\\d\\d|\\d)",
             y: "(\\d{2})"
         }
-          , Za = {
+          , Ja = {
             Z: function(e) {
                 return e.toISOString()
             },
             D: function(e, t, n) {
-                return t.weekdays.shorthand[Za.w(e, t, n)]
+                return t.weekdays.shorthand[Ja.w(e, t, n)]
             },
             F: function(e, t, n) {
-                return Ua(Za.n(e, t, n) - 1, !1, t)
+                return Za(Ja.n(e, t, n) - 1, !1, t)
             },
             G: function(e, t, n) {
-                return Da(Za.h(e, t, n))
+                return Ha(Ja.h(e, t, n))
             },
             H: function(e) {
-                return Da(e.getHours())
+                return Ha(e.getHours())
             },
             J: function(e, t) {
                 return void 0 !== t.ordinal ? e.getDate() + t.ordinal(e.getDate()) : e.getDate()
             },
             K: function(e, t) {
-                return t.amPM[Ba(e.getHours() > 11)]
+                return t.amPM[za(e.getHours() > 11)]
             },
             M: function(e, t) {
-                return Ua(e.getMonth(), !0, t)
+                return Za(e.getMonth(), !0, t)
             },
             S: function(e) {
-                return Da(e.getSeconds())
+                return Ha(e.getSeconds())
             },
             U: function(e) {
                 return e.getTime() / 1e3
@@ -19457,16 +19512,16 @@
                 return n.getWeek(e)
             },
             Y: function(e) {
-                return Da(e.getFullYear(), 4)
+                return Ha(e.getFullYear(), 4)
             },
             d: function(e) {
-                return Da(e.getDate())
+                return Ha(e.getDate())
             },
             h: function(e) {
                 return e.getHours() % 12 ? e.getHours() % 12 : 12
             },
             i: function(e) {
-                return Da(e.getMinutes())
+                return Ha(e.getMinutes())
             },
             j: function(e) {
                 return e.getDate()
@@ -19475,7 +19530,7 @@
                 return t.weekdays.longhand[e.getDay()]
             },
             m: function(e) {
-                return Da(e.getMonth() + 1)
+                return Ha(e.getMonth() + 1)
             },
             n: function(e) {
                 return e.getMonth() + 1
@@ -19493,26 +19548,26 @@
                 return String(e.getFullYear()).substring(2)
             }
         }
-          , Ka = function(e) {
+          , el = function(e) {
             var t = e.config
-              , n = void 0 === t ? Pa : t
+              , n = void 0 === t ? Da : t
               , i = e.l10n
-              , r = void 0 === i ? Ra : i
+              , r = void 0 === i ? Ba : i
               , o = e.isMobile
               , s = void 0 !== o && o;
             return function(e, t, i) {
                 var o = i || r;
                 return void 0 === n.formatDate || s ? t.split("").map((function(t, i, r) {
-                    return Za[t] && "\\" !== r[i - 1] ? Za[t](e, o, n) : "\\" !== t ? t : ""
+                    return Ja[t] && "\\" !== r[i - 1] ? Ja[t](e, o, n) : "\\" !== t ? t : ""
                 }
                 )).join("") : n.formatDate(e, t, o)
             }
         }
-          , Qa = function(e) {
+          , tl = function(e) {
             var t = e.config
-              , n = void 0 === t ? Pa : t
+              , n = void 0 === t ? Da : t
               , i = e.l10n
-              , r = void 0 === i ? Ra : i;
+              , r = void 0 === i ? Ba : i;
             return function(e, t, i, o) {
                 if (0 === e || e) {
                     var s, a = o || r, l = e;
@@ -19521,7 +19576,7 @@
                     else if ("string" != typeof e && void 0 !== e.toFixed)
                         s = new Date(e);
                     else if ("string" == typeof e) {
-                        var c = t || (n || Pa).dateFormat
+                        var c = t || (n || Da).dateFormat
                           , d = String(e).trim();
                         if ("today" === d)
                             s = new Date,
@@ -19535,11 +19590,11 @@
                                 var g = c[p]
                                   , v = "\\" === g
                                   , w = "\\" === c[p - 1] || v;
-                                if (Xa[g] && !w) {
-                                    f += Xa[g];
+                                if (Qa[g] && !w) {
+                                    f += Qa[g];
                                     var b = new RegExp(f).exec(e);
                                     b && (u = !0) && h["Y" !== g ? "push" : "unshift"]({
-                                        fn: Ya[g],
+                                        fn: Ka[g],
                                         val: b[++m]
                                     })
                                 } else
@@ -19562,14 +19617,14 @@
                 }
             }
         };
-        function Ja(e, t, n) {
+        function nl(e, t, n) {
             return void 0 === n && (n = !0),
             !1 !== n ? new Date(e.getTime()).setHours(0, 0, 0, 0) - new Date(t.getTime()).setHours(0, 0, 0, 0) : e.getTime() - t.getTime()
         }
-        var el = function(e, t, n) {
+        var il = function(e, t, n) {
             return 3600 * e + 60 * t + n
         };
-        function tl(e) {
+        function rl(e) {
             var t = e.defaultHour
               , n = e.defaultMinute
               , i = e.defaultSeconds;
@@ -19594,17 +19649,17 @@
             }
         }
         n(375);
-        var nl = function() {
-            return nl = Object.assign || function(e) {
+        var ol = function() {
+            return ol = Object.assign || function(e) {
                 for (var t, n = 1, i = arguments.length; n < i; n++)
                     for (var r in t = arguments[n])
                         Object.prototype.hasOwnProperty.call(t, r) && (e[r] = t[r]);
                 return e
             }
             ,
-            nl.apply(this, arguments)
+            ol.apply(this, arguments)
         }
-          , il = function() {
+          , sl = function() {
             for (var e = 0, t = 0, n = arguments.length; t < n; t++)
                 e += arguments[t].length;
             var i = Array(e)
@@ -19615,10 +19670,10 @@
                     i[r] = o[s];
             return i
         };
-        function rl(e, t) {
+        function al(e, t) {
             var n = {
-                config: nl(nl({}, Pa), sl.defaultConfig),
-                l10n: Na
+                config: ol(ol({}, Da), cl.defaultConfig),
+                l10n: Fa
             };
             function i() {
                 var e;
@@ -19644,8 +19699,8 @@
             }
             function s(e) {
                 if (0 === n.selectedDates.length) {
-                    var t = void 0 === n.config.minDate || Ja(new Date, n.config.minDate) >= 0 ? new Date : new Date(n.config.minDate.getTime())
-                      , i = tl(n.config);
+                    var t = void 0 === n.config.minDate || nl(new Date, n.config.minDate) >= 0 ? new Date : new Date(n.config.minDate.getTime())
+                      , i = rl(n.config);
                     t.setHours(i.hours, i.minutes, i.seconds, t.getMilliseconds()),
                     n.selectedDates = [t],
                     n.latestSelectedDateObj = t
@@ -19653,9 +19708,9 @@
                 void 0 !== e && "blur" !== e.type && function(e) {
                     e.preventDefault();
                     var t = "keydown" === e.type
-                      , i = ja(e)
+                      , i = Ya(e)
                       , r = i;
-                    void 0 !== n.amPM && i === n.amPM && (n.amPM.textContent = n.l10n.amPM[Ba(n.amPM.textContent === n.l10n.amPM[0])]);
+                    void 0 !== n.amPM && i === n.amPM && (n.amPM.textContent = n.l10n.amPM[za(n.amPM.textContent === n.l10n.amPM[0])]);
                     var o = parseFloat(r.getAttribute("min"))
                       , s = parseFloat(r.getAttribute("max"))
                       , a = parseFloat(r.getAttribute("step"))
@@ -19664,11 +19719,11 @@
                     if (void 0 !== r.value && 2 === r.value.length) {
                         var d = r === n.hourElement
                           , u = r === n.minuteElement;
-                        c < o ? (c = s + c + Ba(!d) + (Ba(d) && Ba(!n.amPM)),
-                        u && f(void 0, -1, n.hourElement)) : c > s && (c = r === n.hourElement ? c - s - Ba(!n.amPM) : o,
+                        c < o ? (c = s + c + za(!d) + (za(d) && za(!n.amPM)),
+                        u && f(void 0, -1, n.hourElement)) : c > s && (c = r === n.hourElement ? c - s - za(!n.amPM) : o,
                         u && f(void 0, 1, n.hourElement)),
-                        n.amPM && d && (1 === a ? c + l === 23 : Math.abs(c - l) > a) && (n.amPM.textContent = n.l10n.amPM[Ba(n.amPM.textContent === n.l10n.amPM[0])]),
-                        r.value = Da(c)
+                        n.amPM && d && (1 === a ? c + l === 23 : Math.abs(c - l) > a) && (n.amPM.textContent = n.l10n.amPM[za(n.amPM.textContent === n.l10n.amPM[0])]),
+                        r.value = Ha(c)
                     }
                 }(e);
                 var r = n._input.value;
@@ -19681,13 +19736,13 @@
                     var e, t, i = (parseInt(n.hourElement.value.slice(-2), 10) || 0) % 24, r = (parseInt(n.minuteElement.value, 10) || 0) % 60, o = void 0 !== n.secondElement ? (parseInt(n.secondElement.value, 10) || 0) % 60 : 0;
                     void 0 !== n.amPM && (e = i,
                     t = n.amPM.textContent,
-                    i = e % 12 + 12 * Ba(t === n.l10n.amPM[1]));
-                    var s = void 0 !== n.config.minTime || n.config.minDate && n.minDateHasTime && n.latestSelectedDateObj && 0 === Ja(n.latestSelectedDateObj, n.config.minDate, !0)
-                      , a = void 0 !== n.config.maxTime || n.config.maxDate && n.maxDateHasTime && n.latestSelectedDateObj && 0 === Ja(n.latestSelectedDateObj, n.config.maxDate, !0);
+                    i = e % 12 + 12 * za(t === n.l10n.amPM[1]));
+                    var s = void 0 !== n.config.minTime || n.config.minDate && n.minDateHasTime && n.latestSelectedDateObj && 0 === nl(n.latestSelectedDateObj, n.config.minDate, !0)
+                      , a = void 0 !== n.config.maxTime || n.config.maxDate && n.maxDateHasTime && n.latestSelectedDateObj && 0 === nl(n.latestSelectedDateObj, n.config.maxDate, !0);
                     if (void 0 !== n.config.maxTime && void 0 !== n.config.minTime && n.config.minTime > n.config.maxTime) {
-                        var l = el(n.config.minTime.getHours(), n.config.minTime.getMinutes(), n.config.minTime.getSeconds())
-                          , d = el(n.config.maxTime.getHours(), n.config.maxTime.getMinutes(), n.config.maxTime.getSeconds())
-                          , u = el(i, r, o);
+                        var l = il(n.config.minTime.getHours(), n.config.minTime.getMinutes(), n.config.minTime.getSeconds())
+                          , d = il(n.config.maxTime.getHours(), n.config.maxTime.getMinutes(), n.config.maxTime.getSeconds())
+                          , u = il(i, r, o);
                         if (u > d && u < l) {
                             var h = function(e) {
                                 var t = Math.floor(e / 3600)
@@ -19719,13 +19774,13 @@
             }
             function c(e, t, i) {
                 void 0 !== n.latestSelectedDateObj && n.latestSelectedDateObj.setHours(e % 24, t, i || 0, 0),
-                n.hourElement && n.minuteElement && !n.isMobile && (n.hourElement.value = Da(n.config.time_24hr ? e : (12 + e) % 12 + 12 * Ba(e % 12 == 0)),
-                n.minuteElement.value = Da(t),
-                void 0 !== n.amPM && (n.amPM.textContent = n.l10n.amPM[Ba(e >= 12)]),
-                void 0 !== n.secondElement && (n.secondElement.value = Da(i)))
+                n.hourElement && n.minuteElement && !n.isMobile && (n.hourElement.value = Ha(n.config.time_24hr ? e : (12 + e) % 12 + 12 * za(e % 12 == 0)),
+                n.minuteElement.value = Ha(t),
+                void 0 !== n.amPM && (n.amPM.textContent = n.l10n.amPM[za(e >= 12)]),
+                void 0 !== n.secondElement && (n.secondElement.value = Ha(i)))
             }
             function d(e) {
-                var t = ja(e)
+                var t = Ya(e)
                   , n = parseInt(t.value) + (e.delta || 0);
                 (n / 1e3 > 1 || "Enter" === e.key && !/[^\d]/.test(n.toString())) && O(n)
             }
@@ -19763,11 +19818,11 @@
                 n.redraw()
             }
             function m(e) {
-                var t = ja(e);
+                var t = Ya(e);
                 ~t.className.indexOf("arrow") && f(e, t.classList.contains("arrowUp") ? 1 : -1)
             }
             function f(e, t, n) {
-                var i = e && ja(e)
+                var i = e && Ya(e)
                   , r = n || i && i.parentNode && i.parentNode.firstChild
                   , o = X("increment");
                 o.delta = t,
@@ -19775,21 +19830,21 @@
             }
             function g(e, t, i, r) {
                 var o = I(t, !0)
-                  , s = $a("span", e, t.getDate().toString());
+                  , s = qa("span", e, t.getDate().toString());
                 return s.dateObj = t,
                 s.$i = r,
                 s.setAttribute("aria-label", n.formatDate(t, n.config.ariaDateFormat)),
-                -1 === e.indexOf("hidden") && 0 === Ja(t, n.now) && (n.todayDateElem = s,
+                -1 === e.indexOf("hidden") && 0 === nl(t, n.now) && (n.todayDateElem = s,
                 s.classList.add("today"),
                 s.setAttribute("aria-current", "date")),
                 o ? (s.tabIndex = -1,
                 Z(t) && (s.classList.add("selected"),
                 n.selectedDateElem = s,
-                "range" === n.config.mode && (za(s, "startRange", n.selectedDates[0] && 0 === Ja(t, n.selectedDates[0], !0)),
-                za(s, "endRange", n.selectedDates[1] && 0 === Ja(t, n.selectedDates[1], !0)),
+                "range" === n.config.mode && (Ga(s, "startRange", n.selectedDates[0] && 0 === nl(t, n.selectedDates[0], !0)),
+                Ga(s, "endRange", n.selectedDates[1] && 0 === nl(t, n.selectedDates[1], !0)),
                 "nextMonthDay" === e && s.classList.add("inRange")))) : s.classList.add("flatpickr-disabled"),
                 "range" === n.config.mode && function(e) {
-                    return !("range" !== n.config.mode || n.selectedDates.length < 2) && Ja(e, n.selectedDates[0]) >= 0 && Ja(e, n.selectedDates[1]) <= 0
+                    return !("range" !== n.config.mode || n.selectedDates.length < 2) && nl(e, n.selectedDates[0]) >= 0 && nl(e, n.selectedDates[1]) <= 0
                 }(t) && !Z(t) && s.classList.add("inRange"),
                 n.weekNumbers && 1 === n.config.showMonths && "prevMonthDay" !== e && r % 7 == 6 && n.weekNumbers.insertAdjacentHTML("beforeend", "<span class='flatpickr-day'>" + n.config.getWeek(t) + "</span>"),
                 Y("onDayCreate", s),
@@ -19832,14 +19887,14 @@
                 for (var h = o + 1; h <= 42 - i && (1 === n.config.showMonths || u % 7 != 0); h++,
                 u++)
                     s.appendChild(g("flatpickr-day " + c, new Date(e,t + 1,h % o), 0, u));
-                var p = $a("div", "dayContainer");
+                var p = qa("div", "dayContainer");
                 return p.appendChild(s),
                 p
             }
             function S() {
                 if (void 0 !== n.daysContainer) {
-                    Wa(n.daysContainer),
-                    n.weekNumbers && Wa(n.weekNumbers);
+                    ja(n.daysContainer),
+                    n.weekNumbers && ja(n.weekNumbers);
                     for (var e = document.createDocumentFragment(), t = 0; t < n.config.showMonths; t++) {
                         var i = new Date(n.currentYear,n.currentMonth,1);
                         i.setMonth(n.currentMonth + t),
@@ -19859,9 +19914,9 @@
                     n.monthsDropdownContainer.innerHTML = "";
                     for (var t = 0; t < 12; t++)
                         if (e(t)) {
-                            var i = $a("option", "flatpickr-monthDropdown-month");
+                            var i = qa("option", "flatpickr-monthDropdown-month");
                             i.value = new Date(n.currentYear,t).getMonth().toString(),
-                            i.textContent = Ua(t, n.config.shorthandCurrentMonth, n.l10n),
+                            i.textContent = Za(t, n.config.shorthandCurrentMonth, n.l10n),
                             i.tabIndex = -1,
                             n.currentMonth === t && (i.selected = !0),
                             n.monthsDropdownContainer.appendChild(i)
@@ -19869,11 +19924,11 @@
                 }
             }
             function _() {
-                var e, t = $a("div", "flatpickr-month"), i = window.document.createDocumentFragment();
-                n.config.showMonths > 1 || "static" === n.config.monthSelectorType ? e = $a("span", "cur-month") : (n.monthsDropdownContainer = $a("select", "flatpickr-monthDropdown-months"),
+                var e, t = qa("div", "flatpickr-month"), i = window.document.createDocumentFragment();
+                n.config.showMonths > 1 || "static" === n.config.monthSelectorType ? e = qa("span", "cur-month") : (n.monthsDropdownContainer = qa("select", "flatpickr-monthDropdown-months"),
                 n.monthsDropdownContainer.setAttribute("aria-label", n.l10n.monthAriaLabel),
                 u(n.monthsDropdownContainer, "change", (function(e) {
-                    var t = ja(e)
+                    var t = Ya(e)
                       , i = parseInt(t.value, 10);
                     n.changeMonth(i - n.currentMonth),
                     Y("onMonthChange")
@@ -19881,7 +19936,7 @@
                 )),
                 E(),
                 e = n.monthsDropdownContainer);
-                var r = qa("cur-year", {
+                var r = Ua("cur-year", {
                     tabindex: "-1"
                 })
                   , o = r.getElementsByTagName("input")[0];
@@ -19889,7 +19944,7 @@
                 n.config.minDate && o.setAttribute("min", n.config.minDate.getFullYear().toString()),
                 n.config.maxDate && (o.setAttribute("max", n.config.maxDate.getFullYear().toString()),
                 o.disabled = !!n.config.minDate && n.config.minDate.getFullYear() === n.config.maxDate.getFullYear());
-                var s = $a("div", "flatpickr-current-month");
+                var s = qa("div", "flatpickr-current-month");
                 return s.appendChild(e),
                 s.appendChild(r),
                 i.appendChild(s),
@@ -19901,7 +19956,7 @@
                 }
             }
             function T() {
-                Wa(n.monthNav),
+                ja(n.monthNav),
                 n.monthNav.appendChild(n.prevMonthNav),
                 n.config.showMonths && (n.yearElements = [],
                 n.monthElements = []);
@@ -19914,9 +19969,9 @@
                 n.monthNav.appendChild(n.nextMonthNav)
             }
             function M() {
-                n.weekdayContainer ? Wa(n.weekdayContainer) : n.weekdayContainer = $a("div", "flatpickr-weekdays");
+                n.weekdayContainer ? ja(n.weekdayContainer) : n.weekdayContainer = qa("div", "flatpickr-weekdays");
                 for (var e = n.config.showMonths; e--; ) {
-                    var t = $a("div", "flatpickr-weekdaycontainer");
+                    var t = qa("div", "flatpickr-weekdaycontainer");
                     n.weekdayContainer.appendChild(t)
                 }
                 return C(),
@@ -19925,8 +19980,8 @@
             function C() {
                 if (n.weekdayContainer) {
                     var e = n.l10n.firstDayOfWeek
-                      , t = il(n.l10n.weekdays.shorthand);
-                    e > 0 && e < t.length && (t = il(t.splice(e, t.length), t.splice(0, e)));
+                      , t = sl(n.l10n.weekdays.shorthand);
+                    e > 0 && e < t.length && (t = sl(t.splice(e, t.length), t.splice(0, e)));
                     for (var i = n.config.showMonths; i--; )
                         n.weekdayContainer.children[i].innerHTML = "\n      <span class='flatpickr-weekday'>\n        " + t.join("</span><span class='flatpickr-weekday'>") + "\n      </span>\n      "
                 }
@@ -19948,7 +20003,7 @@
             }
             function k(e) {
                 if (n.isOpen && !n.config.inline) {
-                    var t = ja(e)
+                    var t = Ya(e)
                       , i = x(t)
                       , r = !(t === n.input || t === n.altInput || n.element.contains(t) || e.path && e.path.indexOf && (~e.path.indexOf(n.input) || ~e.path.indexOf(n.altInput)) || i || x(e.relatedTarget))
                       , o = !n.config.ignoredFocusElements.some((function(e) {
@@ -19976,7 +20031,7 @@
                 var i;
                 void 0 === t && (t = !0);
                 var r = n.parseDate(e, void 0, t);
-                if (n.config.minDate && r && Ja(r, n.config.minDate, void 0 !== t ? t : !n.minDateHasTime) < 0 || n.config.maxDate && r && Ja(r, n.config.maxDate, void 0 !== t ? t : !n.maxDateHasTime) > 0)
+                if (n.config.minDate && r && nl(r, n.config.minDate, void 0 !== t ? t : !n.minDateHasTime) < 0 || n.config.maxDate && r && nl(r, n.config.maxDate, void 0 !== t ? t : !n.maxDateHasTime) > 0)
                     return !1;
                 if (!n.config.enable && 0 === n.config.disable.length)
                     return !0;
@@ -20005,7 +20060,7 @@
                 !t || !i || e.relatedTarget && x(e.relatedTarget) || n.setDate(n._input.value, !0, e.target === n.altInput ? n.config.altFormat : n.config.dateFormat)
             }
             function R(t) {
-                var r = ja(t)
+                var r = Ya(t)
                   , o = n.config.wrap ? e.contains(r) : r === n._input
                   , l = n.config.allowInput
                   , c = n.isOpen && (!l || !o)
@@ -20141,16 +20196,16 @@
                 return n.config.wrap ? e.querySelector("[data-input]") : e
             }
             function H() {
-                "object" != typeof n.config.locale && void 0 === sl.l10ns[n.config.locale] && n.config.errorHandler(new Error("flatpickr: invalid locale " + n.config.locale)),
-                n.l10n = nl(nl({}, sl.l10ns.default), "object" == typeof n.config.locale ? n.config.locale : "default" !== n.config.locale ? sl.l10ns[n.config.locale] : void 0),
-                Xa.D = "(" + n.l10n.weekdays.shorthand.join("|") + ")",
-                Xa.l = "(" + n.l10n.weekdays.longhand.join("|") + ")",
-                Xa.M = "(" + n.l10n.months.shorthand.join("|") + ")",
-                Xa.F = "(" + n.l10n.months.longhand.join("|") + ")",
-                Xa.K = "(" + n.l10n.amPM[0] + "|" + n.l10n.amPM[1] + "|" + n.l10n.amPM[0].toLowerCase() + "|" + n.l10n.amPM[1].toLowerCase() + ")",
-                void 0 === nl(nl({}, t), JSON.parse(JSON.stringify(e.dataset || {}))).time_24hr && void 0 === sl.defaultConfig.time_24hr && (n.config.time_24hr = n.l10n.time_24hr),
-                n.formatDate = Ka(n),
-                n.parseDate = Qa({
+                "object" != typeof n.config.locale && void 0 === cl.l10ns[n.config.locale] && n.config.errorHandler(new Error("flatpickr: invalid locale " + n.config.locale)),
+                n.l10n = ol(ol({}, cl.l10ns.default), "object" == typeof n.config.locale ? n.config.locale : "default" !== n.config.locale ? cl.l10ns[n.config.locale] : void 0),
+                Qa.D = "(" + n.l10n.weekdays.shorthand.join("|") + ")",
+                Qa.l = "(" + n.l10n.weekdays.longhand.join("|") + ")",
+                Qa.M = "(" + n.l10n.months.shorthand.join("|") + ")",
+                Qa.F = "(" + n.l10n.months.longhand.join("|") + ")",
+                Qa.K = "(" + n.l10n.amPM[0] + "|" + n.l10n.amPM[1] + "|" + n.l10n.amPM[0].toLowerCase() + "|" + n.l10n.amPM[1].toLowerCase() + ")",
+                void 0 === ol(ol({}, t), JSON.parse(JSON.stringify(e.dataset || {}))).time_24hr && void 0 === cl.defaultConfig.time_24hr && (n.config.time_24hr = n.l10n.time_24hr),
+                n.formatDate = el(n),
+                n.parseDate = tl({
                     config: n.config,
                     l10n: n.l10n
                 })
@@ -20172,8 +20227,8 @@
                           , c = window.innerHeight - l.bottom
                           , d = "above" === s || "below" !== s && c < i && l.top > i
                           , u = window.pageYOffset + l.top + (d ? -i - 2 : t.offsetHeight + 2);
-                        if (za(n.calendarContainer, "arrowTop", !d),
-                        za(n.calendarContainer, "arrowBottom", d),
+                        if (Ga(n.calendarContainer, "arrowTop", !d),
+                        Ga(n.calendarContainer, "arrowBottom", d),
                         !n.config.inline) {
                             var h = window.pageXOffset + l.left
                               , p = !1
@@ -20181,13 +20236,13 @@
                             "center" === a ? (h -= (r - l.width) / 2,
                             p = !0) : "right" === a && (h -= r - l.width,
                             m = !0),
-                            za(n.calendarContainer, "arrowLeft", !p && !m),
-                            za(n.calendarContainer, "arrowCenter", p),
-                            za(n.calendarContainer, "arrowRight", m);
+                            Ga(n.calendarContainer, "arrowLeft", !p && !m),
+                            Ga(n.calendarContainer, "arrowCenter", p),
+                            Ga(n.calendarContainer, "arrowRight", m);
                             var f = window.document.body.offsetWidth - (window.pageXOffset + l.right)
                               , g = h + r > window.document.body.offsetWidth
                               , v = f + r > window.document.body.offsetWidth;
-                            if (za(n.calendarContainer, "rightMost", g),
+                            if (Ga(n.calendarContainer, "rightMost", g),
                             !n.config.static)
                                 if (n.calendarContainer.style.top = u + "px",
                                 g)
@@ -20216,8 +20271,8 @@
                                           , y = Math.max(0, b / 2 - r / 2)
                                           , S = w.cssRules.length
                                           , E = "{left:" + l.left + "px;right:auto;}";
-                                        za(n.calendarContainer, "rightMost", !1),
-                                        za(n.calendarContainer, "centerMost", !0),
+                                        Ga(n.calendarContainer, "rightMost", !1),
+                                        Ga(n.calendarContainer, "centerMost", !0),
                                         w.insertRule(".flatpickr-calendar.centerMost:before,.flatpickr-calendar.centerMost:after" + E, S),
                                         n.calendarContainer.style.left = y + "px",
                                         n.calendarContainer.style.right = "auto"
@@ -20244,7 +20299,7 @@
             function G(e) {
                 e.preventDefault(),
                 e.stopPropagation();
-                var t = Ga(ja(e), (function(e) {
+                var t = Va(Ya(e), (function(e) {
                     return e.classList && e.classList.contains("flatpickr-day") && !e.classList.contains("flatpickr-disabled") && !e.classList.contains("notAllowed")
                 }
                 ));
@@ -20262,7 +20317,7 @@
                         "range" === n.config.mode && (2 === n.selectedDates.length && n.clear(!1, !1),
                         n.latestSelectedDateObj = r,
                         n.selectedDates.push(r),
-                        0 !== Ja(r, n.selectedDates[0], !0) && n.selectedDates.sort((function(e, t) {
+                        0 !== nl(r, n.selectedDates[0], !0) && n.selectedDates.sort((function(e, t) {
                             return e.getTime() - t.getTime()
                         }
                         )));
@@ -20288,7 +20343,7 @@
                     h()
                 }
             }
-            n.parseDate = Qa({
+            n.parseDate = tl({
                 config: n.config,
                 l10n: n.l10n
             }),
@@ -20311,7 +20366,7 @@
                 !0 === t && (n.currentYear = n._initialDate.getFullYear(),
                 n.currentMonth = n._initialDate.getMonth()),
                 !0 === n.config.enableTime) {
-                    var i = tl(n.config);
+                    var i = rl(n.config);
                     c(i.hours, i.minutes, i.seconds)
                 }
                 n.redraw(),
@@ -20326,7 +20381,7 @@
             }
             ,
             n.onMouseOver = N,
-            n._createElement = $a,
+            n._createElement = qa,
             n.createDay = g,
             n.destroy = function() {
                 void 0 !== n.config && Y("onDestroy");
@@ -20369,7 +20424,7 @@
                 !0 === n.isMobile) {
                     if (e) {
                         e.preventDefault();
-                        var i = ja(e);
+                        var i = Ya(e);
                         i && i.blur()
                     }
                     return void 0 !== n.mobileInput && (n.mobileInput.focus(),
@@ -20404,7 +20459,7 @@
                     void 0 !== q[e] ? q[e].forEach((function(e) {
                         return e()
                     }
-                    )) : La.indexOf(e) > -1 && (n.config[e] = Ha(t));
+                    )) : Na.indexOf(e) > -1 && (n.config[e] = Wa(t));
                 n.redraw(),
                 J(!0)
             }
@@ -20514,7 +20569,7 @@
             function Z(e) {
                 for (var t = 0; t < n.selectedDates.length; t++) {
                     var i = n.selectedDates[t];
-                    if (i instanceof Date && 0 === Ja(i, e))
+                    if (i instanceof Date && 0 === nl(i, e))
                         return "" + t
                 }
                 return !1
@@ -20523,7 +20578,7 @@
                 n.config.noCalendar || n.isMobile || !n.monthNav || (n.yearElements.forEach((function(e, t) {
                     var i = new Date(n.currentYear,n.currentMonth,1);
                     i.setMonth(n.currentMonth + t),
-                    n.config.showMonths > 1 || "static" === n.config.monthSelectorType ? n.monthElements[t].textContent = Ua(i.getMonth(), n.config.shorthandCurrentMonth, n.l10n) + " " : n.monthsDropdownContainer.value = i.getMonth().toString(),
+                    n.config.showMonths > 1 || "static" === n.config.monthSelectorType ? n.monthElements[t].textContent = Za(i.getMonth(), n.config.shorthandCurrentMonth, n.l10n) + " " : n.monthsDropdownContainer.value = i.getMonth().toString(),
                     e.value = i.getFullYear().toString()
                 }
                 )),
@@ -20548,7 +20603,7 @@
                 !1 !== e && Y("onValueUpdate")
             }
             function ee(e) {
-                var t = ja(e)
+                var t = Ya(e)
                   , i = n.prevMonthNav.contains(t)
                   , r = n.nextMonthNav.contains(t);
                 i || r ? A(i ? -1 : 1) : n.yearElements.indexOf(t) >= 0 ? t.select() : t.classList.contains("arrowUp") ? n.changeYear(n.currentYear + 1) : t.classList.contains("arrowDown") && n.changeYear(n.currentYear - 1)
@@ -20558,7 +20613,7 @@
                 n.isOpen = !1,
                 function() {
                     var i = ["wrap", "weekNumbers", "allowInput", "allowInvalidPreload", "clickOpens", "time_24hr", "enableTime", "noCalendar", "altInput", "shorthandCurrentMonth", "inline", "static", "enableSeconds", "disableMobile"]
-                      , o = nl(nl({}, JSON.parse(JSON.stringify(e.dataset || {}))), t)
+                      , o = ol(ol({}, JSON.parse(JSON.stringify(e.dataset || {}))), t)
                       , s = {};
                     n.config.parseDate = o.parseDate,
                     n.config.formatDate = o.formatDate,
@@ -20580,11 +20635,11 @@
                     });
                     var a = "time" === o.mode;
                     if (!o.dateFormat && (o.enableTime || a)) {
-                        var l = sl.defaultConfig.dateFormat || Pa.dateFormat;
+                        var l = cl.defaultConfig.dateFormat || Da.dateFormat;
                         s.dateFormat = o.noCalendar || a ? "H:i" + (o.enableSeconds ? ":S" : "") : l + " H:i" + (o.enableSeconds ? ":S" : "")
                     }
                     if (o.altInput && (o.enableTime || a) && !o.altFormat) {
-                        var c = sl.defaultConfig.altFormat || Pa.altFormat;
+                        var c = cl.defaultConfig.altFormat || Da.altFormat;
                         s.altFormat = o.noCalendar || a ? "h:i" + (o.enableSeconds ? ":S K" : " K") : c + " h:i" + (o.enableSeconds ? ":S" : "") + " K"
                     }
                     Object.defineProperty(n.config, "minDate", {
@@ -20621,18 +20676,18 @@
                     Object.assign(n.config, s, o);
                     for (var u = 0; u < i.length; u++)
                         n.config[i[u]] = !0 === n.config[i[u]] || "true" === n.config[i[u]];
-                    for (La.filter((function(e) {
+                    for (Na.filter((function(e) {
                         return void 0 !== n.config[e]
                     }
                     )).forEach((function(e) {
-                        n.config[e] = Ha(n.config[e] || []).map(r)
+                        n.config[e] = Wa(n.config[e] || []).map(r)
                     }
                     )),
                     n.isMobile = !n.config.disableMobile && !n.config.inline && "single" === n.config.mode && !n.config.disable.length && !n.config.enable && !n.config.weekNumbers && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
                     u = 0; u < n.config.plugins.length; u++) {
                         var h = n.config.plugins[u](n) || {};
                         for (var p in h)
-                            La.indexOf(p) > -1 ? n.config[p] = Ha(h[p]).map(r).concat(n.config[p]) : void 0 === o[p] && (n.config[p] = h[p])
+                            Na.indexOf(p) > -1 ? n.config[p] = Wa(h[p]).map(r).concat(n.config[p]) : void 0 === o[p] && (n.config[p] = h[p])
                     }
                     o.altInputClass || (n.config.altInputClass = F().className + " " + n.config.altInputClass),
                     Y("onParseConfig")
@@ -20643,7 +20698,7 @@
                 n.input.type = "text",
                 n.input.classList.add("flatpickr-input"),
                 n._input = n.input,
-                n.config.altInput && (n.altInput = $a(n.input.nodeName, n.config.altInputClass),
+                n.config.altInput && (n.altInput = qa(n.input.nodeName, n.config.altInputClass),
                 n._input = n.altInput,
                 n.altInput.placeholder = n.input.placeholder,
                 n.altInput.disabled = n.input.disabled,
@@ -20677,15 +20732,15 @@
                 },
                 n.isMobile || function() {
                     var e = window.document.createDocumentFragment();
-                    if (n.calendarContainer = $a("div", "flatpickr-calendar"),
+                    if (n.calendarContainer = qa("div", "flatpickr-calendar"),
                     n.calendarContainer.tabIndex = -1,
                     !n.config.noCalendar) {
-                        if (e.appendChild((n.monthNav = $a("div", "flatpickr-months"),
+                        if (e.appendChild((n.monthNav = qa("div", "flatpickr-months"),
                         n.yearElements = [],
                         n.monthElements = [],
-                        n.prevMonthNav = $a("span", "flatpickr-prev-month"),
+                        n.prevMonthNav = qa("span", "flatpickr-prev-month"),
                         n.prevMonthNav.innerHTML = n.config.prevArrow,
-                        n.nextMonthNav = $a("span", "flatpickr-next-month"),
+                        n.nextMonthNav = qa("span", "flatpickr-next-month"),
                         n.nextMonthNav.innerHTML = n.config.nextArrow,
                         T(),
                         Object.defineProperty(n, "_hidePrevMonthArrow", {
@@ -20693,7 +20748,7 @@
                                 return n.__hidePrevMonthArrow
                             },
                             set: function(e) {
-                                n.__hidePrevMonthArrow !== e && (za(n.prevMonthNav, "flatpickr-disabled", e),
+                                n.__hidePrevMonthArrow !== e && (Ga(n.prevMonthNav, "flatpickr-disabled", e),
                                 n.__hidePrevMonthArrow = e)
                             }
                         }),
@@ -20702,20 +20757,20 @@
                                 return n.__hideNextMonthArrow
                             },
                             set: function(e) {
-                                n.__hideNextMonthArrow !== e && (za(n.nextMonthNav, "flatpickr-disabled", e),
+                                n.__hideNextMonthArrow !== e && (Ga(n.nextMonthNav, "flatpickr-disabled", e),
                                 n.__hideNextMonthArrow = e)
                             }
                         }),
                         n.currentYearElement = n.yearElements[0],
                         K(),
                         n.monthNav)),
-                        n.innerContainer = $a("div", "flatpickr-innerContainer"),
+                        n.innerContainer = qa("div", "flatpickr-innerContainer"),
                         n.config.weekNumbers) {
                             var t = function() {
                                 n.calendarContainer.classList.add("hasWeeks");
-                                var e = $a("div", "flatpickr-weekwrapper");
-                                e.appendChild($a("span", "flatpickr-weekday", n.l10n.weekAbbreviation));
-                                var t = $a("div", "flatpickr-weeks");
+                                var e = qa("div", "flatpickr-weekwrapper");
+                                e.appendChild(qa("span", "flatpickr-weekday", n.l10n.weekAbbreviation));
+                                var t = qa("div", "flatpickr-weeks");
                                 return e.appendChild(t),
                                 {
                                     weekWrapper: e,
@@ -20728,9 +20783,9 @@
                             n.weekNumbers = r,
                             n.weekWrapper = i
                         }
-                        n.rContainer = $a("div", "flatpickr-rContainer"),
+                        n.rContainer = qa("div", "flatpickr-rContainer"),
                         n.rContainer.appendChild(M()),
-                        n.daysContainer || (n.daysContainer = $a("div", "flatpickr-days"),
+                        n.daysContainer || (n.daysContainer = qa("div", "flatpickr-days"),
                         n.daysContainer.tabIndex = -1),
                         S(),
                         n.rContainer.appendChild(n.daysContainer),
@@ -20740,20 +20795,20 @@
                     n.config.enableTime && e.appendChild(function() {
                         n.calendarContainer.classList.add("hasTime"),
                         n.config.noCalendar && n.calendarContainer.classList.add("noCalendar");
-                        var e = tl(n.config);
-                        n.timeContainer = $a("div", "flatpickr-time"),
+                        var e = rl(n.config);
+                        n.timeContainer = qa("div", "flatpickr-time"),
                         n.timeContainer.tabIndex = -1;
-                        var t = $a("span", "flatpickr-time-separator", ":")
-                          , i = qa("flatpickr-hour", {
+                        var t = qa("span", "flatpickr-time-separator", ":")
+                          , i = Ua("flatpickr-hour", {
                             "aria-label": n.l10n.hourAriaLabel
                         });
                         n.hourElement = i.getElementsByTagName("input")[0];
-                        var r = qa("flatpickr-minute", {
+                        var r = Ua("flatpickr-minute", {
                             "aria-label": n.l10n.minuteAriaLabel
                         });
                         if (n.minuteElement = r.getElementsByTagName("input")[0],
                         n.hourElement.tabIndex = n.minuteElement.tabIndex = -1,
-                        n.hourElement.value = Da(n.latestSelectedDateObj ? n.latestSelectedDateObj.getHours() : n.config.time_24hr ? e.hours : function(e) {
+                        n.hourElement.value = Ha(n.latestSelectedDateObj ? n.latestSelectedDateObj.getHours() : n.config.time_24hr ? e.hours : function(e) {
                             switch (e % 24) {
                             case 0:
                             case 12:
@@ -20762,7 +20817,7 @@
                                 return e % 12
                             }
                         }(e.hours)),
-                        n.minuteElement.value = Da(n.latestSelectedDateObj ? n.latestSelectedDateObj.getMinutes() : e.minutes),
+                        n.minuteElement.value = Ha(n.latestSelectedDateObj ? n.latestSelectedDateObj.getMinutes() : e.minutes),
                         n.hourElement.setAttribute("step", n.config.hourIncrement.toString()),
                         n.minuteElement.setAttribute("step", n.config.minuteIncrement.toString()),
                         n.hourElement.setAttribute("min", n.config.time_24hr ? "0" : "1"),
@@ -20777,31 +20832,31 @@
                         n.config.time_24hr && n.timeContainer.classList.add("time24hr"),
                         n.config.enableSeconds) {
                             n.timeContainer.classList.add("hasSeconds");
-                            var o = qa("flatpickr-second");
+                            var o = Ua("flatpickr-second");
                             n.secondElement = o.getElementsByTagName("input")[0],
-                            n.secondElement.value = Da(n.latestSelectedDateObj ? n.latestSelectedDateObj.getSeconds() : e.seconds),
+                            n.secondElement.value = Ha(n.latestSelectedDateObj ? n.latestSelectedDateObj.getSeconds() : e.seconds),
                             n.secondElement.setAttribute("step", n.minuteElement.getAttribute("step")),
                             n.secondElement.setAttribute("min", "0"),
                             n.secondElement.setAttribute("max", "59"),
                             n.secondElement.setAttribute("maxlength", "2"),
-                            n.timeContainer.appendChild($a("span", "flatpickr-time-separator", ":")),
+                            n.timeContainer.appendChild(qa("span", "flatpickr-time-separator", ":")),
                             n.timeContainer.appendChild(o)
                         }
-                        return n.config.time_24hr || (n.amPM = $a("span", "flatpickr-am-pm", n.l10n.amPM[Ba((n.latestSelectedDateObj ? n.hourElement.value : n.config.defaultHour) > 11)]),
+                        return n.config.time_24hr || (n.amPM = qa("span", "flatpickr-am-pm", n.l10n.amPM[za((n.latestSelectedDateObj ? n.hourElement.value : n.config.defaultHour) > 11)]),
                         n.amPM.title = n.l10n.toggleTitle,
                         n.amPM.tabIndex = -1,
                         n.timeContainer.appendChild(n.amPM)),
                         n.timeContainer
                     }()),
-                    za(n.calendarContainer, "rangeMode", "range" === n.config.mode),
-                    za(n.calendarContainer, "animate", !0 === n.config.animate),
-                    za(n.calendarContainer, "multiMonth", n.config.showMonths > 1),
+                    Ga(n.calendarContainer, "rangeMode", "range" === n.config.mode),
+                    Ga(n.calendarContainer, "animate", !0 === n.config.animate),
+                    Ga(n.calendarContainer, "multiMonth", n.config.showMonths > 1),
                     n.calendarContainer.appendChild(e);
                     var o = void 0 !== n.config.appendTo && void 0 !== n.config.appendTo.nodeType;
                     if ((n.config.inline || n.config.static) && (n.calendarContainer.classList.add(n.config.inline ? "inline" : "static"),
                     n.config.inline && (!o && n.element.parentNode ? n.element.parentNode.insertBefore(n.calendarContainer, n._input.nextSibling) : void 0 !== n.config.appendTo && n.config.appendTo.appendChild(n.calendarContainer)),
                     n.config.static)) {
-                        var s = $a("div", "flatpickr-wrapper");
+                        var s = qa("div", "flatpickr-wrapper");
                         n.element.parentNode && n.element.parentNode.insertBefore(s, n.element),
                         s.appendChild(n.element),
                         n.altInput && s.appendChild(n.altInput),
@@ -20820,7 +20875,7 @@
                     n.isMobile)
                         !function() {
                             var e = n.config.enableTime ? n.config.noCalendar ? "time" : "datetime-local" : "date";
-                            n.mobileInput = $a("input", n.input.className + " flatpickr-mobile"),
+                            n.mobileInput = qa("input", n.input.className + " flatpickr-mobile"),
                             n.mobileInput.tabIndex = 1,
                             n.mobileInput.type = e,
                             n.mobileInput.disabled = n.input.disabled,
@@ -20837,17 +20892,17 @@
                                 n.input.parentNode && n.input.parentNode.insertBefore(n.mobileInput, n.input.nextSibling)
                             } catch (e) {}
                             u(n.mobileInput, "change", (function(e) {
-                                n.setDate(ja(e).value, !1, n.mobileFormatStr),
+                                n.setDate(Ya(e).value, !1, n.mobileFormatStr),
                                 Y("onChange"),
                                 Y("onClose")
                             }
                             ))
                         }();
                     else {
-                        var e = Fa(D, 50);
-                        if (n._debouncedChange = Fa(h, 300),
+                        var e = $a(D, 50);
+                        if (n._debouncedChange = $a(h, 300),
                         n.daysContainer && !/iPhone|iPad|iPod/i.test(navigator.userAgent) && u(n.daysContainer, "mouseover", (function(e) {
-                            "range" === n.config.mode && N(ja(e))
+                            "range" === n.config.mode && N(Ya(e))
                         }
                         )),
                         u(n._input, "keydown", R),
@@ -20869,7 +20924,7 @@
                             }),
                             u(n.timeContainer, "click", m),
                             u([n.hourElement, n.minuteElement], ["focus", "click"], (function(e) {
-                                return ja(e).select()
+                                return Ya(e).select()
                             }
                             )),
                             void 0 !== n.secondElement && u(n.secondElement, "focus", (function() {
@@ -20893,7 +20948,7 @@
             }(),
             n
         }
-        function ol(e, t) {
+        function ll(e, t) {
             for (var n = Array.prototype.slice.call(e).filter((function(e) {
                 return e instanceof HTMLElement
             }
@@ -20904,7 +20959,7 @@
                         continue;
                     void 0 !== o._flatpickr && (o._flatpickr.destroy(),
                     o._flatpickr = void 0),
-                    o._flatpickr = rl(o, t || {}),
+                    o._flatpickr = al(o, t || {}),
                     i.push(o._flatpickr)
                 } catch (e) {
                     console.error(e)
@@ -20913,66 +20968,66 @@
             return 1 === i.length ? i[0] : i
         }
         "undefined" != typeof HTMLElement && "undefined" != typeof HTMLCollection && "undefined" != typeof NodeList && (HTMLCollection.prototype.flatpickr = NodeList.prototype.flatpickr = function(e) {
-            return ol(this, e)
+            return ll(this, e)
         }
         ,
         HTMLElement.prototype.flatpickr = function(e) {
-            return ol([this], e)
+            return ll([this], e)
         }
         );
-        var sl = function(e, t) {
-            return "string" == typeof e ? ol(window.document.querySelectorAll(e), t) : e instanceof Node ? ol([e], t) : ol(e, t)
+        var cl = function(e, t) {
+            return "string" == typeof e ? ll(window.document.querySelectorAll(e), t) : e instanceof Node ? ll([e], t) : ll(e, t)
         };
-        sl.defaultConfig = {},
-        sl.l10ns = {
-            en: nl({}, Na),
-            default: nl({}, Na)
+        cl.defaultConfig = {},
+        cl.l10ns = {
+            en: ol({}, Fa),
+            default: ol({}, Fa)
         },
-        sl.localize = function(e) {
-            sl.l10ns.default = nl(nl({}, sl.l10ns.default), e)
+        cl.localize = function(e) {
+            cl.l10ns.default = ol(ol({}, cl.l10ns.default), e)
         }
         ,
-        sl.setDefaults = function(e) {
-            sl.defaultConfig = nl(nl({}, sl.defaultConfig), e)
+        cl.setDefaults = function(e) {
+            cl.defaultConfig = ol(ol({}, cl.defaultConfig), e)
         }
         ,
-        sl.parseDate = Qa({}),
-        sl.formatDate = Ka({}),
-        sl.compareDates = Ja,
+        cl.parseDate = tl({}),
+        cl.formatDate = el({}),
+        cl.compareDates = nl,
         "undefined" != typeof jQuery && void 0 !== jQuery.fn && (jQuery.fn.flatpickr = function(e) {
-            return ol(this, e)
+            return ll(this, e)
         }
         ),
         Date.prototype.fp_incr = function(e) {
             return new Date(this.getFullYear(),this.getMonth(),this.getDate() + ("string" == typeof e ? parseInt(e, 10) : e))
         }
         ,
-        "undefined" != typeof window && (window.flatpickr = sl);
-        const al = sl;
-        var ll = n(369)
-          , cl = n.n(ll);
-        const dl = function(e) {
+        "undefined" != typeof window && (window.flatpickr = cl);
+        const dl = cl;
+        var ul = n(369)
+          , hl = n.n(ul);
+        const pl = function(e) {
             const t = e.target;
             t.value.length > 2 && (t.value = t.value.slice(0, 2))
         }
-          , ul = {
+          , ml = {
             nb: "no",
             "pt-br": "pt"
         }
-          , hl = "surfaces"
-          , pl = "ws-surface"
-          , ml = ["ws-light-0", "ws-light-1", "ws-dark-0", "ws-dark-1"]
-          , fl = ml[0]
-          , gl = ".flatpickr-time .numInputWrapper input"
-          , vl = "enable-time"
-          , wl = "no-calendar"
-          , bl = "max-date"
-          , yl = "min-date"
-          , Sl = "mode"
-          , El = "time-24hr"
-          , _l = "select-current-date"
-          , Tl = document.documentElement.lang || "en";
-        class Ml extends HTMLElement {
+          , fl = "surfaces"
+          , gl = "ws-surface"
+          , vl = ["ws-light-0", "ws-light-1", "ws-dark-0", "ws-dark-1"]
+          , wl = vl[0]
+          , bl = ".flatpickr-time .numInputWrapper input"
+          , yl = "enable-time"
+          , Sl = "no-calendar"
+          , El = "max-date"
+          , _l = "min-date"
+          , Tl = "mode"
+          , Ml = "time-24hr"
+          , Cl = "select-current-date"
+          , Al = document.documentElement.lang || "en";
+        class xl extends HTMLElement {
             static onDateTimePickerChange(e) {
                 e.target.value ? e.target.setAttribute("is-not-empty", "") : e.target.removeAttribute("is-not-empty")
             }
@@ -20986,19 +21041,19 @@
             disconnectedCallback() {
                 this.pickerInstance && this.pickerInstance.constructor === Object && (this.pickerInstance.destroy(),
                 void 0 !== this.altNumInputs && (this.altNumInputs.forEach((e => {
-                    e.removeEventListener("input", dl)
+                    e.removeEventListener("input", pl)
                 }
                 )),
                 this.altNumInputs = null),
-                this.input.removeEventListener("change", Ml.onDateTimePickerChange)),
+                this.input.removeEventListener("change", xl.onDateTimePickerChange)),
                 this.input.setAttribute("type", "text")
             }
             renderPicker() {
                 !function() {
-                    const e = cl().getParser(window.navigator.userAgent).parsedResult.platform.type;
+                    const e = hl().getParser(window.navigator.userAgent).parsedResult.platform.type;
                     return "mobile" === e || "tablet" === e
                 }() ? (this.pickerInstance = this.initPicker(this.input),
-                this.setPickerSurface()) : this.input.addEventListener("change", Ml.onDateTimePickerChange),
+                this.setPickerSurface()) : this.input.addEventListener("change", xl.onDateTimePickerChange),
                 function() {
                     try {
                         return Boolean(window.parent.ws)
@@ -21006,9 +21061,9 @@
                         return !1
                     }
                 }() && !Boolean(window.previewMode) ? (this.input.style.pointerEvents = "none",
-                this.input.setAttribute("tabindex", "-1")) : (this.altNumInputs = document.querySelectorAll(gl),
+                this.input.setAttribute("tabindex", "-1")) : (this.altNumInputs = document.querySelectorAll(bl),
                 this.altNumInputs.forEach((e => {
-                    e.addEventListener("input", dl)
+                    e.addEventListener("input", pl)
                 }
                 )))
             }
@@ -21016,30 +21071,30 @@
                 if (this.pickerInstance && this.pickerInstance.constructor === Object) {
                     const {calendarContainer: e} = this.pickerInstance
                       , t = function(e) {
-                        const t = e.closest(`[${hl}]`);
+                        const t = e.closest(`[${fl}]`);
                         if (!t)
-                            return [pl, fl];
-                        const n = t.getAttribute(hl).split(" ")
+                            return [gl, wl];
+                        const n = t.getAttribute(fl).split(" ")
                           , i = n[n.length - 1]
-                          , r = ml.includes(i);
-                        return [pl, r ? i : fl]
+                          , r = vl.includes(i);
+                        return [gl, r ? i : wl]
                     }(this);
                     e.classList.add(...t),
                     e.dataset.surface = ""
                 }
             }
             initPicker(e) {
-                return new al(e,{
-                    enableTime: this.hasAttribute(vl),
-                    noCalendar: this.hasAttribute(wl),
-                    time_24hr: this.hasAttribute(El),
+                return new dl(e,{
+                    enableTime: this.hasAttribute(yl),
+                    noCalendar: this.hasAttribute(Sl),
+                    time_24hr: this.hasAttribute(Ml),
                     minuteIncrement: 1,
-                    defaultDate: this.hasAttribute(_l) ? new Date : null,
-                    maxDate: this.getAttribute(bl) || null,
-                    minDate: this.getAttribute(yl) || null,
-                    mode: this.getAttribute(Sl) || "single",
-                    locale: (t = Tl,
-                    ul[t] ? ul[t] : t),
+                    defaultDate: this.hasAttribute(Cl) ? new Date : null,
+                    maxDate: this.getAttribute(El) || null,
+                    minDate: this.getAttribute(_l) || null,
+                    mode: this.getAttribute(Tl) || "single",
+                    locale: (t = Al,
+                    ml[t] ? ml[t] : t),
                     onClose: (e, t, n) => {
                         const {config: i} = n;
                         i.enableTime && i.noCalendar && n.element.dispatchEvent(new FocusEvent("blur"))
@@ -21047,25 +21102,25 @@
                     ,
                     formatDate(e) {
                         let t;
-                        return t = this.enableTime && this.noCalendar ? e.toLocaleTimeString(Tl, {
+                        return t = this.enableTime && this.noCalendar ? e.toLocaleTimeString(Al, {
                             hour: "2-digit",
                             minute: "2-digit",
                             hour12: !this.time_24hr
-                        }) : this.enableTime && !this.noCalendar ? e.toLocaleString(Tl, {
+                        }) : this.enableTime && !this.noCalendar ? e.toLocaleString(Al, {
                             day: "numeric",
                             month: "2-digit",
                             year: "numeric",
                             hour: "2-digit",
                             minute: "2-digit"
-                        }) : e.toLocaleDateString(Tl),
+                        }) : e.toLocaleDateString(Al),
                         t
                     }
                 });
                 var t
             }
         }
-        customElements.define("ws-date-time-picker", Ml);
-        class Cl extends HTMLElement {
+        customElements.define("ws-date-time-picker", xl);
+        class kl extends HTMLElement {
             connectedCallback() {
                 (function() {
                     try {
@@ -21091,21 +21146,21 @@
                 this.appendChild(e)
             }
         }
-        customElements.define("ws-label", Cl);
-        const Al = function(e, t) {
+        customElements.define("ws-label", kl);
+        const Ol = function(e, t) {
             e.call(this, t)
         }
-          , xl = function() {
+          , Il = function() {
             try {
                 return Boolean(window.parent.ws)
             } catch (e) {
                 return !1
             }
         }
-          , kl = function(e) {
+          , Ll = function(e) {
             window.ShadyCSS && window.ShadyCSS.prepareTemplate(e, "ws-footer")
         }
-          , Ol = new Map;
+          , Pl = new Map;
         [{
             name: "--screen-width-xs",
             key: "xs",
@@ -21129,11 +21184,11 @@
         }].forEach((e => {
             const t = getComputedStyle(document.documentElement).getPropertyValue(e.name)
               , n = t ? parseFloat(t) : e.fallbackValue;
-            Ol.set(e.key, n)
+            Pl.set(e.key, n)
         }
         ));
-        const Il = Ol
-          , Ll = function(e) {
+        const Rl = Pl
+          , Nl = function(e) {
             const t = function() {
                 const e = document.documentElement
                   , t = e.getAttribute("data-locale");
@@ -21145,7 +21200,7 @@
             }
             )(t) && e.setAttribute("href", `/${t}/`)
         }
-          , Pl = {
+          , Dl = {
             LOGO: "business-logo",
             SITE_NAME: "site-name",
             DESCRIPTION: "business-description",
@@ -21156,71 +21211,71 @@
             NAVIGATION: "footer-navigation",
             COPYRIGHT: "copyright"
         }
-          , Rl = document.createElement("template");
-        Rl.innerHTML = `\n<style>\n  :host([layout="1"]) {\n    padding-top: var(--ws-footer-padding-top-lg, var(--footer-padding-vertical-lg));\n  }\n\n  :host([layout="1"]) .container {\n    display: grid;\n    grid-column-gap: var(--ws-footer-column-gap, var(--footer-column-gap));\n    grid-row-gap: var(--ws-footer-row-gap-lg, var(--footer-row-gap-lg));\n    align-items: start;\n  }\n\n  :host([layout="1"]) .footer-info {\n    grid-column: 1 / -1;\n  }\n\n  :host([layout="1"]) [name="copyright"] {\n    grid-column: 1 / -1;\n  }\n\n  @media (min-width: ${Il.get("md")}px) {\n    :host([layout="1"]) .container {\n      grid-template-columns: 2fr 1fr;\n    }\n  }\n\n  @media (min-width: ${Il.get("lg")}px) {\n    :host([layout="1"]) .container {\n      display: grid;\n      grid-template-columns: repeat(4 , 1fr);\n      grid-column-gap: var(--ws-footer-column-gap, var(--footer-column-gap));\n      grid-row-gap: var(--ws-footer-row-gap-lg, var(--footer-row-gap-lg));\n      align-items: start;\n    }\n\n    :host([layout="1"]) .footer-info {\n      grid-column: auto;\n    }\n\n    :host([layout="1"]) [name="footer-navigation"] {\n      grid-column-start: 2 span;\n    }\n\n    :host([layout="1"]) .footer-info[hidden] ~ .contact-info {\n      grid-column-start: 2 span;\n    }\n\n    :host([layout="1"]) [name="copyright"] {\n      grid-column: 1 / -1;\n    }\n  }\n</style>\n\n<div class="container">\n  <div class="footer-info">\n    <a href="/" class="logo-wrapper">\n      <slot name="business-logo"></slot>\n      <slot name="site-name"></slot>\n    </a>\n    <slot name="business-description"></slot>\n    <slot name="business-social-profiles"></slot>\n  </div>\n  <slot name="footer-navigation"></slot>\n  <div class="contact-info">\n    <slot name="business-address"></slot>\n    <slot name="business-phone"></slot>\n    <slot name="business-email"></slot>\n  </div>\n  <slot name="copyright"></slot>\n</div>\n`,
-        kl(Rl);
-        const Nl = Rl
-          , Dl = document.createElement("template");
-        Dl.innerHTML = `\n<style>\n  :host([layout="2"]) {\n    padding-top: var(--ws-footer-padding-top-lg, var(--footer-padding-vertical-lg));\n  }\n\n  :host([layout="2"]) .container {\n    display: grid;\n    grid-row-gap: var(--ws-footer-row-gap-lg, var(--footer-row-gap-lg));\n  }\n\n  @media (min-width: ${Il.get("lg")}px) {\n    :host([layout="2"]) .footer-info {\n      max-width: 50%;\n    }\n  }\n</style>\n\n<div class="container">\n  <div class="footer-info">\n    <a href="/" class="logo-wrapper">\n      <slot name="business-logo"></slot>\n      <slot name="site-name"></slot>\n    </a>\n    <slot name="business-description"></slot>\n  </div>\n  <slot name="footer-navigation"></slot>\n  <div class="footer-bottom">\n    <slot name="business-social-profiles"></slot>\n    <slot name="copyright"></slot>\n  </div>\n</div>\n`,
-        kl(Dl);
-        const Bl = Dl
-          , Fl = document.createElement("template");
-        Fl.innerHTML = '\n<style>\n  :host([layout="3"]) {\n    padding-top: var(--ws-footer-padding-top-lg, var(--footer-padding-vertical-lg));\n  }\n\n  :host([layout="3"]) .container {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    text-align: center;\n  }\n\n  :host([layout="3"]) *:not([hidden]) ~ [name="footer-navigation"] {\n    margin-top: var(--ws-footer-row-gap-md, var(--footer-row-gap-md));\n  }\n\n  :host([layout="3"]) [name="copyright"] {\n    margin-top: var(--ws-footer-row-gap-lg, var(--footer-row-gap-lg));\n  }\n</style>\n\n<div class="container container--small">\n  <a href="/" class="logo-wrapper">\n    <slot name="business-logo"></slot>\n    <slot name="site-name"></slot>\n  </a>\n  <slot name="business-description"></slot>\n  <slot name="footer-navigation"></slot>\n  <slot name="business-social-profiles"></slot>\n  <slot name="copyright"></slot>\n</div>\n',
-        kl(Fl);
-        const Hl = Fl
-          , zl = document.createElement("template");
-        zl.innerHTML = `\n<style>\n  :host([layout="4"]) .container {\n    display: grid;\n    grid-row-gap: var(--ws-footer-row-gap-sm, var(--footer-row-gap-sm));\n    justify-items: center;\n    text-align: center;\n  }\n\n  @media (min-width: ${Il.get("lg")}px) {\n    :host([layout="4"]) .container {\n      display: grid;\n      grid-template-columns: auto 1fr;\n      grid-column-gap: var(--ws-footer-column-gap, var(--footer-column-gap));\n      justify-items: start;\n      align-items: center;\n      text-align: left;\n    }\n\n    :host([layout="4"]) [name="footer-navigation"] {\n      justify-self: end;\n      grid-column-end: -1;\n    }\n\n    :host([layout="4"]) [name="copyright"] {\n      grid-column: 1 / -1;\n    }\n  }\n</style>\n\n<div class="container">\n  <a href="/" class="logo-wrapper">\n    <slot name="business-logo"></slot>\n    <slot name="site-name"></slot>\n  </a>\n  <slot name="footer-navigation"></slot>\n  <slot name="copyright"></slot>\n</div>\n`,
-        kl(zl);
-        const $l = zl
-          , Wl = document.createElement("template");
-        Wl.innerHTML = '\n<style>\n  :host([layout="5"]) .container {\n    display: grid;\n    grid-row-gap: var(--ws-footer-row-gap-sm, var(--footer-row-gap-sm));\n    justify-items: center;\n  }\n</style>\n\n<div class="container">\n  <a href="/" class="logo-wrapper">\n    <slot name="business-logo"></slot>\n    <slot name="site-name"></slot>\n  </a>\n  <slot name="copyright"></slot>\n</div>\n',
-        kl(Wl);
-        const Gl = {
-            LAYOUT_1: Nl,
-            LAYOUT_2: Bl,
-            LAYOUT_3: Hl,
-            LAYOUT_4: $l,
-            LAYOUT_5: Wl
+          , Bl = document.createElement("template");
+        Bl.innerHTML = `\n<style>\n  :host([layout="1"]) {\n    padding-top: var(--ws-footer-padding-top-lg, var(--footer-padding-vertical-lg));\n  }\n\n  :host([layout="1"]) .container {\n    display: grid;\n    grid-column-gap: var(--ws-footer-column-gap, var(--footer-column-gap));\n    grid-row-gap: var(--ws-footer-row-gap-lg, var(--footer-row-gap-lg));\n    align-items: start;\n  }\n\n  :host([layout="1"]) .footer-info {\n    grid-column: 1 / -1;\n  }\n\n  :host([layout="1"]) [name="copyright"] {\n    grid-column: 1 / -1;\n  }\n\n  @media (min-width: ${Rl.get("md")}px) {\n    :host([layout="1"]) .container {\n      grid-template-columns: 2fr 1fr;\n    }\n  }\n\n  @media (min-width: ${Rl.get("lg")}px) {\n    :host([layout="1"]) .container {\n      display: grid;\n      grid-template-columns: repeat(4 , 1fr);\n      grid-column-gap: var(--ws-footer-column-gap, var(--footer-column-gap));\n      grid-row-gap: var(--ws-footer-row-gap-lg, var(--footer-row-gap-lg));\n      align-items: start;\n    }\n\n    :host([layout="1"]) .footer-info {\n      grid-column: auto;\n    }\n\n    :host([layout="1"]) [name="footer-navigation"] {\n      grid-column-start: 2 span;\n    }\n\n    :host([layout="1"]) .footer-info[hidden] ~ .contact-info {\n      grid-column-start: 2 span;\n    }\n\n    :host([layout="1"]) [name="copyright"] {\n      grid-column: 1 / -1;\n    }\n  }\n</style>\n\n<div class="container">\n  <div class="footer-info">\n    <a href="/" class="logo-wrapper">\n      <slot name="business-logo"></slot>\n      <slot name="site-name"></slot>\n    </a>\n    <slot name="business-description"></slot>\n    <slot name="business-social-profiles"></slot>\n  </div>\n  <slot name="footer-navigation"></slot>\n  <div class="contact-info">\n    <slot name="business-address"></slot>\n    <slot name="business-phone"></slot>\n    <slot name="business-email"></slot>\n  </div>\n  <slot name="copyright"></slot>\n</div>\n`,
+        Ll(Bl);
+        const Fl = Bl
+          , Hl = document.createElement("template");
+        Hl.innerHTML = `\n<style>\n  :host([layout="2"]) {\n    padding-top: var(--ws-footer-padding-top-lg, var(--footer-padding-vertical-lg));\n  }\n\n  :host([layout="2"]) .container {\n    display: grid;\n    grid-row-gap: var(--ws-footer-row-gap-lg, var(--footer-row-gap-lg));\n  }\n\n  @media (min-width: ${Rl.get("lg")}px) {\n    :host([layout="2"]) .footer-info {\n      max-width: 50%;\n    }\n  }\n</style>\n\n<div class="container">\n  <div class="footer-info">\n    <a href="/" class="logo-wrapper">\n      <slot name="business-logo"></slot>\n      <slot name="site-name"></slot>\n    </a>\n    <slot name="business-description"></slot>\n  </div>\n  <slot name="footer-navigation"></slot>\n  <div class="footer-bottom">\n    <slot name="business-social-profiles"></slot>\n    <slot name="copyright"></slot>\n  </div>\n</div>\n`,
+        Ll(Hl);
+        const zl = Hl
+          , $l = document.createElement("template");
+        $l.innerHTML = '\n<style>\n  :host([layout="3"]) {\n    padding-top: var(--ws-footer-padding-top-lg, var(--footer-padding-vertical-lg));\n  }\n\n  :host([layout="3"]) .container {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    text-align: center;\n  }\n\n  :host([layout="3"]) *:not([hidden]) ~ [name="footer-navigation"] {\n    margin-top: var(--ws-footer-row-gap-md, var(--footer-row-gap-md));\n  }\n\n  :host([layout="3"]) [name="copyright"] {\n    margin-top: var(--ws-footer-row-gap-lg, var(--footer-row-gap-lg));\n  }\n</style>\n\n<div class="container container--small">\n  <a href="/" class="logo-wrapper">\n    <slot name="business-logo"></slot>\n    <slot name="site-name"></slot>\n  </a>\n  <slot name="business-description"></slot>\n  <slot name="footer-navigation"></slot>\n  <slot name="business-social-profiles"></slot>\n  <slot name="copyright"></slot>\n</div>\n',
+        Ll($l);
+        const Wl = $l
+          , Gl = document.createElement("template");
+        Gl.innerHTML = `\n<style>\n  :host([layout="4"]) .container {\n    display: grid;\n    grid-row-gap: var(--ws-footer-row-gap-sm, var(--footer-row-gap-sm));\n    justify-items: center;\n    text-align: center;\n  }\n\n  @media (min-width: ${Rl.get("lg")}px) {\n    :host([layout="4"]) .container {\n      display: grid;\n      grid-template-columns: auto 1fr;\n      grid-column-gap: var(--ws-footer-column-gap, var(--footer-column-gap));\n      justify-items: start;\n      align-items: center;\n      text-align: left;\n    }\n\n    :host([layout="4"]) [name="footer-navigation"] {\n      justify-self: end;\n      grid-column-end: -1;\n    }\n\n    :host([layout="4"]) [name="copyright"] {\n      grid-column: 1 / -1;\n    }\n  }\n</style>\n\n<div class="container">\n  <a href="/" class="logo-wrapper">\n    <slot name="business-logo"></slot>\n    <slot name="site-name"></slot>\n  </a>\n  <slot name="footer-navigation"></slot>\n  <slot name="copyright"></slot>\n</div>\n`,
+        Ll(Gl);
+        const ql = Gl
+          , jl = document.createElement("template");
+        jl.innerHTML = '\n<style>\n  :host([layout="5"]) .container {\n    display: grid;\n    grid-row-gap: var(--ws-footer-row-gap-sm, var(--footer-row-gap-sm));\n    justify-items: center;\n  }\n</style>\n\n<div class="container">\n  <a href="/" class="logo-wrapper">\n    <slot name="business-logo"></slot>\n    <slot name="site-name"></slot>\n  </a>\n  <slot name="copyright"></slot>\n</div>\n',
+        Ll(jl);
+        const Vl = {
+            LAYOUT_1: Fl,
+            LAYOUT_2: zl,
+            LAYOUT_3: Wl,
+            LAYOUT_4: ql,
+            LAYOUT_5: jl
         }
-          , ql = [{
+          , Ul = [{
             name: "1",
-            template: Gl.LAYOUT_1,
+            template: Vl.LAYOUT_1,
             disabledSlots: []
         }, {
             name: "2",
-            template: Gl.LAYOUT_2,
-            disabledSlots: [Pl.ADDRESS, Pl.PHONE, Pl.EMAIL],
+            template: Vl.LAYOUT_2,
+            disabledSlots: [Dl.ADDRESS, Dl.PHONE, Dl.EMAIL],
             columnNavigation: !0
         }, {
             name: "3",
-            template: Gl.LAYOUT_3,
-            disabledSlots: [Pl.ADDRESS, Pl.PHONE, Pl.EMAIL],
+            template: Vl.LAYOUT_3,
+            disabledSlots: [Dl.ADDRESS, Dl.PHONE, Dl.EMAIL],
             navigationCanMutate: !0
         }, {
             name: "4",
-            template: Gl.LAYOUT_4,
-            disabledSlots: [Pl.ADDRESS, Pl.PHONE, Pl.EMAIL, Pl.SOCIALS, Pl.DESCRIPTION],
+            template: Vl.LAYOUT_4,
+            disabledSlots: [Dl.ADDRESS, Dl.PHONE, Dl.EMAIL, Dl.SOCIALS, Dl.DESCRIPTION],
             navigationCanMutate: !0
         }, {
             name: "5",
-            template: Gl.LAYOUT_5,
-            disabledSlots: [Pl.DESCRIPTION, Pl.ADDRESS, Pl.PHONE, Pl.EMAIL, Pl.SOCIALS, Pl.NAVIGATION]
+            template: Vl.LAYOUT_5,
+            disabledSlots: [Dl.DESCRIPTION, Dl.ADDRESS, Dl.PHONE, Dl.EMAIL, Dl.SOCIALS, Dl.NAVIGATION]
         }]
-          , jl = document.createElement("template");
-        jl.innerHTML = `\n  <style>\n    :host {\n      /* footer fallback variables */\n\n      --footer-padding-vertical: 30px;\n      --footer-padding-vertical-lg: 30px;\n\n      --footer-column-gap: 30px;\n      --footer-row-gap-lg: 28px;\n      --footer-row-gap-md: 22px;\n      --footer-row-gap-sm: 16px;\n\n      display: block;\n      padding-top: var(--ws-footer-padding-top, var(--footer-padding-vertical));\n      padding-bottom: var(--ws-footer-padding-top, var(--footer-padding-vertical));\n      background-color: var(--ws-footer-background-color, #fff);\n      text-align: left;\n    }\n\n    * {\n      box-sizing: border-box;\n    }\n\n    slot {\n      display: block;\n    }\n\n    [hidden] {\n      display: none !important;\n    }\n\n    .container {\n      width: 100%;\n      max-width: var(--ws-container-width, 100%);\n      padding-right: var(--container-padding-right, 15px);\n      padding-left: var(--container-padding-left, 15px);\n      margin-right: auto;\n      margin-left: auto;\n    }\n\n    .logo-wrapper {\n      display: inline-flex;\n      max-width: var(--ws-m-logo-wrapper-max-width);\n      text-decoration: none;\n    }\n\n    .logo-wrapper [name="business-logo"]:not([hidden]) + [name="site-name"] {\n      align-self: center;\n      margin-left: var(--ws-footer-logo-wrapper-gap, 12px);\n    }\n\n    .logo-wrapper [name="site-name"] {\n      min-width: var(--ws-m-site-name-min-width);\n      word-wrap: break-word;\n    }\n\n    *:not([hidden]) ~ [name="business-description"] {\n      margin-top: var(--ws-footer-row-gap-sm, var(--footer-row-gap-sm));\n    }\n\n    *:not([hidden]) ~ [name="business-social-profiles"] {\n      margin-top: var(--ws-footer-social-indent-top, 28px);\n    }\n\n    .contact-info {\n      display: grid;\n      grid-row-gap: var(--ws-footer-contact-info-item-gap, 8px);\n    }\n\n    .footer-bottom {\n      display: grid;\n      grid-row-gap: var(--ws-footer-row-gap-sm, var(--footer-row-gap-sm));\n    }\n\n    @media (min-width: ${Il.get("sm")}px) {\n      :host {\n        --footer-padding-vertical: 32px;\n        --footer-padding-vertical-lg: 58px;\n        --footer-row-gap-lg: 30px;\n        --footer-row-gap-md: 24px;\n        --footer-row-gap-sm: 18px;\n      }\n    }\n\n    @media (min-width: ${Il.get("md")}px) {\n      :host {\n        --footer-padding-vertical: 34px;\n        --footer-padding-vertical-lg: 60px;\n        --footer-row-gap-lg: 34px;\n        --footer-row-gap-md: 26px;\n        --footer-row-gap-sm: 20px;\n      }\n\n      .footer-bottom {\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n      }\n\n      .footer-bottom [name="business-social-profiles"] {\n        order: 1;\n      }\n    }\n\n    @media (min-width: ${Il.get("lg")}px) {\n      :host {\n        --footer-padding-vertical: 36px;\n        --footer-padding-vertical-lg: 64px;\n        --footer-row-gap-lg: 36px;\n        --footer-row-gap-md: 28px;\n        --footer-row-gap-sm: 22px;\n      }\n\n      .container.container--small {\n        max-width: 770px;\n      }\n    }\n\n    @media (min-width: ${Il.get("xl")}px) {\n      :host {\n        --footer-padding-vertical: 40px;\n        --footer-padding-vertical-lg: 72px;\n        --footer-row-gap-lg: 40px;\n        --footer-row-gap-md: 32px;\n        --footer-row-gap-sm: 24px;\n      }\n    }\n  </style>\n`;
-        const Vl = jl
-          , Ul = new MutationObserver((e => {
+          , Yl = document.createElement("template");
+        Yl.innerHTML = `\n  <style>\n    :host {\n      /* footer fallback variables */\n\n      --footer-padding-vertical: 30px;\n      --footer-padding-vertical-lg: 30px;\n\n      --footer-column-gap: 30px;\n      --footer-row-gap-lg: 28px;\n      --footer-row-gap-md: 22px;\n      --footer-row-gap-sm: 16px;\n\n      display: block;\n      padding-top: var(--ws-footer-padding-top, var(--footer-padding-vertical));\n      padding-bottom: var(--ws-footer-padding-top, var(--footer-padding-vertical));\n      background-color: var(--ws-footer-background-color, #fff);\n      text-align: left;\n    }\n\n    * {\n      box-sizing: border-box;\n    }\n\n    slot {\n      display: block;\n    }\n\n    [hidden] {\n      display: none !important;\n    }\n\n    .container {\n      width: 100%;\n      max-width: var(--ws-container-width, 100%);\n      padding-right: var(--container-padding-right, 15px);\n      padding-left: var(--container-padding-left, 15px);\n      margin-right: auto;\n      margin-left: auto;\n    }\n\n    .logo-wrapper {\n      display: inline-flex;\n      max-width: var(--ws-m-logo-wrapper-max-width);\n      text-decoration: none;\n    }\n\n    .logo-wrapper [name="business-logo"]:not([hidden]) + [name="site-name"] {\n      align-self: center;\n      margin-left: var(--ws-footer-logo-wrapper-gap, 12px);\n    }\n\n    .logo-wrapper [name="site-name"] {\n      min-width: var(--ws-m-site-name-min-width);\n      word-wrap: break-word;\n    }\n\n    *:not([hidden]) ~ [name="business-description"] {\n      margin-top: var(--ws-footer-row-gap-sm, var(--footer-row-gap-sm));\n    }\n\n    *:not([hidden]) ~ [name="business-social-profiles"] {\n      margin-top: var(--ws-footer-social-indent-top, 28px);\n    }\n\n    .contact-info {\n      display: grid;\n      grid-row-gap: var(--ws-footer-contact-info-item-gap, 8px);\n    }\n\n    .footer-bottom {\n      display: grid;\n      grid-row-gap: var(--ws-footer-row-gap-sm, var(--footer-row-gap-sm));\n    }\n\n    @media (min-width: ${Rl.get("sm")}px) {\n      :host {\n        --footer-padding-vertical: 32px;\n        --footer-padding-vertical-lg: 58px;\n        --footer-row-gap-lg: 30px;\n        --footer-row-gap-md: 24px;\n        --footer-row-gap-sm: 18px;\n      }\n    }\n\n    @media (min-width: ${Rl.get("md")}px) {\n      :host {\n        --footer-padding-vertical: 34px;\n        --footer-padding-vertical-lg: 60px;\n        --footer-row-gap-lg: 34px;\n        --footer-row-gap-md: 26px;\n        --footer-row-gap-sm: 20px;\n      }\n\n      .footer-bottom {\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n      }\n\n      .footer-bottom [name="business-social-profiles"] {\n        order: 1;\n      }\n    }\n\n    @media (min-width: ${Rl.get("lg")}px) {\n      :host {\n        --footer-padding-vertical: 36px;\n        --footer-padding-vertical-lg: 64px;\n        --footer-row-gap-lg: 36px;\n        --footer-row-gap-md: 28px;\n        --footer-row-gap-sm: 22px;\n      }\n\n      .container.container--small {\n        max-width: 770px;\n      }\n    }\n\n    @media (min-width: ${Rl.get("xl")}px) {\n      :host {\n        --footer-padding-vertical: 40px;\n        --footer-padding-vertical-lg: 72px;\n        --footer-row-gap-lg: 40px;\n        --footer-row-gap-md: 32px;\n        --footer-row-gap-sm: 24px;\n      }\n    }\n  </style>\n`;
+        const Xl = Yl
+          , Zl = new MutationObserver((e => {
             e.forEach((e => {
                 e.target.onChangeSlot && e.target.onChangeSlot(e)
             }
             ))
         }
         ))
-          , Yl = "dynamic"
-          , Xl = document.createElement("template");
-        Xl.innerHTML = '\n  <div class="wrapper"></div>\n',
-        kl(Vl);
-        class Zl extends HTMLElement {
+          , Kl = "dynamic"
+          , Ql = document.createElement("template");
+        Ql.innerHTML = '\n  <div class="wrapper"></div>\n',
+        Ll(Xl);
+        class Jl extends HTMLElement {
             static createCopyrightYear() {
                 const e = document.createElement("span")
                   , t = (new Date).getFullYear();
@@ -21228,7 +21283,7 @@
                 e
             }
             static getLayout(e) {
-                return ql.find((t => t.name === e))
+                return Ul.find((t => t.name === e))
             }
             constructor() {
                 var e;
@@ -21236,7 +21291,7 @@
                 this.isDynamicMode && (this.attachShadow({
                     mode: "open"
                 }),
-                [Vl, Xl].forEach((e => {
+                [Xl, Ql].forEach((e => {
                     this.shadowRoot.appendChild(e.content.cloneNode(!0))
                 }
                 )),
@@ -21245,15 +21300,15 @@
                 this.currentLayout = {},
                 this.columnNavigationState = !1,
                 this.handlers = {
-                    onChangeNavigation: Al.bind(this, this.onChangeNavigation),
-                    onLogoClick: Al.bind(this, (e => e.preventDefault()))
+                    onChangeNavigation: Ol.bind(this, this.onChangeNavigation),
+                    onLogoClick: Ol.bind(this, (e => e.preventDefault()))
                 },
                 this.navigationResizeObserver = new He(this.handlers.onChangeNavigation),
                 this.setDisabledSlots(),
                 this.setLayout(),
                 e = this,
                 Promise.resolve().then(( () => {
-                    Ul.observe(e, {
+                    Zl.observe(e, {
                         attributes: !0,
                         childList: !0,
                         subtree: !0
@@ -21261,15 +21316,15 @@
                 }
                 ))),
                 this.isStaticMode && (this.handlers = {
-                    onLogoClick: Al.bind(this, (e => e.preventDefault()))
+                    onLogoClick: Ol.bind(this, (e => e.preventDefault()))
                 }),
                 this.addCopyright()
             }
             get mode() {
-                return this.getAttribute("mode") || Yl
+                return this.getAttribute("mode") || Kl
             }
             get isDynamicMode() {
-                return this.mode === Yl
+                return this.mode === Kl
             }
             get isStaticMode() {
                 return "static" === this.mode
@@ -21282,33 +21337,33 @@
                 if (this.isDynamicMode)
                     e = this.shadowRoot.querySelector("a.logo-wrapper");
                 else {
-                    const t = this.rootElement.querySelector(`[slot='${Pl.BUSINESS_LOGO}'], [slot='${Pl.SITE_NAME}']`);
+                    const t = this.rootElement.querySelector(`[slot='${Dl.BUSINESS_LOGO}'], [slot='${Dl.SITE_NAME}']`);
                     e = t ? t.closest("a") : null
                 }
                 return e
             }
             connectedCallback() {
                 this.isDynamicMode && window.ShadyCSS && window.ShadyCSS.styleElement(this),
-                this.isStaticMode && Ll(this.logoLinkElement),
+                this.isStaticMode && Nl(this.logoLinkElement),
                 this.addLogoLinkEventListener()
             }
             disconnectedCallback() {
                 this.removeLogoLinkEventListener()
             }
             getLayout() {
-                let e = ql.filter((e => e.disabledSlots.every((e => this.disabledSlots.includes(e)))));
+                let e = Ul.filter((e => e.disabledSlots.every((e => this.disabledSlots.includes(e)))));
                 return this.columnNavigationState && (e = e.filter((e => this.isLayoutWithColumnNavigation(e))),
                 this.columnNavigationState = !1),
                 e.pop()
             }
             setDisabledSlots() {
-                const e = Object.values(Pl)
+                const e = Object.values(Dl)
                   , t = [...this.querySelectorAll("[slot]")].map((e => e.slot))
                   , n = e.filter((e => !t.includes(e)));
                 this.disabledSlots.push(...n)
             }
             setLayout(e) {
-                const t = e ? Zl.getLayout(e) : this.getLayout();
+                const t = e ? Jl.getLayout(e) : this.getLayout();
                 t && this.currentLayout.name !== t.name && (this.removeNavigationEventListener(),
                 this.currentLayout = t,
                 this.setAttribute("layout", t.name),
@@ -21316,11 +21371,11 @@
                 this.wrapper.appendChild(t.template.content.cloneNode(!0)),
                 this.triggerSlotVisibility(),
                 this.addNavigationEventListener(),
-                Ll(this.logoLinkElement))
+                Nl(this.logoLinkElement))
             }
             addCopyright() {
                 const e = this.querySelector(".ws-m-copyright");
-                e && e.prepend(Zl.createCopyrightYear())
+                e && e.prepend(Jl.createCopyrightYear())
             }
             triggerSlotVisibility() {
                 this.shadowRoot.querySelectorAll("slot").forEach((e => {
@@ -21339,7 +21394,7 @@
                 return Object.prototype.hasOwnProperty.call(e, "columnNavigation") && e.columnNavigation
             }
             isColumnNavigation() {
-                const e = this.querySelector(`[slot="${Pl.NAVIGATION}"]`)
+                const e = this.querySelector(`[slot="${Dl.NAVIGATION}"]`)
                   , [t,n] = e.querySelectorAll("li:first-child, li:last-child")
                   , {top: i} = t.getBoundingClientRect()
                   , {top: r} = n.getBoundingClientRect();
@@ -21352,37 +21407,37 @@
                 }
                 )),
                 e.removedNodes.forEach((e => {
-                    Object.values(Pl).includes(e.slot) && this.disabledSlots.push(e.slot)
+                    Object.values(Dl).includes(e.slot) && this.disabledSlots.push(e.slot)
                 }
                 )),
                 this.setLayout(),
                 this.triggerSlotVisibility())
             }
             onChangeNavigation(e) {
-                !e[0].target.hidden && window.matchMedia(`(min-width: ${Il.get("lg")}px)`).matches && this.isColumnNavigation() && (this.columnNavigationState = !0,
+                !e[0].target.hidden && window.matchMedia(`(min-width: ${Rl.get("lg")}px)`).matches && this.isColumnNavigation() && (this.columnNavigationState = !0,
                 this.setLayout())
             }
             addNavigationEventListener() {
                 if (this.isNavigationCanMutate()) {
-                    const e = this.shadowRoot.querySelector(`[name="${Pl.NAVIGATION}"]`);
+                    const e = this.shadowRoot.querySelector(`[name="${Dl.NAVIGATION}"]`);
                     this.navigationResizeObserver.observe(e)
                 }
             }
             removeNavigationEventListener() {
                 if (this.isNavigationCanMutate()) {
-                    const e = this.shadowRoot.querySelector(`[name="${Pl.NAVIGATION}"]`);
+                    const e = this.shadowRoot.querySelector(`[name="${Dl.NAVIGATION}"]`);
                     this.navigationResizeObserver.unobserve(e)
                 }
             }
             addLogoLinkEventListener() {
-                this.logoLinkElement && xl() && this.addEventListener("click", this.handlers.onLogoClick)
+                this.logoLinkElement && Il() && this.addEventListener("click", this.handlers.onLogoClick)
             }
             removeLogoLinkEventListener() {
-                this.logoLinkElement && xl() && this.removeEventListener("click", this.handlers.onLogoClick)
+                this.logoLinkElement && Il() && this.removeEventListener("click", this.handlers.onLogoClick)
             }
         }
-        customElements.define("ws-footer", Zl);
-        const Kl = {
+        customElements.define("ws-footer", Jl);
+        const ec = {
             LANG_CODE_ATTRIBUTE: "data-lang-code",
             LANG_TITLE_ATTRIBUTE: "data-lang-title",
             MAIN_LANG_ATTRIBUTE: "data-main-lang",
@@ -21396,37 +21451,37 @@
             ORIENTATION_TOP: "top",
             ORIENTATION_BOTTOM: "bottom"
         }
-          , Ql = document.createElement("template");
-        Ql.innerHTML = `\n  <style>\n    :host {\n      display: flex;\n      position: relative;\n    }\n\n    ::slotted(svg) {\n      width: 0;\n      height: 0;\n    }\n\n    ::slotted(.${Kl.LISTBOX_BUTTON_CLASS}) {\n      outline: none;\n    }\n\n    ::slotted(.${Kl.LISTBOX_CLASS}) {\n      margin: 0;\n      list-style: none;\n    }\n\n    ::slotted(.${Kl.LISTBOX_CLASS}[hidden]) {\n      display: none;\n    }\n\n    ::slotted(.${Kl.SELECT_CLASS}) {\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 0;\n      height: 100%;\n      padding: 0 0 0 100%;\n      background: none;\n      border: none;\n      -moz-appearance: none;\n      -webkit-appearance: none;\n      appearance: none;\n      outline: none;\n      z-index: 1;\n    }\n  </style>\n  <slot></slot>\n`;
-        const Jl = function(e, t) {
+          , tc = document.createElement("template");
+        tc.innerHTML = `\n  <style>\n    :host {\n      display: flex;\n      position: relative;\n    }\n\n    ::slotted(svg) {\n      width: 0;\n      height: 0;\n    }\n\n    ::slotted(.${ec.LISTBOX_BUTTON_CLASS}) {\n      outline: none;\n    }\n\n    ::slotted(.${ec.LISTBOX_CLASS}) {\n      margin: 0;\n      list-style: none;\n    }\n\n    ::slotted(.${ec.LISTBOX_CLASS}[hidden]) {\n      display: none;\n    }\n\n    ::slotted(.${ec.SELECT_CLASS}) {\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 0;\n      height: 100%;\n      padding: 0 0 0 100%;\n      background: none;\n      border: none;\n      -moz-appearance: none;\n      -webkit-appearance: none;\n      appearance: none;\n      outline: none;\n      z-index: 1;\n    }\n  </style>\n  <slot></slot>\n`;
+        const nc = function(e, t) {
             e.call(this, t)
         }
-          , ec = function() {
+          , ic = function() {
             try {
                 return Boolean(window.parent.ws)
             } catch (e) {
                 return !1
             }
         }
-          , tc = function(e, t="") {
+          , rc = function(e, t="") {
             return `\n    <svg\n      class="ws-language-flag ${t}"\n      width="24"\n      height="24"\n      fill="none"\n    >\n      <use xlink:href="#flag-${e}" />\n    </svg>\n  `
         }
-          , {ORIENTATION_TOP: nc, ORIENTATION_BOTTOM: ic} = Kl
-          , rc = window.matchMedia("(min-width: 1200px)");
-        window.ShadyCSS && window.ShadyCSS.prepareTemplate(Ql, "ws-language-selector");
-        class oc extends HTMLElement {
+          , {ORIENTATION_TOP: oc, ORIENTATION_BOTTOM: sc} = ec
+          , ac = window.matchMedia("(min-width: 1200px)");
+        window.ShadyCSS && window.ShadyCSS.prepareTemplate(tc, "ws-language-selector");
+        class lc extends HTMLElement {
             constructor() {
                 super(),
                 this.attachShadow({
                     mode: "open"
                 }),
-                this.shadowRoot.appendChild(Ql.content.cloneNode(!0)),
+                this.shadowRoot.appendChild(tc.content.cloneNode(!0)),
                 this.handlers = {
-                    onChangeTemplate: Jl.bind(this, this.changeTemplate),
-                    onListboxToggle: Jl.bind(this, this.onListboxToggle),
-                    onListboxClickOutside: Jl.bind(this, this.onListboxClickOutside),
-                    onListboxClick: Jl.bind(this, (e => e.preventDefault())),
-                    onSelectChange: Jl.bind(this, (e => {
+                    onChangeTemplate: nc.bind(this, this.changeTemplate),
+                    onListboxToggle: nc.bind(this, this.onListboxToggle),
+                    onListboxClickOutside: nc.bind(this, this.onListboxClickOutside),
+                    onListboxClick: nc.bind(this, (e => e.preventDefault())),
+                    onSelectChange: nc.bind(this, (e => {
                         window.location.assign(e.target.value)
                     }
                     ))
@@ -21438,26 +21493,26 @@
                 window.ShadyCSS && window.ShadyCSS.styleElement(this),
                 this.setLanguageData(),
                 this.changeTemplate(),
-                rc.addListener(this.handlers.onChangeTemplate),
+                ac.addListener(this.handlers.onChangeTemplate),
                 this.connected = !0)
             }
             disconnectedCallback() {
-                this.connected && (rc.removeListener(this.handlers.onChangeTemplate),
+                this.connected && (ac.removeListener(this.handlers.onChangeTemplate),
                 this.removeTemplateListeners())
             }
             setLanguageData() {
-                this.mainLanguage = this.getAttribute(Kl.MAIN_LANG_ATTRIBUTE);
+                this.mainLanguage = this.getAttribute(ec.MAIN_LANG_ATTRIBUTE);
                 const e = function(e) {
-                    if (ec())
+                    if (ic())
                         return window.parent.ws.siteLocales.accessors.getCurrentLocale();
                     const t = document.documentElement
-                      , n = t.getAttribute(Kl.PAGE_LOCALE_ATTRIBUTE);
-                    return t.hasAttribute(Kl.PAGE_LOCALE_ATTRIBUTE) ? n : e
+                      , n = t.getAttribute(ec.PAGE_LOCALE_ATTRIBUTE);
+                    return t.hasAttribute(ec.PAGE_LOCALE_ATTRIBUTE) ? n : e
                 }(this.mainLanguage)
                   , t = this.querySelectorAll("symbol");
                 this.languages = [...t].map((t => {
-                    const n = t.getAttribute(Kl.LANG_CODE_ATTRIBUTE)
-                      , i = t.getAttribute(Kl.LANG_TITLE_ATTRIBUTE);
+                    const n = t.getAttribute(ec.LANG_CODE_ATTRIBUTE)
+                      , i = t.getAttribute(ec.LANG_TITLE_ATTRIBUTE);
                     return n === e && (this.currentLanguage = {
                         code: n,
                         title: i
@@ -21469,7 +21524,7 @@
                 }
                 ))
             }
-            changeTemplate(e=rc) {
+            changeTemplate(e=ac) {
                 const t = this.querySelectorAll("[data-template]");
                 let n;
                 t && (this.removeTemplateListeners(),
@@ -21478,11 +21533,11 @@
                 n = function(e, t, n) {
                     const i = document.createElement("template")
                       , {title: r, code: o} = t
-                      , s = tc(o);
-                    return i.innerHTML = `\n    <button\n      class="${Kl.LISTBOX_BUTTON_CLASS}"\n      aria-haspopup="true"\n      lang="${o}"\n      aria-label="${r}"\n      data-template="listbox"\n    >${s}</button>\n    <ul\n      class="${Kl.LISTBOX_CLASS}"\n      role="listbox"\n      data-template="listbox"\n      hidden\n    >\n      ${e.reduce(( (e, t) => {
+                      , s = rc(o);
+                    return i.innerHTML = `\n    <button\n      class="${ec.LISTBOX_BUTTON_CLASS}"\n      aria-haspopup="true"\n      lang="${o}"\n      aria-label="${r}"\n      data-template="listbox"\n    >${s}</button>\n    <ul\n      class="${ec.LISTBOX_CLASS}"\n      role="listbox"\n      data-template="listbox"\n      hidden\n    >\n      ${e.reduce(( (e, t) => {
                         const {title: i, code: r} = t
-                          , s = tc(r);
-                        return `\n          ${e}\n          <li class="${Kl.LISTBOX_CLASS}__item" role="option">\n            <a\n              href="${r === n ? "/" : `/${r}`}"\n              lang="${r}"\n              class="${Kl.LISTBOX_CLASS}__link"\n              hreflang="${r}"\n              ${r === o ? 'aria-selected="true"' : ""}\n            >${s}${i}</a>\n          </li>\n        `
+                          , s = rc(r);
+                        return `\n          ${e}\n          <li class="${ec.LISTBOX_CLASS}__item" role="option">\n            <a\n              href="${r === n ? "/" : `/${r}`}"\n              lang="${r}"\n              class="${ec.LISTBOX_CLASS}__link"\n              hreflang="${r}"\n              ${r === o ? 'aria-selected="true"' : ""}\n            >${s}${i}</a>\n          </li>\n        `
                     }
                     ), "")}\n    </ul>\n  `,
                     i
@@ -21490,9 +21545,9 @@
                 n = function(e, t, n) {
                     const i = document.createElement("template")
                       , {title: r, code: o} = t
-                      , s = tc(o, `${Kl.SELECT_LABEL_CLASS}__flag`)
-                      , a = ec() ? 'disabled="true"' : "";
-                    return i.innerHTML = `\n    <label\n      class="${Kl.SELECT_LABEL_CLASS}"\n      aria-label="${r}"\n      for="ws-language-select"\n      data-template="select"\n    >\n      <span hidden>${r}</span>\n      ${s}\n    </label>\n    <select\n      id="ws-language-select"\n      class="${Kl.SELECT_CLASS}"\n      data-template="select"\n      ${a}\n    >\n      ${e.reduce(( (e, t) => {
+                      , s = rc(o, `${ec.SELECT_LABEL_CLASS}__flag`)
+                      , a = ic() ? 'disabled="true"' : "";
+                    return i.innerHTML = `\n    <label\n      class="${ec.SELECT_LABEL_CLASS}"\n      aria-label="${r}"\n      for="ws-language-select"\n      data-template="select"\n    >\n      <span hidden>${r}</span>\n      ${s}\n    </label>\n    <select\n      id="ws-language-select"\n      class="${ec.SELECT_CLASS}"\n      data-template="select"\n      ${a}\n    >\n      ${e.reduce(( (e, t) => {
                         const {title: i, code: r} = t;
                         return `\n          ${e}\n          <option\n            value="${r === n ? "/" : `/${r}`}"\n            ${r === o ? "selected" : ""}\n          >${i}</option>\n        `
                     }
@@ -21503,17 +21558,17 @@
                 this.addTemplateListeners()
             }
             addTemplateListeners() {
-                "listbox" === this.template ? (this.listboxButton = this.querySelector(`.${Kl.LISTBOX_BUTTON_CLASS}`),
-                this.listbox = this.querySelector(`.${Kl.LISTBOX_CLASS}`),
+                "listbox" === this.template ? (this.listboxButton = this.querySelector(`.${ec.LISTBOX_BUTTON_CLASS}`),
+                this.listbox = this.querySelector(`.${ec.LISTBOX_CLASS}`),
                 this.listboxButton.addEventListener("click", this.handlers.onListboxToggle),
                 document.addEventListener("click", this.handlers.onListboxClickOutside),
-                ec() && this.listbox.addEventListener("click", this.handlers.onListboxClick)) : "select" === this.template && (this.select = this.querySelector(`.${Kl.SELECT_CLASS}`),
-                ec() || this.select.addEventListener("change", this.handlers.onSelectChange))
+                ic() && this.listbox.addEventListener("click", this.handlers.onListboxClick)) : "select" === this.template && (this.select = this.querySelector(`.${ec.SELECT_CLASS}`),
+                ic() || this.select.addEventListener("change", this.handlers.onSelectChange))
             }
             removeTemplateListeners() {
                 "listbox" === this.template ? (this.listboxButton.removeEventListener("click", this.handlers.onListboxToggle),
                 document.removeEventListener("click", this.handlers.onListboxClickOutside),
-                ec() && this.listbox.removeEventListener("click", this.handlers.onListboxClick)) : "select" === this.template && (ec() || this.select.removeEventListener("change", this.handlers.onSelectChange))
+                ic() && this.listbox.removeEventListener("click", this.handlers.onListboxClick)) : "select" === this.template && (ic() || this.select.removeEventListener("change", this.handlers.onSelectChange))
             }
             onListboxToggle() {
                 this.listboxExpanded ? (this.listbox.setAttribute("hidden", ""),
@@ -21521,13 +21576,13 @@
                 this.listboxExpanded = !1) : (this.listbox.removeAttribute("hidden"),
                 this.listboxButton.setAttribute("aria-expanded", "true"),
                 this.listboxExpanded = !0,
-                this.isListboxOriented && !ec() || (function(e) {
+                this.isListboxOriented && !ic() || (function(e) {
                     const t = document.querySelector(".page-container");
                     if (t && e) {
                         const n = t.getBoundingClientRect()
                           , i = e.getBoundingClientRect();
-                        let r = ic;
-                        i.bottom > n.bottom && i.height < (window.innerHeight || document.documentElement.clientHeight) && (r = nc),
+                        let r = sc;
+                        i.bottom > n.bottom && i.height < (window.innerHeight || document.documentElement.clientHeight) && (r = oc),
                         e.setAttribute("data-orientation", r)
                     }
                 }(this.listbox),
@@ -21542,19 +21597,19 @@
                 t && (n = t,
                 i = () => {
                     const n = e ? "hidden" : "visible";
-                    t.firstElementChild.setAttribute(Kl.LANGUAGE_SELECTOR_VISIBILITY_ATTRIBUTE, n)
+                    t.firstElementChild.setAttribute(ec.LANGUAGE_SELECTOR_VISIBILITY_ATTRIBUTE, n)
                 }
                 ,
-                ec() && n ? n.ready ? i() : n.addEventListener("ready", i, {
+                ic() && n ? n.ready ? i() : n.addEventListener("ready", i, {
                     once: !0
                 }) : i())
             }
         }
-        customElements.define("ws-language-selector", oc);
-        var sc = n(537)
-          , ac = n(662)
-          , lc = n.n(ac);
-        class cc extends HTMLElement {
+        customElements.define("ws-language-selector", lc);
+        var cc = n(537)
+          , dc = n(662)
+          , uc = n.n(dc);
+        class hc extends HTMLElement {
             connectedCallback() {
                 this.selectInstance || this.render()
             }
@@ -21563,13 +21618,13 @@
                 this.selectInstance = null)
             }
             render() {
-                const e = lc().mobile || lc().tablet
+                const e = uc().mobile || uc().tablet
                   , t = this.querySelector("select");
                 t && !e && this.init(t)
             }
             init(e) {
                 const [t] = (0,
-                sc.A)(e, {
+                cc.A)(e, {
                     containerClass: "ws-custom-select-container",
                     openerClass: "ws-custom-select-opener",
                     panelClass: "ws-custom-select-panel",
@@ -21579,8 +21634,8 @@
                 this.selectInstance = t
             }
         }
-        customElements.define("ws-custom-select", cc);
-        const dc = {
+        customElements.define("ws-custom-select", hc);
+        const pc = {
             TYPE: "type",
             COLOR: "color",
             THICKNESS: "thickness",
@@ -21589,31 +21644,31 @@
             PADDING_HORIZONTAL: "padding-horizontal",
             TEXT_COLOR: "text-color"
         }
-          , uc = function(e, t) {
+          , mc = function(e, t) {
             e.call(this, t)
         }
-          , hc = function() {
+          , fc = function() {
             try {
                 return Boolean(window.parent.ws)
             } catch (e) {
                 return !1
             }
         };
-        let pc = null;
-        const mc = new Map
-          , fc = {
+        let gc = null;
+        const vc = new Map
+          , wc = {
             observe(e, t) {
-                mc.set(e, t),
-                pc || ( () => {
+                vc.set(e, t),
+                gc || ( () => {
                     const e = document.querySelector('ws-global[src*="/header-code/"]');
-                    pc = new MutationObserver((e => {
-                        [...e[0].addedNodes].some((e => e.nodeType === Node.ELEMENT_NODE && e.matches("#ws-color-palette"))) && mc.forEach((e => {
+                    gc = new MutationObserver((e => {
+                        [...e[0].addedNodes].some((e => e.nodeType === Node.ELEMENT_NODE && e.matches("#ws-color-palette"))) && vc.forEach((e => {
                             e()
                         }
                         ))
                     }
                     )),
-                    pc.observe(e, {
+                    gc.observe(e, {
                         subtree: !0,
                         childList: !0
                     })
@@ -21621,14 +21676,14 @@
                 )()
             },
             unobserve(e) {
-                mc.delete(e),
-                pc && 0 === mc.size && (pc.disconnect(),
-                pc = null)
+                vc.delete(e),
+                gc && 0 === vc.size && (gc.disconnect(),
+                gc = null)
             }
         }
-          , gc = Object.freeze(fc)
-          , vc = "ws:surfaceChange"
-          , wc = {
+          , bc = Object.freeze(wc)
+          , yc = "ws:surfaceChange"
+          , Sc = {
             BG_IMAGE: "bg-image",
             BG_IMAGE_SCALE_FACTOR: "bg-image-scale-factor",
             BG_IMAGE_RATIO: "bg-image-ratio",
@@ -21638,30 +21693,30 @@
             PADDING: "padding",
             TEXT_COLOR: "text-color"
         }
-          , bc = "halved-surface"
-          , yc = "pen-scribble"
-          , Sc = "wavy-scribble"
-          , Ec = "curved-scribble"
-          , _c = "scribbled-strikethrough"
-          , {BG_IMAGE: Tc, BG_IMAGE_SCALE_FACTOR: Mc, BG_IMAGE_RATIO: Cc, COLOR: Ac, THICKNESS: xc, BORDER_RADIUS: kc, PADDING: Oc, TEXT_COLOR: Ic} = wc
-          , Lc = (e, t, n) => {
+          , Ec = "halved-surface"
+          , _c = "pen-scribble"
+          , Tc = "wavy-scribble"
+          , Mc = "curved-scribble"
+          , Cc = "scribbled-strikethrough"
+          , {BG_IMAGE: Ac, BG_IMAGE_SCALE_FACTOR: xc, BG_IMAGE_RATIO: kc, COLOR: Oc, THICKNESS: Ic, BORDER_RADIUS: Lc, PADDING: Pc, TEXT_COLOR: Rc} = Sc
+          , Nc = (e, t, n) => {
             n && e.style.setProperty(t, n)
         }
-          , Pc = (e, t) => {
+          , Dc = (e, t) => {
             const n = (e => {
-                const t = [Tc, Mc, xc];
+                const t = [Ac, xc, Ic];
                 switch (e) {
                 case "label-border":
-                    return [Ac, xc, kc, Oc];
+                    return [Oc, Ic, Lc, Pc];
                 case "label-background":
-                    return [Ac, kc, Oc, Ic];
-                case bc:
-                    return [Ac, xc];
-                case yc:
-                case Sc:
+                    return [Oc, Lc, Pc, Rc];
                 case Ec:
+                    return [Oc, Ic];
                 case _c:
-                    return [...t, Cc];
+                case Tc:
+                case Mc:
+                case Cc:
+                    return [...t, kc];
                 default:
                     return t
                 }
@@ -21670,34 +21725,34 @@
             e.removeAttribute("style"),
             n.forEach((n => ( (e, t, {bgImage: n, color: i, thickness: r, borderRadius: o, textColor: s, paddingVertical: a, paddingHorizontal: l}) => {
                 switch (t) {
-                case wc.BG_IMAGE:
-                    Lc(e, "--bg-image", n.image);
+                case Sc.BG_IMAGE:
+                    Nc(e, "--bg-image", n.image);
                     break;
-                case wc.BG_IMAGE_SCALE_FACTOR:
-                    Lc(e, "--bg-image-scale-factor", n.scaleFactor);
+                case Sc.BG_IMAGE_SCALE_FACTOR:
+                    Nc(e, "--bg-image-scale-factor", n.scaleFactor);
                     break;
-                case wc.BG_IMAGE_RATIO:
-                    Lc(e, "--bg-image-ratio", n.ration);
+                case Sc.BG_IMAGE_RATIO:
+                    Nc(e, "--bg-image-ratio", n.ration);
                     break;
-                case wc.COLOR:
-                    Lc(e, "--color", i);
+                case Sc.COLOR:
+                    Nc(e, "--color", i);
                     break;
-                case wc.THICKNESS:
+                case Sc.THICKNESS:
                     e.style.setProperty("--thickness", r);
                     break;
-                case wc.BORDER_RADIUS:
+                case Sc.BORDER_RADIUS:
                     e.style.setProperty("--border-radius", o);
                     break;
-                case wc.TEXT_COLOR:
-                    e.hasAttribute(dc.COLOR) && Lc(e, "--text-color", s);
+                case Sc.TEXT_COLOR:
+                    e.hasAttribute(pc.COLOR) && Nc(e, "--text-color", s);
                     break;
-                case wc.PADDING:
-                    if (e.hasAttribute(dc.PADDING_VERTICAL)) {
+                case Sc.PADDING:
+                    if (e.hasAttribute(pc.PADDING_VERTICAL)) {
                         const [t,n] = a.split(" ");
                         e.style.setProperty("--padding-top", t),
                         e.style.setProperty("--padding-bottom", n)
                     }
-                    if (e.hasAttribute(dc.PADDING_HORIZONTAL)) {
+                    if (e.hasAttribute(pc.PADDING_HORIZONTAL)) {
                         const [t,n] = l.split(" ");
                         e.style.setProperty("--padding-left", t),
                         e.style.setProperty("--padding-right", n)
@@ -21706,122 +21761,122 @@
             }
             )(e, n, t)))
         }
-          , Rc = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="49"\n    height="3"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M1 1.9h47"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
-          , Nc = ({color: e, thickness: t}) => ({
-            svg: Rc(e, t),
+          , Bc = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="49"\n    height="3"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M1 1.9h47"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
+          , Fc = ({color: e, thickness: t}) => ({
+            svg: Bc(e, t),
             width: 49,
             height: 3
         })
-          , Dc = e => Nc(e)
-          , Bc = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="68"\n    height="34"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M27.8 28.9c11.4.6 39.2-2.5 39.2-12.2 0-10.8-17.7-15-30.9-15.3C18.6 1 1 4.4 1 15.2 1 28 23.8 32.4 36.1 32.4"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
-          , Fc = ({color: e, thickness: t}) => ({
-            svg: Bc(e, t),
+          , Hc = e => Fc(e)
+          , zc = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="68"\n    height="34"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M27.8 28.9c11.4.6 39.2-2.5 39.2-12.2 0-10.8-17.7-15-30.9-15.3C18.6 1 1 4.4 1 15.2 1 28 23.8 32.4 36.1 32.4"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
+          , $c = ({color: e, thickness: t}) => ({
+            svg: zc(e, t),
             width: 68,
             height: 34
         })
-          , Hc = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="64"\n    height="32"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M36.5 27.1c12 0 22 .7 24.5-1 2.3-1.5 2.3-20.7 0-23C58.5.6 6 .6 3 3.1s-1.5 20.5 1 23 21.5.5 24 .5c2 0 5 2 7.5 3.5"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
-          , zc = ({color: e, thickness: t}) => ({
-            svg: Hc(e, t),
+          , Wc = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="64"\n    height="32"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M36.5 27.1c12 0 22 .7 24.5-1 2.3-1.5 2.3-20.7 0-23C58.5.6 6 .6 3 3.1s-1.5 20.5 1 23 21.5.5 24 .5c2 0 5 2 7.5 3.5"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
+          , Gc = ({color: e, thickness: t}) => ({
+            svg: Wc(e, t),
             width: 64,
             height: 32
         })
-          , $c = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="30"\n    height="10"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M0 3.33A34.38 34.38 0 0 1 9.17 2c4.67 0 .3 4.5.11 6.25-.03.29 2.78.27 4.5-.05C19.4 7.15 24.81 4.8 30 3.33"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      stroke-linejoin="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
-          , Wc = ({color: e, thickness: t}) => ({
-            svg: $c(e, t),
+          , qc = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="30"\n    height="10"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M0 3.33A34.38 34.38 0 0 1 9.17 2c4.67 0 .3 4.5.11 6.25-.03.29 2.78.27 4.5-.05C19.4 7.15 24.81 4.8 30 3.33"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      stroke-linejoin="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
+          , jc = ({color: e, thickness: t}) => ({
+            svg: qc(e, t),
             width: 30,
             height: 10,
             repeatable: !0
         })
-          , Gc = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="25"\n    height="10"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M25 2a6 6 0 0 0-3.5 1L16 7.3a6.3 6.3 0 0 1-7 0L3.5 3A6 6 0 0 0 0 2"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      stroke-linejoin="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
-          , qc = ({color: e, thickness: t}) => ({
-            svg: Gc(e, t),
+          , Vc = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="25"\n    height="10"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M25 2a6 6 0 0 0-3.5 1L16 7.3a6.3 6.3 0 0 1-7 0L3.5 3A6 6 0 0 0 0 2"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      stroke-linejoin="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
+          , Uc = ({color: e, thickness: t}) => ({
+            svg: Vc(e, t),
             width: 25,
             height: 10,
             repeatable: !0
         })
-          , jc = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="22"\n    height="12"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M17.7 6.9A22 22 0 0 1 14.2 4c-.1 0-2.2-2.8-.7-2.2C15 2.5 16.2 3.7 17 5c.5.7.7 1.4.7 1.9Zm0 0c.1 1.8-3.9 2.7-6.7 3-4.7.2-7.8.2-11-.9m17.7-2.1c1.5 1 3 1.6 4.3 2.1"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      stroke-linejoin="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
-          , Vc = ({color: e, thickness: t}) => ({
-            svg: jc(e, t),
+          , Yc = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="22"\n    height="12"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M17.7 6.9A22 22 0 0 1 14.2 4c-.1 0-2.2-2.8-.7-2.2C15 2.5 16.2 3.7 17 5c.5.7.7 1.4.7 1.9Zm0 0c.1 1.8-3.9 2.7-6.7 3-4.7.2-7.8.2-11-.9m17.7-2.1c1.5 1 3 1.6 4.3 2.1"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      stroke-linejoin="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
+          , Xc = ({color: e, thickness: t}) => ({
+            svg: Yc(e, t),
             width: 22,
             height: 12,
             repeatable: !0
         })
-          , Uc = e => Wc(e)
-          , Yc = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="52"\n    height="3"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M1 2c11.4-.6 16.4-1 27-1 9 0 16 0 23 .9"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
-          , Xc = ({color: e, thickness: t}) => ({
-            svg: Yc(e, t),
+          , Zc = e => jc(e)
+          , Kc = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="52"\n    height="3"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M1 2c11.4-.6 16.4-1 27-1 9 0 16 0 23 .9"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
+          , Qc = ({color: e, thickness: t}) => ({
+            svg: Kc(e, t),
             width: 52,
             height: 3
         })
-          , Zc = e => Xc(e)
-          , Kc = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="55"\n    height="6"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M1 2.93C6.54 1.7 12.11 1.44 17.92 1.2c1.9-.08 8.4-.34 11.2-.1.2.02.57.16.45.27-.24.23-.75.23-1.13.36-.82.28-2.87.88-2.93 1.67-.08.97 26.27.56 28.49.56"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
-          , Qc = ({color: e, thickness: t}) => ({
-            svg: Kc(e, t),
+          , Jc = e => Qc(e)
+          , ed = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="55"\n    height="6"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M1 2.93C6.54 1.7 12.11 1.44 17.92 1.2c1.9-.08 8.4-.34 11.2-.1.2.02.57.16.45.27-.24.23-.75.23-1.13.36-.82.28-2.87.88-2.93 1.67-.08.97 26.27.56 28.49.56"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
+          , td = ({color: e, thickness: t}) => ({
+            svg: ed(e, t),
             width: 55,
             height: 6
         })
-          , Jc = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="52"\n    height="17"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M1 16c11.3-4 16.2-6 26.8-9.2 9-2.6 16-4.7 23.2-5.8"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
-          , ed = ({color: e, thickness: t}) => ({
-            svg: Jc(e, t),
+          , nd = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="52"\n    height="17"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <path\n      d="M1 16c11.3-4 16.2-6 26.8-9.2 9-2.6 16-4.7 23.2-5.8"\n      stroke="${e}"\n      stroke-width="${t}"\n      stroke-linecap="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
+          , id = ({color: e, thickness: t}) => ({
+            svg: nd(e, t),
             width: 52,
             height: 17
         })
-          , td = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="52"\n    height="17"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <style>\n      path {\n        stroke: ${e};\n        stroke-width: ${t};\n        stroke-linecap: round;\n        vector-effect: non-scaling-stroke;\n      }\n    </style>\n    <path\n      d="M1 16c11.3-4 16.2-6 26.8-9.2 9-2.6 16-4.7 23.2-5.8"\n    />\n    <path\n      d="M1 1c11.6 2.8 16.7 3.8 27.3 7 9 2.8 16 4.9 22.7 8"\n    />\n  </svg>\n`
-          , nd = ({color: e, thickness: t}) => ({
-            svg: td(e, t),
+          , rd = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="52"\n    height="17"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <style>\n      path {\n        stroke: ${e};\n        stroke-width: ${t};\n        stroke-linecap: round;\n        vector-effect: non-scaling-stroke;\n      }\n    </style>\n    <path\n      d="M1 16c11.3-4 16.2-6 26.8-9.2 9-2.6 16-4.7 23.2-5.8"\n    />\n    <path\n      d="M1 1c11.6 2.8 16.7 3.8 27.3 7 9 2.8 16 4.9 22.7 8"\n    />\n  </svg>\n`
+          , od = ({color: e, thickness: t}) => ({
+            svg: rd(e, t),
             width: 52,
             height: 17
         })
-          , id = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="50"\n    height="9"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <style>\n      path {\n        stroke: ${e};\n        stroke-width: ${t};\n      }\n    </style>\n    <path\n      d="M1 1.693C15.787.888 30.944.74 45.739 1.482c1.002.05 2.041.103 2.961.344 1.308.342-1.456.796-12.379 1.16-8.002.267-16.058.205-24.048.695-1.542.094 4.504 1.209 5.275 1.334 2.936.477 6.011.642 8.924 1.167 1.047.188-6.545.398-6.872 1-.189.347 1.832.734 2.207.818"\n      stroke-linecap="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
-          , rd = ({color: e, thickness: t}) => ({
-            svg: id(e, t),
+          , sd = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="50"\n    height="9"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <style>\n      path {\n        stroke: ${e};\n        stroke-width: ${t};\n      }\n    </style>\n    <path\n      d="M1 1.693C15.787.888 30.944.74 45.739 1.482c1.002.05 2.041.103 2.961.344 1.308.342-1.456.796-12.379 1.16-8.002.267-16.058.205-24.048.695-1.542.094 4.504 1.209 5.275 1.334 2.936.477 6.011.642 8.924 1.167 1.047.188-6.545.398-6.872 1-.189.347 1.832.734 2.207.818"\n      stroke-linecap="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
+          , ad = ({color: e, thickness: t}) => ({
+            svg: sd(e, t),
             width: 50,
             height: 9
         })
-          , od = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="56"\n    height="8"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <style>\n      path {\n        stroke: ${e};\n        stroke-width: ${t};\n      }\n    </style>\n    <path\n      d="M1 2.93C6.54 1.7 12.11 1.44 17.92 1.2c1.9-.08 8.4-.34 11.2-.1.2.02.57.16.45.27-.24.23-.75.23-1.13.36-.82.28-2.87.88-2.93 1.67-.07.92 20.58.56 21.99.56 0-.96-.73-2.66-.73-2.66 1.17.17 4.52 1.08 7.32 2.28 2.8 1.2-3.83 2.5-7.5 3"\n      stroke-linecap="round"\n      stroke-linejoin="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
-          , sd = ({color: e, thickness: t}) => ({
-            svg: od(e, t),
+          , ld = (e, t) => `\n  <svg\n    xmlns="http://www.w3.org/2000/svg"\n    width="56"\n    height="8"\n    preserveAspectRatio="none"\n    fill="none"\n  >\n    <style>\n      path {\n        stroke: ${e};\n        stroke-width: ${t};\n      }\n    </style>\n    <path\n      d="M1 2.93C6.54 1.7 12.11 1.44 17.92 1.2c1.9-.08 8.4-.34 11.2-.1.2.02.57.16.45.27-.24.23-.75.23-1.13.36-.82.28-2.87.88-2.93 1.67-.07.92 20.58.56 21.99.56 0-.96-.73-2.66-.73-2.66 1.17.17 4.52 1.08 7.32 2.28 2.8 1.2-3.83 2.5-7.5 3"\n      stroke-linecap="round"\n      stroke-linejoin="round"\n      vector-effect="non-scaling-stroke"\n    />\n  </svg>\n`
+          , cd = ({color: e, thickness: t}) => ({
+            svg: ld(e, t),
             width: 56,
             height: 8
         })
-          , ad = e => {
+          , dd = e => {
             return `url('data:image/svg+xml;charset=utf8, ${encodeURIComponent((t = e,
             t.replace(/[\r\n]+/g, "").replace(/\s+/g, " ").replace(/>\s+</g, "><").replace(/\s+>/g, ">").replace(/\s+\/>/g, "/>").replace(/s+<\//g, "</").replace(/(<.*?>)|\s+/g, ( (e, t) => t || "")).trim()))}')`;
             var t
         }
-          , ld = (e, t) => {
+          , ud = (e, t) => {
             const n = (e => {
                 switch (e) {
                 case "underline":
-                    return Nc;
-                case "double-underline":
-                    return Dc;
-                case yc:
-                    return Wc;
-                case Sc:
-                    return qc;
-                case Ec:
-                    return Vc;
-                case _c:
-                    return Uc;
-                case "circle-shape":
                     return Fc;
-                case "box-shape":
-                    return zc;
-                case "curved-underline":
+                case "double-underline":
+                    return Hc;
+                case _c:
+                    return jc;
+                case Tc:
+                    return Uc;
+                case Mc:
                     return Xc;
-                case "default-strikethrough":
+                case Cc:
                     return Zc;
-                case "default-scribble":
+                case "circle-shape":
+                    return $c;
+                case "box-shape":
+                    return Gc;
+                case "curved-underline":
                     return Qc;
+                case "default-strikethrough":
+                    return Jc;
+                case "default-scribble":
+                    return td;
                 case "diagonal-strikethrough":
-                    return ed;
+                    return id;
                 case "cross-strikethrough":
-                    return nd;
+                    return od;
                 case "funnel-scribble":
-                    return rd;
+                    return ad;
                 case "scribble-with-arrow":
-                    return sd;
+                    return cd;
                 default:
                     return null
                 }
@@ -21846,14 +21901,14 @@
                 repeatable: s
             });
             return {
-                image: ad(c),
+                image: dd(c),
                 width: r,
                 height: o,
                 scaleFactor: a,
                 ration: l
             }
         }
-          , cd = e => e === bc ? {
+          , hd = e => e === Ec ? {
             unit: "em",
             min: .25,
             max: .95,
@@ -21868,24 +21923,24 @@
             fontWeightFactor: .5,
             defaultLevel: 4
         }
-          , dd = (e, t, n, i) => {
+          , pd = (e, t, n, i) => {
             const r = Math.max(1, Math.min(t, 10))
-              , {unit: o, min: s, max: a, fontSizeFactor: l, fontWeightFactor: c} = cd(e)
+              , {unit: o, min: s, max: a, fontSizeFactor: l, fontWeightFactor: c} = hd(e)
               , d = 1 === r ? s : s + (a + (n - 16) * l + (i - 400) / 100 * c - s) / 9 * (r - 1);
             return `${Math.round(100 * d) / 100}${o}`
         }
-          , ud = e => (e => e / 2)(e) / 10
-          , hd = e => Math.max(0, Math.min(e, 10))
-          , pd = (e, t) => {
-            const n = hd(e) * t;
+          , md = e => (e => e / 2)(e) / 10
+          , fd = e => Math.max(0, Math.min(e, 10))
+          , gd = (e, t) => {
+            const n = fd(e) * t;
             return Math.round(10 * n) / 10 + "px"
         }
-          , md = (e, t) => {
+          , vd = (e, t) => {
             const n = e.split(" ").length > 1
-              , i = ud(t);
-            return n ? e.split(" ").map((e => pd(e, i))).join(" ") : pd(e, i)
+              , i = md(t);
+            return n ? e.split(" ").map((e => gd(e, i))).join(" ") : gd(e, i)
         }
-          , fd = e => (e => {
+          , wd = e => (e => {
             const t = e.split(" ");
             return e.split(" ").length > 1 || t.push(e),
             t.map((e => {
@@ -21896,9 +21951,9 @@
             )).join(" ")
         }
         )(e)
-          , gd = (e, t) => e === t ? `${e}` : `${e} ${t}`
-          , vd = /\(([^)]+)\)/
-          , wd = class {
+          , bd = (e, t) => e === t ? `${e}` : `${e} ${t}`
+          , yd = /\(([^)]+)\)/
+          , Sd = class {
             constructor(e) {
                 this.colorString = e
             }
@@ -21913,7 +21968,7 @@
             }
             parseColor() {
                 if (this.isRGB()) {
-                    const e = this.colorString.match(vd)[1]
+                    const e = this.colorString.match(yd)[1]
                       , [t,n,i,r=1] = e.split(",").map((e => parseInt(e, 10)));
                     return {
                         red: t,
@@ -21923,7 +21978,7 @@
                     }
                 }
                 if (this.isHSL()) {
-                    const e = this.colorString.match(vd)[1]
+                    const e = this.colorString.match(yd)[1]
                       , [t,n,i,r=1] = e.split(",").map((e => parseFloat(e)))
                       , [o,s,a,l] = function({h: e, s: t, l: n, a: i}) {
                         const r = e % 360
@@ -21991,39 +22046,39 @@
             }
         }
         ;
-        function bd(e) {
+        function Ed(e) {
             const t = e / 255;
             return t <= .03928 ? t / 12.92 : Math.pow((t + .055) / 1.055, 2.4)
         }
-        function yd(e, t, n) {
-            const [i,r,o] = [bd(e), bd(t), bd(n)];
+        function _d(e, t, n) {
+            const [i,r,o] = [Ed(e), Ed(t), Ed(n)];
             return .2126 * i + .7152 * r + .0722 * o
         }
-        function Sd(e, t, n) {
+        function Td(e, t, n) {
             return {
                 red: n * e.red + (1 - n) * t.red,
                 green: n * e.green + (1 - n) * t.green,
                 blue: n * e.blue + (1 - n) * t.blue
             }
         }
-        const Ed = (e, {bgColor: t}) => {
+        const Md = (e, {bgColor: t}) => {
             const {textColorDark: n, textColorLight: i} = e.defaultValues;
             if (!t || !n || !i)
                 return null;
             try {
-                const e = new wd(t)
-                  , r = new wd(i);
+                const e = new Sd(t)
+                  , r = new Sd(i);
                 return function(e, t) {
                     const {alpha: n, ...i} = t
                       , {alpha: r, ...o} = e
-                      , s = Sd(i, o, n)
-                      , a = Sd(o, {
+                      , s = Td(i, o, n)
+                      , a = Td(o, {
                         red: 255,
                         green: 255,
                         blue: 255
                     }, r)
-                      , l = yd(s.red, s.green, s.blue)
-                      , c = yd(a.red, a.green, a.blue);
+                      , l = _d(s.red, s.green, s.blue)
+                      , c = _d(a.red, a.green, a.blue);
                     return (Math.max(l, c) + .05) / (Math.min(l, c) + .05)
                 }(e.getRBG(), r.getRBG()) > 3 ? i : n
             } catch (e) {
@@ -22032,14 +22087,14 @@
             }
         }
         ;
-        class _d extends HTMLElement {
+        class Cd extends HTMLElement {
             static get observedAttributes() {
-                return Object.values(dc)
+                return Object.values(pc)
             }
             constructor() {
                 super(),
                 this.handlers = {
-                    hardSetInlineDecorationStyles: uc.bind(this, this.hardSetInlineDecorationStyles)
+                    hardSetInlineDecorationStyles: mc.bind(this, this.hardSetInlineDecorationStyles)
                 }
             }
             get computedStyle() {
@@ -22065,20 +22120,20 @@
                 this.cachedComputedStyles
             }
             get type() {
-                return this.getAttribute(dc.TYPE)
+                return this.getAttribute(pc.TYPE)
             }
             get color() {
                 const {color: e} = this.defaultValues;
                 return {
-                    value: this.getAttribute(dc.COLOR) || e,
+                    value: this.getAttribute(pc.COLOR) || e,
                     default: e
                 }
             }
             get thickness() {
-                const e = this.getAttribute(dc.THICKNESS) || `${cd(this.type).defaultLevel}`
+                const e = this.getAttribute(pc.THICKNESS) || `${hd(this.type).defaultLevel}`
                   , {fontSize: t, fontWeight: n} = this.defaultValues;
                 return {
-                    value: dd(this.type, e, t, n),
+                    value: pd(this.type, e, t, n),
                     level: e,
                     minLevel: 1,
                     maxLevel: 10
@@ -22086,18 +22141,18 @@
             }
             get borderRadius() {
                 const {height: e, borderRadius: t, paddingTop: n, paddingBottom: i} = this.defaultValues
-                  , r = this.hasAttribute(dc.PADDING_VERTICAL) ? this.padding.vertical.value.split(" ").map(parseFloat) : [n, i]
+                  , r = this.hasAttribute(pc.PADDING_VERTICAL) ? this.padding.vertical.value.split(" ").map(parseFloat) : [n, i]
                   , o = e + r[0] + r[1]
-                  , s = this.getAttribute(dc.BORDER_RADIUS) || `${( (e, t) => {
+                  , s = this.getAttribute(pc.BORDER_RADIUS) || `${( (e, t) => {
                     if (!e)
                         return 0;
-                    const n = ud(t)
+                    const n = md(t)
                       , i = Math.round(e / n) || 1;
-                    return hd(i)
+                    return fd(i)
                 }
                 )(t, o)}`;
                 return {
-                    value: md(s, o),
+                    value: vd(s, o),
                     level: s,
                     minLevel: 0,
                     maxLevel: 10
@@ -22105,17 +22160,17 @@
             }
             get padding() {
                 const {paddingTop: e, paddingBottom: t, paddingLeft: n, paddingRight: i} = this.defaultValues
-                  , r = this.getAttribute(dc.PADDING_VERTICAL) || gd(e, t)
-                  , o = this.getAttribute(dc.PADDING_HORIZONTAL) || gd(n, i);
+                  , r = this.getAttribute(pc.PADDING_VERTICAL) || bd(e, t)
+                  , o = this.getAttribute(pc.PADDING_HORIZONTAL) || bd(n, i);
                 return {
                     vertical: {
-                        value: fd(r),
+                        value: wd(r),
                         level: r,
                         minValue: 0,
                         maxValue: 20
                     },
                     horizontal: {
-                        value: fd(o),
+                        value: wd(o),
                         level: o,
                         minValue: 0,
                         maxValue: 56
@@ -22126,12 +22181,12 @@
                 this.type && (this.connected = !0,
                 function(e, t) {
                     const n = e.closest("ws-block");
-                    hc() && n && !n.ready ? n.addEventListener("ready", t, {
+                    fc() && n && !n.ready ? n.addEventListener("ready", t, {
                         once: !0
                     }) : (t(),
                     Function.prototype)
                 }(this, this.handlers.hardSetInlineDecorationStyles),
-                !hc() || Boolean(window.previewMode) || Boolean(window.livePreviewMode) || this.hasAttribute(dc.COLOR) || (this.observeColorPaletteChange(),
+                !fc() || Boolean(window.previewMode) || Boolean(window.livePreviewMode) || this.hasAttribute(pc.COLOR) || (this.observeColorPaletteChange(),
                 this.addSurfaceChangeEventListener()))
             }
             disconnectedCallback() {
@@ -22139,9 +22194,9 @@
                 this.removeSurfaceChangeEventListener())
             }
             attributeChangedCallback(e, t, n) {
-                this.connected && !this.disabled && t !== n && (e !== dc.COLOR || t || (this.unobserveColorPaletteChange(),
+                this.connected && !this.disabled && t !== n && (e !== pc.COLOR || t || (this.unobserveColorPaletteChange(),
                 this.removeSurfaceChangeEventListener()),
-                e !== dc.COLOR || n || (this.observeColorPaletteChange(),
+                e !== pc.COLOR || n || (this.observeColorPaletteChange(),
                 this.addSurfaceChangeEventListener()),
                 this.setInlineDecorationStyles())
             }
@@ -22151,12 +22206,12 @@
                   , n = this.borderRadius.value
                   , i = this.padding.vertical.value
                   , r = this.padding.horizontal.value;
-                Pc(this, {
-                    bgImage: ld(this.type, {
+                Dc(this, {
+                    bgImage: ud(this.type, {
                         color: e,
                         thickness: t
                     }),
-                    textColor: Ed(this, {
+                    textColor: Md(this, {
                         bgColor: e
                     }),
                     color: e,
@@ -22171,18 +22226,18 @@
                 this.setInlineDecorationStyles()
             }
             observeColorPaletteChange() {
-                gc.observe(this, this.handlers.hardSetInlineDecorationStyles)
+                bc.observe(this, this.handlers.hardSetInlineDecorationStyles)
             }
             unobserveColorPaletteChange() {
-                gc.unobserve(this)
+                bc.unobserve(this)
             }
             addSurfaceChangeEventListener() {
                 this.surfaceChangeEventListener = ( (e, t) => {
                     const n = e.closest("ws-block");
-                    return n.addEventListener(vc, t),
+                    return n.addEventListener(yc, t),
                     {
                         remove: () => {
-                            n.removeEventListener(vc, t)
+                            n.removeEventListener(yc, t)
                         }
                     }
                 }
@@ -22193,20 +22248,20 @@
                 this.surfaceChangeEventListener = null)
             }
         }
-        customElements.define("ws-decoration", _d);
-        const Td = "positioning-area"
-          , Md = "stretching-area"
-          , Cd = "stretch"
-          , Ad = document.createElement("template");
-        Ad.innerHTML = `\n  <style>\n    :host {\n      display: block;\n    }\n    ::slotted(ws-composite-item) {\n      z-index: sibling-index();\n    }\n  </style>\n  <div part="${Md}">\n    <slot name="${Cd}"></slot>\n  </div>\n  <div part="${Td}">\n    <slot></slot>\n  </div>\n`;
-        const xd = Ad
-          , kd = {
+        customElements.define("ws-decoration", Cd);
+        const Ad = "positioning-area"
+          , xd = "stretching-area"
+          , kd = "stretch"
+          , Od = document.createElement("template");
+        Od.innerHTML = `\n  <style>\n    :host {\n      display: block;\n    }\n    ::slotted(ws-composite-item) {\n      z-index: sibling-index();\n    }\n  </style>\n  <div part="${xd}">\n    <slot name="${kd}"></slot>\n  </div>\n  <div part="${Ad}">\n    <slot></slot>\n  </div>\n`;
+        const Id = Od
+          , Ld = {
             ASPECT_RATIO: "aspect-ratio",
             POSITION: "position",
             WIDTH: "width",
             STRETCHED: "stretched"
         }
-          , Od = {
+          , Pd = {
             WS_COMPOSITE_GROUP_ASPECT_RATIO_CUSTOM_PROPERTY: "--ws-composite-group-aspect-ratio",
             WS_COMPOSITE_GROUP_MARGIN_LEFT_CUSTOM_PROPERTY: "--ws-composite-group-margin-left",
             WS_COMPOSITE_GROUP_MARGIN_RIGHT_CUSTOM_PROPERTY: "--ws-composite-group-margin-right",
@@ -22218,14 +22273,14 @@
             WS_COMPOSITE_ITEM_POSITION_Y_CUSTOM_PROPERTY: "--ws-composite-item-position-y",
             WS_COMPOSITE_ITEM_WIDTH_CUSTOM_PROPERTY: "--ws-composite-item-width"
         }
-          , Id = function(e) {
+          , Rd = function(e) {
             return !isNaN(e) && isFinite(e)
         }
-          , Ld = (e, t) => {
+          , Nd = (e, t) => {
             const n = e.style.getPropertyValue(t);
             return n || (getComputedStyle(e).getPropertyValue(t) || null)
         }
-          , Pd = function(e) {
+          , Dd = function(e) {
             if (CSS.supports("z-index", "sibling-index()"))
                 return;
             const t = e.querySelectorAll("ws-composite-item").length;
@@ -22246,109 +22301,109 @@
             }(t))).join("");
             i.textContent += r
         }
-          , {ASPECT_RATIO: Rd, WIDTH: Nd} = kd
-          , {WS_COMPOSITE_GROUP_ASPECT_RATIO_CUSTOM_PROPERTY: Dd, WS_COMPOSITE_GROUP_MARGIN_LEFT_CUSTOM_PROPERTY: Bd, WS_COMPOSITE_GROUP_MARGIN_RIGHT_CUSTOM_PROPERTY: Fd, WS_COMPOSITE_GROUP_MAX_MIN_PROPERTY: Hd, WS_COMPOSITE_GROUP_MAX_WIDTH_PROPERTY: zd, WS_COMPOSITE_GROUP_INITIAL_WIDTH_PROPERTY: $d} = Od;
-        class Wd extends HTMLElement {
+          , {ASPECT_RATIO: Bd, WIDTH: Fd} = Ld
+          , {WS_COMPOSITE_GROUP_ASPECT_RATIO_CUSTOM_PROPERTY: Hd, WS_COMPOSITE_GROUP_MARGIN_LEFT_CUSTOM_PROPERTY: zd, WS_COMPOSITE_GROUP_MARGIN_RIGHT_CUSTOM_PROPERTY: $d, WS_COMPOSITE_GROUP_MAX_MIN_PROPERTY: Wd, WS_COMPOSITE_GROUP_MAX_WIDTH_PROPERTY: Gd, WS_COMPOSITE_GROUP_INITIAL_WIDTH_PROPERTY: qd} = Pd;
+        class jd extends HTMLElement {
             static get observedAttributes() {
-                return [Rd, Nd]
+                return [Bd, Fd]
             }
             constructor() {
                 super(),
                 this.attachShadow({
                     mode: "open"
                 }),
-                this.shadowRoot.appendChild(xd.content.cloneNode(!0)),
-                Pd(this)
+                this.shadowRoot.appendChild(Id.content.cloneNode(!0)),
+                Dd(this)
             }
             get aspectRatio() {
                 const e = this.getAttribute("aspect-ratio")
                   , t = parseFloat(e);
-                return Id(t) ? t : 1
+                return Rd(t) ? t : 1
             }
             get width() {
-                return this.getAttribute(Nd) || null
+                return this.getAttribute(Fd) || null
             }
             set width(e) {
-                e ? this.setAttribute(Nd, e) : e || this.removeAttribute(Nd)
+                e ? this.setAttribute(Fd, e) : e || this.removeAttribute(Fd)
             }
             connectedCallback() {
-                this.setAspectRatioCustomProperty(this.getAttribute(Rd))
+                this.setAspectRatioCustomProperty(this.getAttribute(Bd))
             }
             attributeChangedCallback(e, t, n) {
                 switch (e) {
-                case Rd:
+                case Bd:
                     this.setAspectRatioCustomProperty(n);
                     break;
-                case Nd:
+                case Fd:
                     this.setWidth()
                 }
             }
             get maxWidthStyleProperty() {
-                return Ld(this, zd)
+                return Nd(this, Gd)
             }
             get minWidthStyleProperty() {
-                return Ld(this, Hd)
+                return Nd(this, Wd)
             }
             get initialWidthStyleProperty() {
-                return Ld(this, $d)
+                return Nd(this, qd)
             }
             get marginLeftStyleProperty() {
-                return Ld(this, Bd)
+                return Nd(this, zd)
             }
             get marginRightStyleProperty() {
-                return Ld(this, Fd)
+                return Nd(this, $d)
             }
             setAspectRatioCustomProperty(e) {
-                e && this.style.setProperty(Dd, e)
+                e && this.style.setProperty(Hd, e)
             }
             setWidth() {
                 this.style.width = this.width
             }
             getPositioningAreaElement() {
-                return this.shadowRoot.querySelector(`[part="${Td}"]`)
+                return this.shadowRoot.querySelector(`[part="${Ad}"]`)
             }
         }
-        customElements.define("ws-composite-group", Wd);
-        const {WS_COMPOSITE_ITEM_POSITION_X_CUSTOM_PROPERTY: Gd, WS_COMPOSITE_ITEM_POSITION_Y_CUSTOM_PROPERTY: qd, WS_COMPOSITE_ITEM_ASPECT_RATIO_CUSTOM_PROPERTY: jd, WS_COMPOSITE_ITEM_WIDTH_CUSTOM_PROPERTY: Vd} = Od
-          , {POSITION: Ud, ASPECT_RATIO: Yd, WIDTH: Xd, STRETCHED: Zd} = kd;
-        class Kd extends HTMLElement {
+        customElements.define("ws-composite-group", jd);
+        const {WS_COMPOSITE_ITEM_POSITION_X_CUSTOM_PROPERTY: Vd, WS_COMPOSITE_ITEM_POSITION_Y_CUSTOM_PROPERTY: Ud, WS_COMPOSITE_ITEM_ASPECT_RATIO_CUSTOM_PROPERTY: Yd, WS_COMPOSITE_ITEM_WIDTH_CUSTOM_PROPERTY: Xd} = Pd
+          , {POSITION: Zd, ASPECT_RATIO: Kd, WIDTH: Qd, STRETCHED: Jd} = Ld;
+        class eu extends HTMLElement {
             static get observedAttributes() {
-                return [Ud, Yd, Xd, Zd]
+                return [Zd, Kd, Qd, Jd]
             }
             get position() {
-                const e = this.getAttribute(Ud);
+                const e = this.getAttribute(Zd);
                 if (!e)
                     return this.getDefaultPosition();
                 const t = e.split(" ").map((e => parseFloat(e)));
-                return t.every(Id) ? t : this.getDefaultPosition()
+                return t.every(Rd) ? t : this.getDefaultPosition()
             }
             get aspectRatio() {
-                const e = this.getAttribute(Yd)
+                const e = this.getAttribute(Kd)
                   , t = parseFloat(e);
-                return Id(t) ? t : 1
+                return Rd(t) ? t : 1
             }
             get width() {
-                return this.getAttribute(Xd) || null
+                return this.getAttribute(Qd) || null
             }
             set width(e) {
-                e ? this.setAttribute(Xd, e) : e || this.removeAttribute(Xd)
+                e ? this.setAttribute(Qd, e) : e || this.removeAttribute(Qd)
             }
             connectedCallback() {
-                this.setPositionCustomProperties(this.getAttribute(Ud)),
+                this.setPositionCustomProperties(this.getAttribute(Zd)),
                 this.updateSlotByStretched()
             }
             attributeChangedCallback(e, t, n) {
                 switch (e) {
-                case Ud:
+                case Zd:
                     this.setPositionCustomProperties(n);
                     break;
-                case Yd:
+                case Kd:
                     this.setAspectRatioCustomProperty();
                     break;
-                case Xd:
+                case Qd:
                     this.setWidthCustomProperty();
                     break;
-                case Zd:
+                case Jd:
                     this.updateSlotByStretched()
                 }
             }
@@ -22356,26 +22411,26 @@
                 if (!e)
                     return;
                 const [t,n] = e.split(" ");
-                this.style.setProperty(Gd, t),
-                this.style.setProperty(qd, n)
+                this.style.setProperty(Vd, t),
+                this.style.setProperty(Ud, n)
             }
             setAspectRatioCustomProperty() {
-                this.style.setProperty(jd, `${this.aspectRatio}`)
+                this.style.setProperty(Yd, `${this.aspectRatio}`)
             }
             setWidthCustomProperty() {
-                this.style.setProperty(Vd, `${this.width}`)
+                this.style.setProperty(Xd, `${this.width}`)
             }
             getDefaultPosition() {
                 const e = window.getComputedStyle(this)
-                  , t = parseFloat(e.getPropertyValue(Gd))
-                  , n = parseFloat(e.getPropertyValue(qd));
+                  , t = parseFloat(e.getPropertyValue(Vd))
+                  , n = parseFloat(e.getPropertyValue(Ud));
                 return [Number.isNaN(t) ? 50 : t, Number.isNaN(n) ? 50 : n]
             }
             updateSlotByStretched() {
-                this.hasAttribute(Zd) ? this.setAttribute("slot", Cd) : this.removeAttribute("slot")
+                this.hasAttribute(Jd) ? this.setAttribute("slot", kd) : this.removeAttribute("slot")
             }
         }
-        customElements.define("ws-composite-item", Kd),
+        customElements.define("ws-composite-item", eu),
         function() {
             if (!("customElements"in window) || !("content"in document.createElement("template"))) {
                 var e = new XMLHttpRequest;
@@ -22387,67 +22442,67 @@
                 document.body.appendChild(t)
             }
         }();
-        var Qd = n(745)
-          , Jd = n.n(Qd)
-          , eu = n(320)
-          , tu = n.n(eu);
-        const nu = function() {
+        var tu = n(745)
+          , nu = n.n(tu)
+          , iu = n(320)
+          , ru = n.n(iu);
+        const ou = function() {
             try {
                 return Boolean(window.parent.ws)
             } catch (e) {
                 return !1
             }
         }
-          , iu = function() {
+          , su = function() {
             return Boolean(window.previewMode)
         }
-          , ru = function(e, t) {
+          , au = function(e, t) {
             var n = e ? '<span class="'.concat("pswp__caption__title", '">').concat(e, "</span>") : ""
               , i = t ? '<small class="'.concat("pswp__caption__description", '">').concat(t, "</small>") : "";
             return "".concat(n).concat(i)
         };
-        var ou = "ws-media-container[origin-src]:not([lightbox-disabled], [placeholder])";
-        function su(e) {
-            return su = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
+        var lu = "ws-media-container[origin-src]:not([lightbox-disabled], [placeholder])";
+        function cu(e) {
+            return cu = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             }
             : function(e) {
                 return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
             }
             ,
-            su(e)
+            cu(e)
         }
-        function au(e, t) {
+        function du(e, t) {
             (null == t || t > e.length) && (t = e.length);
             for (var n = 0, i = Array(t); n < t; n++)
                 i[n] = e[n];
             return i
         }
-        function lu(e, t) {
+        function uu(e, t) {
             for (var n = 0; n < t.length; n++) {
                 var i = t[n];
                 i.enumerable = i.enumerable || !1,
                 i.configurable = !0,
                 "value"in i && (i.writable = !0),
-                Object.defineProperty(e, cu(i.key), i)
+                Object.defineProperty(e, hu(i.key), i)
             }
         }
-        function cu(e) {
+        function hu(e) {
             var t = function(e) {
-                if ("object" != su(e) || !e)
+                if ("object" != cu(e) || !e)
                     return e;
                 var t = e[Symbol.toPrimitive];
                 if (void 0 !== t) {
                     var n = t.call(e, "string");
-                    if ("object" != su(n))
+                    if ("object" != cu(n))
                         return n;
                     throw new TypeError("@@toPrimitive must return a primitive value.")
                 }
                 return String(e)
             }(e);
-            return "symbol" == su(t) ? t : t + ""
+            return "symbol" == cu(t) ? t : t + ""
         }
-        var du = function() {
+        var pu = function() {
             return e = function e() {
                 !function(e, t) {
                     if (!(e instanceof t))
@@ -22471,17 +22526,17 @@
                         (e = t.classList).add.apply(e, function(e) {
                             return function(e) {
                                 if (Array.isArray(e))
-                                    return au(e)
+                                    return du(e)
                             }(e) || function(e) {
                                 if ("undefined" != typeof Symbol && null != e[Symbol.iterator] || null != e["@@iterator"])
                                     return Array.from(e)
                             }(e) || function(e, t) {
                                 if (e) {
                                     if ("string" == typeof e)
-                                        return au(e, t);
+                                        return du(e, t);
                                     var n = {}.toString.call(e).slice(8, -1);
                                     return "Object" === n && e.constructor && (n = e.constructor.name),
-                                    "Map" === n || "Set" === n ? Array.from(e) : "Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n) ? au(e, t) : void 0
+                                    "Map" === n || "Set" === n ? Array.from(e) : "Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n) ? du(e, t) : void 0
                                 }
                             }(e) || function() {
                                 throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")
@@ -22497,7 +22552,7 @@
                     var e = this;
                     this.galleries.forEach((function(t, n) {
                         n.addEventListener("click", (function(t) {
-                            var i = t.target.closest(ou);
+                            var i = t.target.closest(lu);
                             i && e.openLightbox(i, n)
                         }
                         ))
@@ -22527,16 +22582,16 @@
                         bgOpacity: .85,
                         history: !1,
                         shareEl: !1,
-                        fullscreenEl: !iu()
+                        fullscreenEl: !su()
                     };
-                    new (Jd())(document.querySelector(".pswp"),tu(),t,n).init()
+                    new (nu())(document.querySelector(".pswp"),ru(),t,n).init()
                 }
             }, {
                 key: "createGalleriesGroups",
                 value: function() {
                     var e = this
                       , t = new Map
-                      , n = document.querySelectorAll(ou);
+                      , n = document.querySelectorAll(lu);
                     return Array.from(n).forEach((function(n) {
                         var i = n.closest("ws-block");
                         if (i) {
@@ -22568,35 +22623,35 @@
                         w: i,
                         h: r,
                         el: e,
-                        title: ru(s, a)
+                        title: au(s, a)
                     }
                 }
             }],
-            n && lu(e.prototype, n),
+            n && uu(e.prototype, n),
             Object.defineProperty(e, "prototype", {
                 writable: !1
             }),
             e;
             var e, n
         }();
-        nu() && !iu() || document.addEventListener("DOMContentLoaded", (function() {
-            new du
+        ou() && !su() || document.addEventListener("DOMContentLoaded", (function() {
+            new pu
         }
         ));
-        var uu = n(787)
-          , hu = n.n(uu);
-        var pu, mu, fu, gu, vu;
-        function wu(e, t) {
+        var mu = n(787)
+          , fu = n.n(mu);
+        var gu, vu, wu, bu, yu;
+        function Su(e, t) {
             (null == t || t > e.length) && (t = e.length);
             for (var n = 0, i = Array(t); n < t; n++)
                 i[n] = e[n];
             return i
         }
-        nu() && !iu() || (pu = document.querySelector(".page-container"),
-        mu = pu.offsetTop,
-        fu = pu.querySelector("ws-header"),
-        gu = fu && fu.hasAttribute("stick-up"),
-        vu = gu ? function() {
+        ou() && !su() || (gu = document.querySelector(".page-container"),
+        vu = gu.offsetTop,
+        wu = gu.querySelector("ws-header"),
+        bu = wu && wu.hasAttribute("stick-up"),
+        yu = bu ? function() {
             for (var e = document.querySelectorAll("ws-block"), t = [], n = 0; n < e.length; n += 1) {
                 var i = e[n].id;
                 t.push(i);
@@ -22608,7 +22663,7 @@
             }
             return t
         }() : [],
-        pu.addEventListener("click", (function(e) {
+        gu.addEventListener("click", (function(e) {
             var t = e.target
               , n = t && t.href ? t : t.closest("[href]");
             if (n) {
@@ -22625,12 +22680,12 @@
                     e.preventDefault();
                     var i = n.hash
                       , r = document.querySelector(i)
-                      , o = gu && !function(e, t) {
+                      , o = bu && !function(e, t) {
                         var n = t.slice(1);
                         return e.includes(n)
-                    }(vu, i);
+                    }(yu, i);
                     if (r && o) {
-                        var s = r.offsetTop + mu - fu.stickyHeaderHeight;
+                        var s = r.offsetTop + vu - wu.stickyHeaderHeight;
                         window.scroll({
                             top: s,
                             behavior: "smooth"
@@ -22639,14 +22694,14 @@
                         r && r.scrollIntoView({
                             behavior: "smooth"
                         });
-                    fu && fu.contains(n) && fu.closeMenuSidebar()
+                    wu && wu.contains(n) && wu.closeMenuSidebar()
                 }
                 "#" === n.getAttribute("href") && e.preventDefault()
             }
         }
         )),
-        hu().polyfill()),
-        nu() && (window.__custom_load_event__ = !0,
+        fu().polyfill()),
+        ou() && (window.__custom_load_event__ = !0,
         window.addEventListener("load", (function() {
             var e = new CustomEvent("WSSiteLoaded");
             !function(e) {
@@ -22654,17 +22709,17 @@
                 , i = (t = document.querySelectorAll("ws-block[src]"),
                 function(e) {
                     if (Array.isArray(e))
-                        return wu(e)
+                        return Su(e)
                 }(t) || function(e) {
                     if ("undefined" != typeof Symbol && null != e[Symbol.iterator] || null != e["@@iterator"])
                         return Array.from(e)
                 }(t) || function(e, t) {
                     if (e) {
                         if ("string" == typeof e)
-                            return wu(e, t);
+                            return Su(e, t);
                         var n = {}.toString.call(e).slice(8, -1);
                         return "Object" === n && e.constructor && (n = e.constructor.name),
-                        "Map" === n || "Set" === n ? Array.from(e) : "Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n) ? wu(e, t) : void 0
+                        "Map" === n || "Set" === n ? Array.from(e) : "Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n) ? Su(e, t) : void 0
                     }
                 }(t) || function() {
                     throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")
@@ -22708,24 +22763,24 @@
             ))
         }
         )));
-        const bu = function() {
+        const Eu = function() {
             return new URLSearchParams(window.location.search).get("next") || null
         };
-        function yu() {
+        function _u() {
             window.location.replace("/")
         }
-        function Su(e) {
-            return Su = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
+        function Tu(e) {
+            return Tu = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             }
             : function(e) {
                 return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
             }
             ,
-            Su(e)
+            Tu(e)
         }
-        function Eu() {
-            Eu = function() {
+        function Mu() {
+            Mu = function() {
                 return t
             }
             ;
@@ -22804,7 +22859,7 @@
                     if ("throw" !== l.type) {
                         var c = l.arg
                           , d = c.value;
-                        return d && "object" == Su(d) && i.call(d, "__await") ? t.resolve(d.__await).then((function(e) {
+                        return d && "object" == Tu(d) && i.call(d, "__await") ? t.resolve(d.__await).then((function(e) {
                             n("next", e, s, a)
                         }
                         ), (function(e) {
@@ -22956,7 +23011,7 @@
                         return o.next = o
                     }
                 }
-                throw new TypeError(Su(t) + " is not iterable")
+                throw new TypeError(Tu(t) + " is not iterable")
             }
             return w.prototype = b,
             r(_, "constructor", {
@@ -23149,7 +23204,7 @@
             },
             t
         }
-        function _u(e, t, n, i, r, o, s) {
+        function Cu(e, t, n, i, r, o, s) {
             try {
                 var a = e[o](s)
                   , l = a.value
@@ -23158,35 +23213,35 @@
             }
             a.done ? t(l) : Promise.resolve(l).then(i, r)
         }
-        function Tu(e) {
+        function Au(e) {
             return function() {
                 var t = this
                   , n = arguments;
                 return new Promise((function(i, r) {
                     var o = e.apply(t, n);
                     function s(e) {
-                        _u(o, i, r, s, a, "next", e)
+                        Cu(o, i, r, s, a, "next", e)
                     }
                     function a(e) {
-                        _u(o, i, r, s, a, "throw", e)
+                        Cu(o, i, r, s, a, "throw", e)
                     }
                     s(void 0)
                 }
                 ))
             }
         }
-        function Mu(e, t, n) {
+        function xu(e, t, n) {
             n ? (t.setAttribute("hidden", ""),
             e.removeAttribute("invalid")) : (t.removeAttribute("hidden"),
             e.setAttribute("invalid", ""))
         }
-        function Cu(e) {
-            return Au.apply(this, arguments)
+        function ku(e) {
+            return Ou.apply(this, arguments)
         }
-        function Au() {
-            return (Au = Tu(Eu().mark((function e(t) {
+        function Ou() {
+            return (Ou = Au(Mu().mark((function e(t) {
                 var n, i;
-                return Eu().wrap((function(e) {
+                return Mu().wrap((function(e) {
                     for (; ; )
                         switch (e.prev = e.next) {
                         case 0:
@@ -23219,13 +23274,13 @@
             }
             )))).apply(this, arguments)
         }
-        function xu(e, t, n) {
-            return ku.apply(this, arguments)
+        function Iu(e, t, n) {
+            return Lu.apply(this, arguments)
         }
-        function ku() {
-            return (ku = Tu(Eu().mark((function e(t, n, i) {
+        function Lu() {
+            return (Lu = Au(Mu().mark((function e(t, n, i) {
                 var r;
-                return Eu().wrap((function(e) {
+                return Mu().wrap((function(e) {
                     for (; ; )
                         switch (e.prev = e.next) {
                         case 0:
@@ -23233,13 +23288,13 @@
                                 e.next = 4;
                                 break
                             }
-                            return Mu(t, n, !1),
+                            return xu(t, n, !1),
                             e.abrupt("return");
                         case 4:
-                            return r = bu() || "/",
+                            return r = Eu() || "/",
                             e.prev = 5,
                             e.next = 8,
-                            Cu({
+                            ku({
                                 next: r,
                                 password: t.value
                             });
@@ -23250,7 +23305,7 @@
                         case 11:
                             e.prev = 11,
                             e.t0 = e.catch(5),
-                            Mu(t, i, !1);
+                            xu(t, i, !1);
                         case 14:
                         case "end":
                             return e.stop()
@@ -23262,16 +23317,16 @@
         }
         document.addEventListener("DOMContentLoaded", (function() {
             document.querySelector('ws-block[src*="/protection-form/"]') && (function() {
-                var e = bu();
+                var e = Eu();
                 if (e && "/" !== e) {
                     var t = document.querySelector(".ws-close-button");
                     t.removeAttribute("hidden"),
                     t.addEventListener("click", (function() {
-                        yu()
+                        _u()
                     }
                     )),
                     document.addEventListener("keydown", (function(e) {
-                        "Escape" === e.key && yu()
+                        "Escape" === e.key && _u()
                     }
                     ))
                 }
@@ -23284,18 +23339,18 @@
                       , i = e.querySelector('ws-contact-form-validation-error[data-error-type="empty-password"]')
                       , r = e.querySelector('ws-contact-form-validation-error[data-error-type="incorrect-password"]');
                     t.addEventListener("input", (function(e) {
-                        Mu(t, r, !0),
-                        Mu(t, i, e.target.value)
+                        xu(t, r, !0),
+                        xu(t, i, e.target.value)
                     }
                     )),
                     t.addEventListener("keydown", (function(e) {
                         "Enter" === e.code && (e.preventDefault(),
-                        xu(t, i, r))
+                        Iu(t, i, r))
                     }
                     )),
                     n.addEventListener("click", (function(e) {
                         e.preventDefault(),
-                        xu(t, i, r)
+                        Iu(t, i, r)
                     }
                     ))
                 }
