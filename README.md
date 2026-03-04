@@ -25,4 +25,4 @@ Coming soon!
 
 https://archive.org/details/new-project_202603
 
-Thank you, Internet Arhcive!
+Thank you, Internet Archive!
